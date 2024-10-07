@@ -1,11 +1,8 @@
-package cgrp;
-
-import java.util.List;
+package cgrp.car_reservation.car_reservation;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
+// Object class of car matching object to be defined in MongoDB
 public class Car {
 
     @Id
@@ -25,7 +24,4 @@ public class Car {
     private String model;
 
     private String year;
-
-    @DocumentReference
-    private List<Review> reviewIds;
 }
