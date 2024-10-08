@@ -21,6 +21,9 @@ public class Vehicle {
     private @Setter boolean status;
     private String description;
     private String[] features;
+
+    private String carName;  
+
     public Vehicle(){}
 
     private double calculateAverageRating() {
