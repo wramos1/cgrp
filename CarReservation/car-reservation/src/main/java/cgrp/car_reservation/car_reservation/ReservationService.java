@@ -1,3 +1,4 @@
+/*
 package cgrp.car_reservation.car_reservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +38,14 @@ public class ReservationService {
         Vehicle vehicle = vehicleRepository.findById(reservationDto.getVehicleId()).orElseThrow(()->new RuntimeException("Vehicle not found"));
 
         //checks if vehicle is available this sets reservation fields
-        if(vehicle.isStatus()){
+        //if(vehicle.isStatus()){
             Reservation reservation = new Reservation();
             reservation.setUser(user);
             reservation.setVehicle(vehicle);
             reservation.setRentDate(reservationDto.getStartDate());
             reservation.setReturnDate(reservationDto.getEndDate());
 
-            vehicle.setStatus(false);
+            //vehicle.setStatus(false);
             vehicleRepository.save(vehicle);
 
             ArrayList<Reservation> userReservations = (ArrayList<Reservation>) user.getReservations();
@@ -76,3 +77,4 @@ public class ReservationService {
         return false;
     }
 }
+*/

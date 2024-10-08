@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController @RequestMapping("/home")
+@RestController
+@RequestMapping("/vehicles")
 public class VehicleController {
     private final VehicleService vehicleService;
 
@@ -27,4 +28,17 @@ public class VehicleController {
     public Vehicle getVehicleById(@PathVariable ObjectId id){
         return vehicleService.getVehicleById(id);
     }
+
+    @GetMapping("/make/{makeName}")
+    public List<Vehicle> getVehicleByMake(@PathVariable String makeName)
+    {
+        return vehicleService.getVehicleByMake(makeName);
+    }
+
+    @GetMapping("/year/{yearDay}")
+    public List<Vehicle> getVehicleByName(@PathVariable String yearDay)
+    {
+        return vehicleService.getVehicleByYear(yearDay);
+    }
+
 }

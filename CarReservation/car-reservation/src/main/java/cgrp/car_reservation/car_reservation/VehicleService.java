@@ -22,4 +22,14 @@ public class VehicleService {
     public Vehicle getVehicleById(ObjectId id){
         return vehicleRepository.findById(id).orElse(null);
     }
+
+    public List<Vehicle> getVehicleByMake(String make)
+    {
+        return vehicleRepository.findByMake(make);
+    }
+
+    public List<Vehicle> getVehicleByYear(String year)
+    {
+        return vehicleRepository.findByYear(year);
+    }
 }
