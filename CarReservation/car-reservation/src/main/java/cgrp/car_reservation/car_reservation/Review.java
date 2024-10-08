@@ -1,35 +1,27 @@
 package cgrp.car_reservation.car_reservation;
 
-import java.util.List;
-
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "cars")
+@Document(collection = "reviews")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
 // Object class of car matching object to be defined in MongoDB
-public class Car {
+public class Review {
 
     @Id
     private ObjectId id;
 
-    private String carId;
+    private String body;
 
-    private String make;
-
-    private String model;
-
-    private String year;
-
-    @DocumentReference
-    private List<Review> reviewIds;
+    public Review(String body) {
+        this.body = body;
+    }
 }

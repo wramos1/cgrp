@@ -27,9 +27,9 @@ public class CarController {
         return new ResponseEntity<List<Car>>(carService.allCars(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<Car>> getSingleCar(@PathVariable ObjectId id) {
-        return new ResponseEntity<Optional<Car>>(carService.singleCar(id), HttpStatus.OK);
+    @GetMapping("/{carId}")
+    public ResponseEntity<Optional<Car>> getSingleCar(@PathVariable String carId) {
+        return new ResponseEntity<Optional<Car>>(carService.singleCar(carId), HttpStatus.OK);
     }
 
 }

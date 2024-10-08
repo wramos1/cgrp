@@ -3,7 +3,6 @@ package cgrp.car_reservation.car_reservation;
 import java.util.List;
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,7 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public Optional<Car> singleCar(ObjectId id) {
-        return carRepository.findById(id);
+    public Optional<Car> singleCar(String carId) {
+        return carRepository.findByCarId(carId);
     }
 }
