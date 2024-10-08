@@ -14,8 +14,57 @@ public class paymentCard {
 
     private int cardNumber;
 
-    private String nameOnCard;
+    private int cvv;
 
     private Date expirationDate;
 
+    private String nameOnCard;
+
+    public paymentCard(String nameOnCard, int cvv, Date expirationDate, int cardNumber, ObjectId cardID) {
+        this.nameOnCard = nameOnCard;
+        this.cvv = cvv;
+        this.expirationDate = expirationDate;
+        this.cardNumber = cardNumber;
+        this.cardID = cardID;
+    }
+
+    public ObjectId getCardID() {
+        return cardID;
+    }
+
+    public void setCardID(ObjectId cardID) {
+        this.cardID = cardID;
+    }
+
+    public int getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(int cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public String getNameOnCard() {
+        return nameOnCard;
+    }
+
+    public void setNameOnCard(String nameOnCard) {
+        this.nameOnCard = nameOnCard;
+    }
+
+    public int getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(int cvv) {
+        this.cvv = cvv;
+    }
 }

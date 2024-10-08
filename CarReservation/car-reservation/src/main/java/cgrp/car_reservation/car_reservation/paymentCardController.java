@@ -1,18 +1,29 @@
 package cgrp.car_reservation.car_reservation;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/cards")
+@RequestMapping("/card")
 public class paymentCardController {
+
+    @Autowired
+    private paymentCardService cardService;
 
    @PostMapping("/newcard")
     public paymentCard createCard(@RequestBody paymentCard card)
    {
+       cardService.createNewPaymentCard(card);
 
        return card;
    }
+
+
+   // this works fine
+   @GetMapping
+    public String welcomePage()
+   {
+       return "Welcome to the card page!";
+   }
+
 }
