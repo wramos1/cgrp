@@ -4,7 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Document(collection = "vehicles")
 public class Vehicle {
@@ -15,16 +19,17 @@ public class Vehicle {
     private int year;
     private String type;
     private String color;
-    private Review[] reviews;
-    private double rating = calculateAverageRating();
     private int chargePerDay;
-    private @Setter boolean status;
     private String description;
-    private String[] features;
+    private @Setter boolean status;
+    @DBRef
+    private List<Review> reviews = new ArrayList<>();
+    private double rating = calculateAverageRating();
+    private List<String> features = new ArrayList<>();
     public Vehicle(){}
 
     private double calculateAverageRating() {
-        if (reviews == null || reviews.length == 0) {
+        if (reviews == null || reviews.isEmpty()) {
             return 0.0; // Return 0 or some sensible default
         }
 
@@ -33,8 +38,11 @@ public class Vehicle {
             sum += review.getRating();
         }
 
-        return (double) sum / reviews.length; // Cast to double for a more accurate average
+        return (double) sum / reviews.size(); // Cast to double for a more accurate average
     }
 
-
+    public void addReview(Review review){
+        reviews.add(review);
+        rating = calculateAverageRating();
+    }
 }
