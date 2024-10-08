@@ -6,9 +6,9 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Controller;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Document(collection = "reservations")
 @Getter @Setter
@@ -19,10 +19,11 @@ public class Reservation {
     private User user;
     @DBRef
     private Vehicle vehicle;
-    private Date returnDate;
-    private Date rentDate;
-    private int diffInDays;
-    private int chargeAmount;
+    private LocalDate returnDate;
+    private LocalDate rentDate;
+    private long chargeAmount;
 
-
+    public long calculateChargeAmount(){
+        return ChronoUnit.DAYS.between(rentDate,returnDate)* vehicle.getChargePerDay();
+    }
 }

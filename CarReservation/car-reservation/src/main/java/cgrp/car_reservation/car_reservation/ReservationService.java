@@ -33,9 +33,13 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
     public Reservation createReservation(ReservationDto reservationDto){
+        logger.info("Method Accessed!");
         User user = userRepository.findById(reservationDto.getUserId()).orElseThrow(()->new RuntimeException("User not found"));
+        logger.info("User found!");
         Vehicle vehicle = vehicleRepository.findById(reservationDto.getVehicleId()).orElseThrow(()->new RuntimeException("Vehicle not found"));
-
+        logger.info("User and Vehicle found! {}", vehicle.getChargePerDay());
+        vehicleRepository.save(vehicle);
+        logger.info("Vehicle saved!");
         if(!vehicle.isStatus()){
             logger.warn("Attempted to reserve an unavailable vehicle: {}", vehicle.getVehicleID());
             throw new VehicleNotAvailableException("The vehicle is currently unavailable for reservation.");
@@ -46,15 +50,20 @@ public class ReservationService {
         reservation.setVehicle(vehicle);
         reservation.setRentDate(reservationDto.getStartDate());
         reservation.setReturnDate(reservationDto.getEndDate());
-
+        reservation.setChargeAmount(reservation.calculateChargeAmount());
+        //uploads reservation to mongo, must be done before updating user reservation array
+        reservationRepository.save(reservation);
+        logger.info("Reservation saved!");
+        //updating vehicle status
         vehicle.setStatus(false);
+        logger.info("Saving vehicle {}...", vehicle);
         vehicleRepository.save(vehicle);
-
+        logger.info("Vehicle added to MongoDB!: {}", vehicle);
         user.addReservation(reservation);
         userRepository.save(user);
         logger.info("Reservation added to user!: {}", reservation);
 
-        return reservationRepository.save(reservation);
+        return reservation;
     }
 
     public boolean cancelReservation(User user, Reservation reservation){
