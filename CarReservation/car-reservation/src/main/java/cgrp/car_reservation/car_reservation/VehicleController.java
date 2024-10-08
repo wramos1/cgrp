@@ -2,6 +2,7 @@ package cgrp.car_reservation.car_reservation;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,4 +28,7 @@ public class VehicleController {
     public Vehicle getVehicleById(@PathVariable ObjectId id){
         return vehicleService.getVehicleById(id);
     }
+
+    @GetMapping("/findvehicles/{type}")
+    public List<Vehicle> getAllVehiclesOfType(@PathVariable String type){return vehicleService.getAllByType(type);}
 }
