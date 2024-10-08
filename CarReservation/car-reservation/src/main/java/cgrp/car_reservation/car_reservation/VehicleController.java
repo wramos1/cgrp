@@ -41,4 +41,10 @@ public class VehicleController {
         return vehicleService.getVehicleByYear(yearDay);
     }
 
+    @GetMapping("/vehicleWelcome")
+    public String greetings()
+    {
+        return "Welcome to Vehicles Page";
+    }
+
 }
