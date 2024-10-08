@@ -16,11 +16,11 @@ public class paymentCard {
 
     private int cvv;
 
-    private Date expirationDate;
+    private OurDate expirationDate;
 
     private String nameOnCard;
 
-    public paymentCard(String nameOnCard, int cvv, Date expirationDate, int cardNumber, ObjectId cardID) {
+    public paymentCard(String nameOnCard, int cvv, OurDate expirationDate, int cardNumber, ObjectId cardID) {
         this.nameOnCard = nameOnCard;
         this.cvv = cvv;
         this.expirationDate = expirationDate;
@@ -44,11 +44,11 @@ public class paymentCard {
         this.cardNumber = cardNumber;
     }
 
-    public Date getExpirationDate() {
+    public OurDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(OurDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 
