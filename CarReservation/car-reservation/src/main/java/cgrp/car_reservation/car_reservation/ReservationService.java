@@ -36,41 +36,33 @@ public class ReservationService {
         User user = userRepository.findById(reservationDto.getUserId()).orElseThrow(()->new RuntimeException("User not found"));
         Vehicle vehicle = vehicleRepository.findById(reservationDto.getVehicleId()).orElseThrow(()->new RuntimeException("Vehicle not found"));
 
-        //checks if vehicle is available this sets reservation fields
-        if(vehicle.isStatus()){
-            Reservation reservation = new Reservation();
-            reservation.setUser(user);
-            reservation.setVehicle(vehicle);
-            reservation.setRentDate(reservationDto.getStartDate());
-            reservation.setReturnDate(reservationDto.getEndDate());
-
-            vehicle.setStatus(false);
-            vehicleRepository.save(vehicle);
-
-            ArrayList<Reservation> userReservations = (ArrayList<Reservation>) user.getReservations();
-            logger.info("Current userReservations: {}", userReservations);
-
-            userReservations.add(reservation);
-            logger.info("Updated userReservations: {}", userReservations);
-
-            user.setReservations(userReservations);
-
-            userRepository.save(user);
-            logger.info("Reservation added to user!: {}", reservation);
-
-            return reservationRepository.save(reservation);
-        } else {
+        if(!vehicle.isStatus()){
             logger.warn("Attempted to reserve an unavailable vehicle: {}", vehicle.getVehicleID());
             throw new VehicleNotAvailableException("The vehicle is currently unavailable for reservation.");
         }
+        //checks if vehicle is available this sets reservation fields
+        Reservation reservation = new Reservation();
+        reservation.setUser(user);
+        reservation.setVehicle(vehicle);
+        reservation.setRentDate(reservationDto.getStartDate());
+        reservation.setReturnDate(reservationDto.getEndDate());
+
+        vehicle.setStatus(false);
+        vehicleRepository.save(vehicle);
+
+        user.addReservation(reservation);
+        userRepository.save(user);
+        logger.info("Reservation added to user!: {}", reservation);
+
+        return reservationRepository.save(reservation);
     }
 
     public boolean cancelReservation(User user, Reservation reservation){
-        List<Reservation> userReservations = user.getReservations();
-        if(userReservations.contains(reservation)){
+
+        if(user.hasReservation(reservation)){
             reservation.getVehicle().setStatus(true);
             vehicleRepository.save(reservation.getVehicle());
-            userReservations.remove(reservation);
+            user.getReservations().remove(reservation);
             return true;
         }
         return false;
