@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
+// entity class
 @Document(collection = "cards")
 public class paymentCard {
 
