@@ -35,4 +35,9 @@ public class VehicleService {
         return vehicleRepository.findByMake(make);
     }
 
+    public List<Vehicle> getVehicleByYear(int year)
+    {
+        return vehicleRepository.findByYear(year);
+    }
+
 }

@@ -47,4 +47,10 @@ public class VehicleController {
         return vehicleService.getVehicleByMake(make);
     }
 
+    @GetMapping("/yearSearch/{year}")
+    public List<Vehicle> getVehicleByYear(@PathVariable int year) // will return to endpoint GET request the vehicles of that year
+    {
+        return vehicleService.getVehicleByYear(year);
+    }
+
 }
