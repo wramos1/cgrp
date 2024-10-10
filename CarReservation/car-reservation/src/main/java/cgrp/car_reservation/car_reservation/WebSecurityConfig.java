@@ -3,6 +3,7 @@ package cgrp.car_reservation.car_reservation;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,35 +32,22 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        logger.info("Configuring security filter chain...");
-
         http
                 .csrf(csrf -> csrf.disable())  // For simplicity, disabling CSRF (Not recommended for production)
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers(
-                                "/",
-                                "/login.html",
-                                "/login",
-                                "/register.html",
-                                "/register",
-                                "/homepage",
-                                "/home",
-                                "/login?error=true",
-                                "/reservations/reservation",
-                                "/register-user.html",
-                                "/reservations"  // Ensure this matches your endpoint
-                        ).permitAll()  // Allow these paths without authentication
+                                "/"// Ensure this matches your endpoint
+                        ).permitAll()
+                        .requestMatchers(HttpMethod.GET,"/**").permitAll()
                         .anyRequest().authenticated()  // Require authentication for all other requests
                 )
-                .formLogin(form -> form
-                        .defaultSuccessUrl("/reservations", true)  // Redirect after successful login
-                        .permitAll()
+                .formLogin(form -> form.disable()
+                        //.defaultSuccessUrl("/reservations", true)  // Redirect after successful login
+                        //.permitAll()
                 )
                 .logout(logout -> logout
-                        .permitAll() // Allow everyone to access logout
+                      .permitAll() // Allow everyone to access logout
                 );
-
-        logger.info("Security filter chain configured successfully.");
         return http.build();  // Build and return the SecurityFilterChain
     }
 }

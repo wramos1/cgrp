@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RestController;
-
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,16 +34,15 @@ public class ReservationService {
     public Reservation createReservation(ReservationDto reservationDto){
         User user = userRepository.findById(reservationDto.getUserId()).orElseThrow(()->new RuntimeException("User not found"));
         Vehicle vehicle = vehicleRepository.findById(reservationDto.getVehicleId()).orElseThrow(()->new RuntimeException("Vehicle not found"));
-
         //checks if vehicle is available this sets reservation fields
-        if(vehicle.isStatus()){
+        if(vehicle.isCurrentlyRented()){
             Reservation reservation = new Reservation();
             reservation.setUser(user);
             reservation.setVehicle(vehicle);
             reservation.setRentDate(reservationDto.getStartDate());
             reservation.setReturnDate(reservationDto.getEndDate());
 
-            vehicle.setStatus(false);
+            vehicle.setCurrentlyRented(false);
             vehicleRepository.save(vehicle);
 
             ArrayList<Reservation> userReservations = (ArrayList<Reservation>) user.getReservations();
@@ -64,13 +62,12 @@ public class ReservationService {
             throw new VehicleNotAvailableException("The vehicle is currently unavailable for reservation.");
         }
     }
-
     public boolean cancelReservation(User user, Reservation reservation){
-        List<Reservation> userReservations = user.getReservations();
-        if(userReservations.contains(reservation)){
-            reservation.getVehicle().setStatus(true);
+
+        if(user.hasReservation(reservation)){
+            reservation.getVehicle().setCurrentlyRented(true);
             vehicleRepository.save(reservation.getVehicle());
-            userReservations.remove(reservation);
+            user.removeReservation(reservation);
             return true;
         }
         return false;
