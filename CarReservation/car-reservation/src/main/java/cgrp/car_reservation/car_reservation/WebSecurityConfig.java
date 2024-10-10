@@ -3,6 +3,7 @@ package cgrp.car_reservation.car_reservation;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -48,7 +49,8 @@ public class WebSecurityConfig {
                                 "/reservations/reservation",
                                 "/register-user.html",
                                 "/reservations"  // Ensure this matches your endpoint
-                        ).permitAll()  // Allow these paths without authentication
+                        ).permitAll() // Allow these paths without authentication
+                        .requestMatchers(HttpMethod.GET,"/**").permitAll()
                         .anyRequest().authenticated()  // Require authentication for all other requests
                 )
                 .formLogin(form -> form

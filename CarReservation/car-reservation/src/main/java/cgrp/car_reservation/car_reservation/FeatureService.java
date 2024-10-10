@@ -3,6 +3,8 @@ package cgrp.car_reservation.car_reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FeatureService {
 
@@ -13,6 +15,11 @@ public class FeatureService {
         {
             featureRepository.save(feature);
             return feature;
+        }
+
+        public List<Feature> getAllFeatures()
+        {
+            return featureRepository.findAll();
         }
 
 

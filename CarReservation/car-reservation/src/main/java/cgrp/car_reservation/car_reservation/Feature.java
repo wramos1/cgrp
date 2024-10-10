@@ -12,4 +12,25 @@ public class Feature { // will be the features of the vehicle
 
     private String featureDescription; // this holds the text of what the feature  is
 
+    public Feature(String featureDescription, ObjectId featureID) {
+        this.featureDescription = featureDescription;
+        this.featureID = featureID;
+    }
+
+
+    public ObjectId getFeatureID() {
+        return featureID;
+    }
+
+    public void setFeatureID(ObjectId featureID) {
+        this.featureID = featureID;
+    }
+
+    public String getFeatureDescription() {
+        return featureDescription;
+    }
+
+    public void setFeatureDescription(String featureDescription) {
+        this.featureDescription = featureDescription;
+    }
 }
