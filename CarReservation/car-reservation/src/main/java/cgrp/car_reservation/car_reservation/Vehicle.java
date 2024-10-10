@@ -19,9 +19,9 @@ public class Vehicle {
     private String make;
     private String model;
     private int year;
-    private String type;
+    private String type; // coupe, suv, etc
     private String color;
-    private int dailyRentRate;
+    private double dailyRentRate;
     private double vehicleRating = 0.0; // the average rating of the vehicle ; start it at 0.0 b/c it currently has no ratings
     private boolean currentlyRented; // boolean value if it is currently rented or not
     private String description; // quick descriptioon of the vehicle

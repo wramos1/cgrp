@@ -27,7 +27,7 @@ public class Reservation {
     private int chargeAmount;
 
 
-    public long calculateChargeAmount(){
+   /* public long calculateChargeAmount(){
         return ChronoUnit.DAYS.between(rentDate,returnDate)* vehicle.getDailyRentRate();
-    }
+    }*/
 }
