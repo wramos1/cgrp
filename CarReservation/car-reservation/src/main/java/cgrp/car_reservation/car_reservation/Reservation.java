@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.time.*;
+
 
 
 @Document(collection = "reservations")
@@ -28,5 +30,4 @@ public class Reservation {
     public long calculateChargeAmount(){
         return ChronoUnit.DAYS.between(rentDate,returnDate)* vehicle.getDailyRentRate();
     }
-
 }
