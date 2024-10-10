@@ -31,6 +31,7 @@ public class ReservationService {
     public List<Reservation> getAllReservations(){
         return reservationRepository.findAll();
     }
+
     public Reservation createReservation(ReservationDto reservationDto){
         User user = userRepository.findById(reservationDto.getUserId()).orElseThrow(()->new RuntimeException("User not found"));
         Vehicle vehicle = vehicleRepository.findById(reservationDto.getVehicleId()).orElseThrow(()->new RuntimeException("Vehicle not found"));
