@@ -53,4 +53,10 @@ public class VehicleController {
         return vehicleService.getVehicleByYear(year);
     }
 
+    @GetMapping("/priceRange/{lowerRange}/{upperRange}")
+    public List<Vehicle> getVehicleByPriceRange(@PathVariable double lowerRange, @PathVariable double upperRange) // will return the vehicles to endpoint GET request the vehicles within that certain price range
+    {
+        return vehicleService.particularPriceRange(lowerRange, upperRange);
+    }
+
 }
