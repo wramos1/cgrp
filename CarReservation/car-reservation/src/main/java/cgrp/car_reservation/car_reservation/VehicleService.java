@@ -30,4 +30,9 @@ public class VehicleService {
         return vehicleRepository.findByType(type);
     }
 
+    public List<Vehicle> getVehicleByMake(String make)
+    {
+        return vehicleRepository.findByMake(make);
+    }
+
 }

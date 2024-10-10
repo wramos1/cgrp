@@ -9,4 +9,5 @@ public interface VehicleRepository extends MongoRepository<Vehicle, ObjectId> {
 
     public List<Vehicle> findByType(String type); // will query the db for all vehicles of that type
 
+    public List<Vehicle> findByMake(String make); // will query the db for all vehicles of that make
 }

@@ -34,11 +34,17 @@ public class VehicleController {
 
     // Possibly make the types and stuff in all caps so whenever a search is done, it wont matter what the casing is
 
-    // works 
+    // works
     @GetMapping("/typeSearch/{type}")
     public List<Vehicle> getVehicleByType(@PathVariable String type) // will return to endpoint GET request the vehicles of that specified type
     {
         return vehicleService.getVehicleByType(type);
+    }
+
+    @GetMapping("/makeSearch/{make}")
+    public List<Vehicle> getVehicleByMake(@PathVariable String make) // will return to endpoint GET request the vehicles of that specfied make
+    {
+        return vehicleService.getVehicleByMake(make);
     }
 
 }
