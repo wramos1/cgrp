@@ -42,8 +42,15 @@ public class WebSecurityConfig {
                         .anyRequest().authenticated()  // Require authentication for all other requests
                 )
                 .formLogin(form -> form.disable()
-                        //.defaultSuccessUrl("/reservations", true)  // Redirect after successful login
-                        //.permitAll()
+//                        .defaultSuccessUrl("/reservations", true)  // Redirect after successful login
+//                        .permitAll()
+//                                "/",
+//                                "/login",
+//                                "/login?error=true",
+//                                "/register-user.html"
+//                        ).permitAll()
+//                        .requestMatchers(HttpMethod.GET, "/**").permitAll()
+//                        .anyRequest().authenticated()  // Require authentication for all other requests
                 )
                 .logout(logout -> logout
                       .permitAll() // Allow everyone to access logout
