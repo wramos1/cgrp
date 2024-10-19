@@ -46,4 +46,9 @@ public class Vehicle {
         }
         return (double) sum / reviewsOfVehicle.length; // Cast to double for a more accurate average
     }*/
+
+    public void leaveReviewOnVehicle(Review review)
+    {
+
+    }
 }

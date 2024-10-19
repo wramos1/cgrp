@@ -13,6 +13,9 @@ public class VehicleService {
     @Autowired
     private VehicleRepository vehicleRepository;
 
+    @Autowired
+    private ReviewRepository reviewRepository;
+
     /*@Autowired
     public VehicleService(VehicleRepository vehicleRepository){
         this.vehicleRepository = vehicleRepository;
@@ -54,6 +57,11 @@ public class VehicleService {
         }
 
         return vehiclesInPriceRange; // will return the vehicles in the price range
+    }
+
+    public Review leaveNewRating(ReviewDTO review)
+    {
+        Review actualReview = new Review()
     }
 
 }

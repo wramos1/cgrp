@@ -33,4 +33,10 @@ public class UserController {
         logger.info("found user!");
         return userService.getUserById(objectId);
     }
+
+    @PostMapping("/leaveReview/{username}")
+    public Review leaveNewReview(@PathVariable String username, @RequestBody Review review)
+    {
+        return userService.leaveNewReview(username, review);
+    }
 }

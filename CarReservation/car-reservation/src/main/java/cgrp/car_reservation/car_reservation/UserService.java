@@ -21,6 +21,9 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Autowired
+    private ReviewRepository reviewRepository; // will allow for the creation of the review
+
     public User registerUser(UserDto userDto){
         logger.info("Registering user: {}", userDto.getUsername());
 
@@ -39,4 +42,15 @@ public class UserService {
     public User getUserById(ObjectId id){
         return userRepository.findById(id).orElse(null);
     }
+
+    public Review leaveNewReview(String username, Review review)
+    {
+        User user = userRepository.findByUsername(username); // will return the user that wants to leave the review
+
+        reviewRepository.save(review); // saves the review for now in the db
+
+
+        return review;
+    }
+
 }
