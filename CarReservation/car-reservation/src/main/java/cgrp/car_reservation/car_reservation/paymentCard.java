@@ -76,4 +76,15 @@ public class paymentCard {
     public void setCvv(int cvv) {
         this.cvv = cvv;
     }
+
+    // will comapre the expiration date of the card with the current date to see if the card is expired
+    public Boolean isCardExpired()
+    {
+        LocalDate currentDate = LocalDate.now(); // creates a local date object with the current date in it
+
+        if(expirationDate.isBefore(currentDate))
+            return true;
+
+        return false;
+    }
 }
