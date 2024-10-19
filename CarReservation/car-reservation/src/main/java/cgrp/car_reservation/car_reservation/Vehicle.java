@@ -4,9 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -26,11 +28,11 @@ public class Vehicle {
     private boolean currentlyRented; // boolean value if it is currently rented or not
     private String description; // quick descriptioon of the vehicle
 
-    @DocumentReference // in the db, the id of each feature will be stored in the Vehcile document so it will be a refrence
-    private List<Feature> vehicleFeatures;
+    @DocumentReference(lazy = false) // in the db, the id of each feature will be stored in the Vehcile document so it will be a refrence
+    private List<Feature> vehicleFeatures = new ArrayList<Feature>();
 
-    @DocumentReference
-    private List<Review> reviewsOfVehicle;
+    @DBRef(lazy = false) // allows for the document to be refrenced using its unique MongoID; lazy = false will allow for the refrenced data to be loaded in
+    private List<Review> reviewsOfVehicle = new ArrayList<Review>();
 
     public Vehicle(){}
 
