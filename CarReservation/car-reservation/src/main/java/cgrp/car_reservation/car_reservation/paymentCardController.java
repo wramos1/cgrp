@@ -19,6 +19,12 @@ public class paymentCardController {
         return card;
     }
 
+    @PostMapping("/testcard")
+    public paymentCard createNewCard(@RequestBody paymentCardDTO cardDTO)
+    {
+        return cardService.createCardFromDTO(cardDTO);
+    }
+
 
     // this works fine
     @GetMapping

@@ -27,6 +27,13 @@ public class paymentCard {
         this.cardID = cardID;
     }
 
+    public paymentCard(String nameOnCard, int cvv, LocalDate expirationDate, int cardNumber) {
+        this.nameOnCard = nameOnCard;
+        this.cvv = cvv;
+        this.expirationDate = expirationDate;
+        this.cardNumber = cardNumber;
+    }
+
     public ObjectId getCardID() {
         return cardID;
     }
