@@ -59,9 +59,9 @@ public class VehicleService {
         return vehiclesInPriceRange; // will return the vehicles in the price range
     }
 
-    public Review leaveNewRating(ReviewDTO review)
+   /* public Review leaveNewRating(ReviewDTO review)
     {
         Review actualReview = new Review()
-    }
+    }*/
 
 }
