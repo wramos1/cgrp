@@ -3,9 +3,12 @@ package cgrp.car_reservation.car_reservation;
 import org.bson.types.ObjectId;
 import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
+// this is the collection that will hold the card documents
+@Document(collection = "cards")
 public class paymentCard {
 
     @Id

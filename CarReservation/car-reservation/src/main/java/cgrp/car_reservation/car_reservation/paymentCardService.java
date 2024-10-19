@@ -20,6 +20,7 @@ public class paymentCardService {
         return card;
     }
 
+    // creates a card object in the way the model is stored in db from the minimal information that was needed from the user in the front end
     public paymentCard createCardFromDTO(paymentCardDTO cardDTO)
     {
         LocalDate expirationDate = LocalDate.of(cardDTO.getYear(), cardDTO.getMonth(), cardDTO.getDay());

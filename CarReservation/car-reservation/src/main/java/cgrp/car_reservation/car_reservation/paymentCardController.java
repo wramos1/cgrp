@@ -25,6 +25,22 @@ public class paymentCardController {
         return cardService.createCardFromDTO(cardDTO);
     }
 
+    @GetMapping("/gettestcard")
+    public paymentCard getTestCard()
+    {
+        paymentCardDTO tempcard = new paymentCardDTO();
+
+        tempcard.setNameOnCard("Arthur");
+        tempcard.setCardNumber(15422485);
+        tempcard.setCvv(454);
+        tempcard.setMonth(12);
+        tempcard.setDay(11);
+        tempcard.setYear(2024);
+
+        return cardService.createCardFromDTO(tempcard);
+
+    }
+
 
     // this works fine
     @GetMapping
