@@ -5,9 +5,12 @@ import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Controller;
-
+import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.time.*;
+
+
 
 @Document(collection = "reservations")
 @Getter @Setter
@@ -16,10 +19,15 @@ public class Reservation {
     private ObjectId reservationID;
     private User user;
     private Vehicle vehicle;
-    private Date returnDate;
-    private Date rentDate;
+    @Setter
+    private LocalDate returnDate;
+    @Setter
+    private LocalDate rentDate;
     private int diffInDays;
     private int chargeAmount;
 
 
+    public long calculateChargeAmount(){
+        return ChronoUnit.DAYS.between(rentDate,returnDate)* vehicle.getDailyRentRate();
+    }
 }
