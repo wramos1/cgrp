@@ -34,20 +34,30 @@ public class ReservationService {
 
     public Reservation createReservation(ReservationDto reservationDto){
         User user = userRepository.findById(reservationDto.getUserId()).orElseThrow(()->new RuntimeException("User not found"));
+        logger.info("User Found!");
         Vehicle vehicle = vehicleRepository.findById(reservationDto.getVehicleId()).orElseThrow(()->new RuntimeException("Vehicle not found"));
+        logger.info("Vehicle Found!");
         //checks if vehicle is available this sets reservation fields
-        if(vehicle.isCurrentlyRented()){
+        if(!vehicle.isCurrentlyRented()){
+            logger.info("Vehicle is available!");
             Reservation reservation = new Reservation();
+            logger.info("Reservation Created!");
             reservation.setUser(user);
+            logger.info("User Set!");
             reservation.setVehicle(vehicle);
+            logger.info("Vehicle Set!");
             reservation.setRentDate(reservationDto.getStartDate());
             reservation.setReturnDate(reservationDto.getEndDate());
+            logger.info("Dates Set!");
 
-            vehicle.setCurrentlyRented(false);
+            reservation.calculateChargeAmount();
+
+            vehicle.setCurrentlyRented(true);
             vehicleRepository.save(vehicle);
 
             ArrayList<Reservation> userReservations = (ArrayList<Reservation>) user.getReservations();
             logger.info("Current userReservations: {}", userReservations);
+
 
             userReservations.add(reservation);
             logger.info("Updated userReservations: {}", userReservations);

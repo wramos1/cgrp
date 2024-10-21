@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Getter @Document(collection = "vehicles")
 public class Vehicle {
@@ -15,6 +16,7 @@ public class Vehicle {
     private int year;
     private String type;
     private String color;
+    @DocumentReference
     private Review[] reviewsOfVehicle;
     private double rating = calculateAverageRating();
     private int dailyRentRate;

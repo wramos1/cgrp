@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.*;
 
@@ -19,11 +20,11 @@ public class User {
     private String email;
 
     //holds references to all users reservations
-    @DBRef
+    @DocumentReference
     private List<Reservation> reservations = new ArrayList<>();
 
     //holds references to all reviews the user has left
-    @DBRef
+    @DocumentReference
     private List<Review> reviewsLeft;
 
     public void addReservation(Reservation reservation){
