@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Document(collection = "reviews") // specifies which colleciton the document will be stored in, in the db
 public class Review {
@@ -16,8 +17,10 @@ public class Review {
 
     private String reviewBody;
 
+    @DocumentReference
     private User reviewLeaver;
 
+    @DocumentReference
     private Vehicle vehicleReviewIsOn;
 
     public Review(double reviewRating, String reviewBody, User reviewLeaver, Vehicle vehicleReviewIsOn, ObjectId reviewID) {
@@ -27,6 +30,19 @@ public class Review {
         this.vehicleReviewIsOn = vehicleReviewIsOn;
         this.reviewID = reviewID;
     }
+    public Review(double reviewRating, String reviewBody, User reviewLeaver, Vehicle vehicleReviewIsOn) {
+        this.reviewRating = reviewRating;
+        this.reviewBody = reviewBody;
+        this.reviewLeaver = reviewLeaver;
+        this.vehicleReviewIsOn = vehicleReviewIsOn;
+    }
+
+    public Review(double reviewRating, String reviewBody, User reviewLeaver) {
+        this.reviewRating = reviewRating;
+        this.reviewBody = reviewBody;
+        this.reviewLeaver = reviewLeaver;
+    }
+
 
     public ObjectId getReviewID() {
         return reviewID;

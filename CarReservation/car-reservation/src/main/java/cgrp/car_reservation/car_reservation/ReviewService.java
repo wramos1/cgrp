@@ -20,6 +20,14 @@ public class ReviewService {
         return review;
     }
 
+    // writes the review
+    public Review writeReview(ReviewDTO reviewDTO, User currentUser)
+    {
+        Review newReview = new Review(reviewDTO.getReviewRating(), reviewDTO.getReviewBody(), currentUser);
+
+        return reviewRepository.save(newReview);
+    }
+
     public List<Review> userSpecificReviews(String lastName)
     {
         List<Review> allReviews = reviewRepository.findAll();

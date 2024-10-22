@@ -1,5 +1,7 @@
 package cgrp.car_reservation.car_reservation;
 
+import java.time.LocalDate;
+
 // this will get the passsed in neccesary info from the user from front end, the data transfer object
 public class paymentCardDTO {
 
@@ -15,6 +17,8 @@ public class paymentCardDTO {
     private int day;
 
     private int year;
+
+   // private LocalDate expirationDate;
 
     public int getCardNumber() {
         return cardNumber;

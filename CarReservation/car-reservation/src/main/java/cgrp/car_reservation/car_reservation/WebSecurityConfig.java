@@ -39,6 +39,7 @@ public class WebSecurityConfig {
                                 "/"// Ensure this matches your endpoint
                         ).permitAll()
                         .requestMatchers(HttpMethod.GET,"/**").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/**").permitAll()
                         .anyRequest().authenticated()  // Require authentication for all other requests
                 )
                 .formLogin(form -> form.disable()

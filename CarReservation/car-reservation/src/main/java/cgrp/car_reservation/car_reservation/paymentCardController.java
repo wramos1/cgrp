@@ -22,6 +22,7 @@ public class paymentCardController {
     @PostMapping("/testcard")
     public paymentCard createNewCard(@RequestBody paymentCardDTO cardDTO)
     {
+        System.out.println("Hello card");
         return cardService.createCardFromDTO(cardDTO);
     }
 

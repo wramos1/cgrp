@@ -53,4 +53,11 @@ public class UserService {
         return review;
     }
 
+    // get the User by its username attribute
+    public User getUserByUsername(String username)
+    {
+        return userRepository.findByUsername(username);
+    }
+
+
 }
