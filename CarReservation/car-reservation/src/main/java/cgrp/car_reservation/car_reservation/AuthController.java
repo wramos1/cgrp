@@ -29,14 +29,4 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Password mismatch");
         }
     }
-
-/*    @GetMapping("/register")
-    public String showRegistrationForm(){
-        return "registration";
-    }*/
-
-/*    @GetMapping("/login")
-    public String showLoginForm(){
-        return "login";
-    }*/
 }

@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Getter @Document(collection = "vehicles")
 public class Vehicle {
@@ -15,26 +16,23 @@ public class Vehicle {
     private int year;
     private String type;
     private String color;
-    private Review[] reviews;
+    @DocumentReference
+    private Review[] reviewsOfVehicle;
     private double rating = calculateAverageRating();
-    private int chargePerDay;
-    private @Setter boolean status;
+    private int dailyRentRate;
+    private @Setter boolean currentlyRented;
     private String description;
-    private String[] features;
+    private String[] vehicleFeatures;
     public Vehicle(){}
 
     private double calculateAverageRating() {
-        if (reviews == null || reviews.length == 0) {
+        if (reviewsOfVehicle == null || reviewsOfVehicle.length == 0) {
             return 0.0; // Return 0 or some sensible default
         }
-
         int sum = 0;
-        for (Review review : reviews) {
+        for (Review review : reviewsOfVehicle) {
             sum += review.getRating();
         }
-
-        return (double) sum / reviews.length; // Cast to double for a more accurate average
+        return (double) sum / reviewsOfVehicle.length; // Cast to double for a more accurate average
     }
-
-
 }
