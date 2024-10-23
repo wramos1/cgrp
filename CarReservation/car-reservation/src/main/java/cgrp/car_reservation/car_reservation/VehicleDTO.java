@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.util.ArrayList;
 import java.util.List;
 
-// this will be used temporarily whenever we are creating the objects
+// this will be used temporarily whenever we are creating the objects in our intial phase
 public class VehicleDTO {
     private String make;
     private String model;
