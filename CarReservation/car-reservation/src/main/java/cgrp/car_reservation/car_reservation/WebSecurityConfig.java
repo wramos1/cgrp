@@ -81,9 +81,10 @@ public class WebSecurityConfig {
                                 .anyRequest().authenticated()  // Require authentication for all other requests
                         )
                         .formLogin(form -> form
-                                .loginPage("/login.html")
+                                .loginPage("http://localhost:3000/#/login")
                                 .loginProcessingUrl("/login")
                                 .defaultSuccessUrl("http://localhost:3000/#/")
+                                .failureUrl("http://localhost:3000/#/contact")
                                 .permitAll()
                         )
                         .logout(logout -> logout
