@@ -3,6 +3,7 @@ package cgrp.car_reservation.car_reservation;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.UUID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,5 +64,17 @@ public class VehicleService {
     {
         Review actualReview = new Review()
     }*/
+
+    public Vehicle createNewVehicle(VehicleDTO tempVehicle)
+    {
+        String uniqueID = UUID.randomUUID().toString(); // creates a unique ID that is converted to a string
+
+        // creates new vehicle with the uniqueID
+        Vehicle newVehicle = new Vehicle(uniqueID, tempVehicle.getMake(), tempVehicle.getModel(), tempVehicle.getYear(), tempVehicle.getType(), tempVehicle.getColor(), tempVehicle.getDailyRentRate(), tempVehicle.getVehicleRating(), tempVehicle.isCurrentlyRented(), tempVehicle.getDescription(), tempVehicle.getVehicleFeatures(), tempVehicle.getReviewsOfVehicle());
+
+        return vehicleRepository.save(newVehicle);
+
+    }
+
 
 }

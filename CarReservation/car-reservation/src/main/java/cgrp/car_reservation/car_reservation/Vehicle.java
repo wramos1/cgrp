@@ -16,8 +16,9 @@ import java.util.List;
 @Document(collection = "vehicles")
 public class Vehicle {
     @Id
-    private ObjectId vehicleID;
+    private ObjectId vehicleID; // this is the ID for the database that will use in itself
 
+    private String customVehicleID; // this is the ID we will use to get back from the front end; will be assigned with UUID java library
     private String make;
     private String model;
     private int year;
@@ -36,7 +37,22 @@ public class Vehicle {
 
     public Vehicle(){}
 
-   /* private double calculateAverageRating() {
+    public Vehicle(String customVehicleID, String make, String model, int year, String type, String color, double dailyRentRate, double vehicleRating, boolean currentlyRented, String description, List<Feature> vehicleFeatures, List<Review> reviewsOfVehicle) {
+        this.customVehicleID = customVehicleID;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.type = type;
+        this.color = color;
+        this.dailyRentRate = dailyRentRate;
+        this.vehicleRating = vehicleRating;
+        this.currentlyRented = currentlyRented;
+        this.description = description;
+        this.vehicleFeatures = vehicleFeatures;
+        this.reviewsOfVehicle = reviewsOfVehicle;
+    }
+
+    /* private double calculateAverageRating() {
         if (reviewsOfVehicle == null || reviewsOfVehicle.length == 0) {
             return 0.0; // Return 0 or some sensible default
         }

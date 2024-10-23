@@ -59,5 +59,13 @@ public class VehicleController {
     // do something that is not everything that is rented out in cars
 
 
+    // create a new car to utilize the UUID
+    @PostMapping("/newvehicle")
+    public Vehicle newVehicle(@RequestBody VehicleDTO tempVehicle)
+    {
+        return vehicleService.createNewVehicle(tempVehicle);
+    }
+
+
 
 }
