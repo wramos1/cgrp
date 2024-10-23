@@ -83,7 +83,7 @@ public class WebSecurityConfig {
                         .formLogin(form -> form
                                 .loginPage("http://localhost:3000/#/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("http://localhost:3000/#/")
+                                .defaultSuccessUrl("http://localhost:3000/#/", true)
                                 .failureUrl("http://localhost:3000/#/contact")
                                 .permitAll()
                         )
