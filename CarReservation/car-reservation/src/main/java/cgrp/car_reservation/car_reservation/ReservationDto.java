@@ -14,7 +14,7 @@ public class ReservationDto {
     private final LocalDate endDate;
     public ReservationDto(ObjectId userId, ObjectId vehicleId, LocalDate rentDate, LocalDate returnDate){
         this.userId = userId;
-        this.vehicleId = vehicleId        ;
+        this.vehicleId = vehicleId;
         this.startDate = rentDate;
         this.endDate = returnDate;
     }
