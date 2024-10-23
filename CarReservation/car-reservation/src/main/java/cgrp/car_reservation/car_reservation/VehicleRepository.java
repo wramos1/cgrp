@@ -13,4 +13,5 @@ public interface VehicleRepository extends MongoRepository<Vehicle, ObjectId> {
 
     public List<Vehicle> findByYear(int year); // wll query the db for all vehicles of that year
 
+    public Vehicle findByCustomVehicleID(String customVehicleID); // will query the db for all vehicles of that custom string ID
 }

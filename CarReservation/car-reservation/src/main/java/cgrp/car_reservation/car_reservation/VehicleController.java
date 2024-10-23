@@ -67,5 +67,14 @@ public class VehicleController {
     }
 
 
+    // this will return the vehicle that is associated with that custom UUID that we created
+    @GetMapping("/{customVehicleID}")
+    public Vehicle getVehicleByCustomVehicleID(@PathVariable String customVehicleID)
+    {
+        return vehicleService.getVehicleByCustomVehicleID(customVehicleID);
+    }
+
+
+
 
 }
