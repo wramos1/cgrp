@@ -71,7 +71,7 @@ public class VehicleService {
         String uniqueID = UUID.randomUUID().toString(); // creates a unique ID that is converted to a string
 
         // creates new vehicle with the uniqueID
-        Vehicle newVehicle = new Vehicle(uniqueID, tempVehicle.getMake(), tempVehicle.getModel(), tempVehicle.getYear(), tempVehicle.getType(), tempVehicle.getColor(), tempVehicle.getDailyRentRate(), tempVehicle.getVehicleRating(), tempVehicle.isCurrentlyRented(), tempVehicle.getDescription(), tempVehicle.getVehicleFeatures(), tempVehicle.getReviewsOfVehicle());
+        Vehicle newVehicle = new Vehicle(uniqueID, tempVehicle.getMake(), tempVehicle.getModel(), tempVehicle.getYear(), tempVehicle.getType(), tempVehicle.getColor(), tempVehicle.getDailyRentRate(), tempVehicle.getVehicleRating(), tempVehicle.isCurrentlyRented(), tempVehicle.getDescription(), tempVehicle.getVehicleSearchTerm(), tempVehicle.getVehicleImageHostingURL(),tempVehicle.getVehicleFeatures(), tempVehicle.getReviewsOfVehicle());
 
         return vehicleRepository.save(newVehicle);
 

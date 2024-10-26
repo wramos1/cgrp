@@ -19,12 +19,19 @@ public class VehicleDTO {
     private double vehicleRating = 0.0; // the average rating of the vehicle ; start it at 0.0 b/c it currently has no ratings
     private boolean currentlyRented; // boolean value if it is currently rented or not
     private String description; // quick descriptioon of the vehicle
+    private String vehicleSearchTerm; // this will be a search term for the vehicle that will be used in a way that is like fuzzy search
+    private String vehicleImageHostingURL; // this is a URL to cloudinary for this specific vehicle which is where the vehicle images are being hosted
 
     @DocumentReference(lazy = false) // in the db, the id of each feature will be stored in the Vehcile document so it will be a refrence
     private List<Feature> vehicleFeatures = new ArrayList<Feature>();
 
     @DBRef(lazy = false) // allows for the document to be refrenced using its unique MongoID; lazy = false will allow for the refrenced data to be loaded in
     private List<Review> reviewsOfVehicle = new ArrayList<Review>();
+
+    public VehicleDTO()
+    {
+
+    }
 
     public VehicleDTO(String make, String model, int year, String type, String color, double dailyRentRate, double vehicleRating, boolean currentlyRented, String description, List<Feature> vehicleFeatures, List<Review> reviewsOfVehicle) {
         this.make = make;
@@ -36,6 +43,22 @@ public class VehicleDTO {
         this.vehicleRating = vehicleRating;
         this.currentlyRented = currentlyRented;
         this.description = description;
+        this.vehicleFeatures = vehicleFeatures;
+        this.reviewsOfVehicle = reviewsOfVehicle;
+    }
+
+    public VehicleDTO(String make, String model, int year, String type, String color, double dailyRentRate, double vehicleRating, boolean currentlyRented, String description, String vehicleSearchTerm, String vehicleImageHostingURL, List<Feature> vehicleFeatures, List<Review> reviewsOfVehicle) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.type = type;
+        this.color = color;
+        this.dailyRentRate = dailyRentRate;
+        this.vehicleRating = vehicleRating;
+        this.currentlyRented = currentlyRented;
+        this.description = description;
+        this.vehicleSearchTerm = vehicleSearchTerm;
+        this.vehicleImageHostingURL = vehicleImageHostingURL;
         this.vehicleFeatures = vehicleFeatures;
         this.reviewsOfVehicle = reviewsOfVehicle;
     }
@@ -127,4 +150,25 @@ public class VehicleDTO {
     public void setReviewsOfVehicle(List<Review> reviewsOfVehicle) {
         this.reviewsOfVehicle = reviewsOfVehicle;
     }
+
+    public void setVehicleSearchTerm(String vehicleSearchTerm)
+    {
+        this.vehicleSearchTerm = vehicleSearchTerm;
+    }
+
+    public void setVehicleImageHostingURL(String vehicleImageHostingURL)
+    {
+        this.vehicleImageHostingURL = vehicleImageHostingURL;
+    }
+
+    public String getVehicleSearchTerm()
+    {
+        return this.vehicleSearchTerm;
+    }
+
+    public String getVehicleImageHostingURL()
+    {
+        return this.vehicleImageHostingURL;
+    }
+
 }

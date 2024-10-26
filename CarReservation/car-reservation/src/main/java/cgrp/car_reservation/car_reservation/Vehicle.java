@@ -28,6 +28,8 @@ public class Vehicle {
     private double vehicleRating = 0.0; // the average rating of the vehicle ; start it at 0.0 b/c it currently has no ratings
     private boolean currentlyRented; // boolean value if it is currently rented or not
     private String description; // quick descriptioon of the vehicle
+    private String vehicleSearchTerm; // this will be a search term for the vehicle that will be used in a way that is like fuzzy search
+    private String vehicleImageHostingURL; // this is a URL to cloudinary for this specific vehicle which is where the vehicle images are being hosted
 
     @DocumentReference(lazy = false) // in the db, the id of each feature will be stored in the Vehcile document so it will be a refrence
     private List<Feature> vehicleFeatures = new ArrayList<Feature>();
@@ -52,7 +54,24 @@ public class Vehicle {
         this.reviewsOfVehicle = reviewsOfVehicle;
     }
 
-    /* private double calculateAverageRating() {
+    public Vehicle( String customVehicleID, String make, String model, int year, String type, String color, double dailyRentRate, double vehicleRating, boolean currentlyRented, String description, String vehicleSearchTerm, String vehicleImageHostingURL, List<Feature> vehicleFeatures, List<Review> reviewsOfVehicle) {
+        this.customVehicleID = customVehicleID;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.type = type;
+        this.color = color;
+        this.dailyRentRate = dailyRentRate;
+        this.vehicleRating = vehicleRating;
+        this.currentlyRented = currentlyRented;
+        this.description = description;
+        this.vehicleSearchTerm = vehicleSearchTerm;
+        this.vehicleImageHostingURL = vehicleImageHostingURL;
+        this.vehicleFeatures = vehicleFeatures;
+        this.reviewsOfVehicle = reviewsOfVehicle;
+    }
+
+/* private double calculateAverageRating() {
         if (reviewsOfVehicle == null || reviewsOfVehicle.length == 0) {
             return 0.0; // Return 0 or some sensible default
         }
