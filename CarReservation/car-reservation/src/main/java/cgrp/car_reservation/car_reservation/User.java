@@ -39,5 +39,11 @@ public class User {
         return this.reservations.contains(reservation);
     }
 
+
+    public void leaveReview()
+    {
+
+    }
+
     public User(){}
 }
