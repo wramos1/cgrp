@@ -17,6 +17,9 @@ import java.time.Period;
 public class Reservation {
     @Id
     private ObjectId reservationID;
+
+    private String customReservationID; // this will be a custom reservation ID that we will be able to access and use in our logic in the program
+
     @DocumentReference
     private User user;
     @DocumentReference
@@ -28,8 +31,10 @@ public class Reservation {
     private double chargeAmount;
 
 
-    public void calculateChargeAmount(){
-        Period period = Period.between(rentDate,returnDate);
-        chargeAmount = period.getDays()*vehicle.getDailyRentRate();
+    public void calculateChargeAmount() {
+        Period period = Period.between(rentDate, returnDate);
+        chargeAmount = period.getDays() * vehicle.getDailyRentRate();
     }
+
+
 }
