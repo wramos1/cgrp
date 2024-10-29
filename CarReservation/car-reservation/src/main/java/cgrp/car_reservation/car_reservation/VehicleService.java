@@ -82,4 +82,16 @@ public class VehicleService {
         return vehicleRepository.findByCustomVehicleID(customVehicleID);
     }
 
+    // add a review that is being left to a vehicle; will be called from the review service method
+    public void addReviewToVehicle(String customVehicleID, Review currentVehicleReview)
+    {
+        Vehicle currentVehicle = vehicleRepository.findByCustomVehicleID(customVehicleID); // finds the vehicle we want to leave a review on
+
+        currentVehicle.addReview(currentVehicleReview); // adds the review to the current vehicle, this review should now have an associated objectID so it can be refrenced in accordance to the db schema
+
+        vehicleRepository.save(currentVehicle); // save should instead of creating a new entry in the db, should update this vehicle's document in mongodb
+
+    }
+
+
 }
