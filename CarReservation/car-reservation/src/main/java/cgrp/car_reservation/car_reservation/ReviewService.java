@@ -60,6 +60,8 @@ public class ReviewService {
 
         User tempUser = new User("arthur", "hello", "arthur@csun.edu"); // constructs a temporary user to test this with
 
+        // maybe use delegation here in order to make it simplier and more reusable
+
         String customReviewID = UUID.randomUUID().toString().replace("-" ,""); // will replace the dashes in the UUID with nothing
 
         Review newReview = new Review(customReviewID, reviewDTO.getReviewRating(), reviewDTO.getReviewBody(), tempUser,vehicleReviewIsOn); // constructs a review object with that in it

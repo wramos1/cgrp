@@ -71,16 +71,6 @@ public class Vehicle {
         this.reviewsOfVehicle = reviewsOfVehicle;
     }
 
-/* private double calculateAverageRating() {
-        if (reviewsOfVehicle == null || reviewsOfVehicle.length == 0) {
-            return 0.0; // Return 0 or some sensible default
-        }
-        int sum = 0;
-        for (Review review : reviewsOfVehicle) {
-            sum += review.getRating();
-        }
-        return (double) sum / reviewsOfVehicle.length; // Cast to double for a more accurate average
-    }*/
 
     // will add a review to the list of reviews left on the vehicle
     public void addReview(Review newReview)
@@ -88,5 +78,18 @@ public class Vehicle {
         reviewsOfVehicle.add(newReview); // inserts the new review to the reviews that are left on that vehicle
     }
 
+    // will calculate the average rating of the vehicle based on the cumulative ratings left from the review
+    public void calculateNewVehicleRating()
+    {
+        double newRating = 0.0; // start the accumulator at zero
+
+        for(Review rev : reviewsOfVehicle)
+        {
+            newRating += rev.getReviewRating(); // keeps on adding and accumulating each rating or review that is left on the vehicle
+        }
+
+        vehicleRating = (newRating/reviewsOfVehicle.size()); // will divide the accumulator of all of the ratings by the number of ratings, to get the avergae rating
+
+    }
 
 }

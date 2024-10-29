@@ -88,6 +88,7 @@ public class VehicleService {
         Vehicle currentVehicle = vehicleRepository.findByCustomVehicleID(customVehicleID); // finds the vehicle we want to leave a review on
 
         currentVehicle.addReview(currentVehicleReview); // adds the review to the current vehicle, this review should now have an associated objectID so it can be refrenced in accordance to the db schema
+        currentVehicle.calculateNewVehicleRating(); // this will update the rating of the vehicle based on the new review that is left on the vehicle
 
         vehicleRepository.save(currentVehicle); // save should instead of creating a new entry in the db, should update this vehicle's document in mongodb
 
