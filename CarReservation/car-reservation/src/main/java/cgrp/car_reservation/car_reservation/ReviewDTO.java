@@ -7,6 +7,8 @@ public class ReviewDTO {
 
     private String reviewBody;
 
+    private String customVehicleID; // this is the vehicle that the review is going to be left on
+
     public ReviewDTO(double reviewRating, String reviewBody) {
         this.reviewRating = reviewRating;
         this.reviewBody = reviewBody;
@@ -26,5 +28,13 @@ public class ReviewDTO {
 
     public void setReviewBody(String reviewBody) {
         this.reviewBody = reviewBody;
+    }
+
+    public String getCustomVehicleID() {
+        return customVehicleID;
+    }
+
+    public void setCustomVehicleID(String customVehicleID) {
+        this.customVehicleID = customVehicleID;
     }
 }

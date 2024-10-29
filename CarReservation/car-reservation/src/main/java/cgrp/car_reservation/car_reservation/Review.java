@@ -17,10 +17,10 @@ public class Review {
 
     private String reviewBody;
 
-    @DocumentReference
+   // @DocumentReference
     private User reviewLeaver;
 
-    @DocumentReference
+    //@DocumentReference Comment out right now for testing purposes
     private Vehicle vehicleReviewIsOn;
 
     public Review(double reviewRating, String reviewBody, User reviewLeaver, Vehicle vehicleReviewIsOn, ObjectId reviewID) {
