@@ -20,7 +20,7 @@ public class Reservation {
 
     private String customReservationID; // this will be a custom reservation ID that we will be able to access and use in our logic in the program
 
-    @DocumentReference
+    //@DocumentReference // comment out for now because we don't have any way getting user's currently for testing
     private User user;
     @DocumentReference
     private Vehicle vehicle;
@@ -30,6 +30,20 @@ public class Reservation {
     private LocalDate rentDate;
     private double chargeAmount;
 
+    public Reservation()
+    {
+
+    }
+
+    // the constructor is missing the user because for testing reasons currently we can't find the user so there is no need to have it in the constructor
+    public Reservation(String customReservationID, Vehicle vehicle, LocalDate rentDate, LocalDate returnDate, double chargeAmount) {
+        this.user = null;
+        this.customReservationID = customReservationID;
+        this.vehicle = vehicle;
+        this.rentDate = rentDate;
+        this.returnDate = returnDate;
+        this.chargeAmount = chargeAmount;
+    }
 
     public void calculateChargeAmount() {
         Period period = Period.between(rentDate, returnDate);

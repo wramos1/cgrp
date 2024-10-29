@@ -20,7 +20,7 @@ public class ReservationController {
 
     private static final Logger logger = LoggerFactory.getLogger(ReservationController.class);
     //creating a new reservation
-    @PostMapping("/reserve")
+/*    @PostMapping("/reserve")
     public ResponseEntity<String> createReservation(@RequestBody ReservationDto reservationDto){
         try {
             Reservation reservation = reservationService.createReservation(reservationDto);
@@ -29,7 +29,16 @@ public class ReservationController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
-        }    }
+        }
+    }*/
+
+    // from the reservation (renting the vehicle) should also go on to make a transaction in the database to log all the transactions that have happened
+    @PostMapping("/newreservation")
+    public Reservation createNewReservation(@RequestBody ReservationDto reservationDto)
+    {
+        return reservationService.createNewReservation(reservationDto);
+    }
+
 
     @GetMapping("/reserve")
     public List<Reservation> getAllReservations(){
