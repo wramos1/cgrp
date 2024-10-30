@@ -8,11 +8,9 @@
 <body>
 <h2>Create a New Reservation</h2>
 <form id="reservationForm">
-    <label for="userId">User ID:</label><br>
-    <input type="text" id="userId" name="userId" required><br><br>
 
-    <label for="vehicleId">Vehicle ID:</label><br>
-    <input type="text" id="vehicleId" name="vehicleId" required><br><br>
+    <label for="customVehicleID">Vehicle ID:</label><br>
+    <input type="text" id="customVehicleID" name="customVehicleID" required><br><br>
 
     <label for="startDate">Start Date:</label><br>
     <input type="date" id="startDate" name="startDate" required><br><br>
@@ -27,19 +25,19 @@
     document.getElementById('reservationForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const userId = document.getElementById('userId').value;
-        const vehicleId = document.getElementById('vehicleId').value;
+
+        const customVehicleID = document.getElementById('customVehicleID').value;
         const startDate = document.getElementById('startDate').value;
         const endDate = document.getElementById('endDate').value;
 
         const reservationData = {
-            userId: userId,
+
             vehicleId: vehicleId,
             startDate: startDate,
             endDate: endDate
         };
 
-        fetch('/reservations/reserve', {
+        fetch('/reservations/newreservation', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
