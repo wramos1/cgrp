@@ -56,16 +56,13 @@ public class ReservationService {
             vehicleRepository.save(vehicle);
 
             ArrayList<Reservation> userReservations = (ArrayList<Reservation>) user.getReservations();
-            logger.info("Current userReservations: {}", userReservations);
 
 
             userReservations.add(reservation);
-            logger.info("Updated userReservations: {}", userReservations);
 
             user.setReservations(userReservations);
 
             userRepository.save(user);
-            logger.info("Reservation added to user!: {}", reservation);
 
             return reservationRepository.save(reservation);
         } else {

@@ -4,6 +4,8 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,8 +37,11 @@ public class UserController {
     }
 
     @PostMapping("/leaveReview/{username}")
-    public Review leaveNewReview(@PathVariable String username, @RequestBody Review review)
-    {
+    public Review leaveNewReview(@PathVariable String username, @RequestBody Review review) {
         return userService.leaveNewReview(username, review);
+    }
+    @GetMapping("/user")
+    public User getCurrentUser(@AuthenticationPrincipal UserDetails userDetails){
+        return userService.getUserbyUsername(userDetails.getUsername());  // Or other user details
     }
 }

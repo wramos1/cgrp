@@ -39,6 +39,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public User getUserbyUsername(String username){return userRepository.findByUsername(username);}
+
     public User getUserById(ObjectId id){
         return userRepository.findById(id).orElse(null);
     }
@@ -58,6 +60,5 @@ public class UserService {
     {
         return userRepository.findByUsername(username);
     }
-
 
 }
