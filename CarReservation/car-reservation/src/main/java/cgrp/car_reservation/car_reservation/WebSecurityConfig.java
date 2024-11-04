@@ -35,13 +35,14 @@ public class WebSecurityConfig {
         public PasswordEncoder passwordEncoder() {
                 return new BCryptPasswordEncoder();
         }
-         //Define a CORS filter bean
+
+        // Define a CORS filter bean
         @Bean
         public CorsFilter corsFilter() {
                 return new CorsFilter(corsConfigurationSource());
         }
 
-         //Define a CORS configuration source bean
+        // Define a CORS configuration source bean
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
                 CorsConfiguration configuration = new CorsConfiguration();
@@ -58,41 +59,42 @@ public class WebSecurityConfig {
                 source.registerCorsConfiguration("/**", configuration); // Apply CORS configuration to all paths
                 return source;
         }
+
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 logger.info("Configuring security filter chain...");
                 http
-                        .csrf(csrf -> csrf.disable())  // For simplicity, disabling CSRF (Not recommended for production)
-                        .authorizeHttpRequests(authz -> authz
-                                .requestMatchers(
-                                        "/",
-                                        "/login.html",
-                                        "/login",
-                                        "/register.html",
-                                        "/register",
-                                        "/homepage",
-                                        "/home",
-                                        "/login?error=true",
-                                        "/reservations/reservation",
-                                        "/register-user.html",
-                                        "/login.html",
-                                        "/reservations"  // Ensure this matches your endpoint
-                                ).permitAll()  // Allow these paths without authentication
-                                .anyRequest().authenticated()  // Require authentication for all other requests
-                        )
-                        .formLogin(form -> form
-                                .loginPage("http://localhost:3000/#/login")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("http://localhost:3000/#/", true)
-                                .failureUrl("http://localhost:3000/#/contact")
-                                .permitAll()
-                        )
-                        .logout(logout -> logout
-                                .permitAll() // Allow everyone to access logout
-                        )
-                        .httpBasic(Customizer.withDefaults());
+                                .csrf(csrf -> csrf.disable()) // For simplicity, disabling CSRF (Not recommended for
+                                                              // production)
+                                .authorizeHttpRequests(authz -> authz
+                                                .requestMatchers(
+                                                                "/",
+                                                                "/login.html",
+                                                                "/login",
+                                                                "/register.html",
+                                                                "/register",
+                                                                "/homepage",
+                                                                "/home/vehicles",
+                                                                "/login?error=true",
+                                                                "/reservations/reservation",
+                                                                "/register-user.html",
+                                                                "/login.html",
+                                                                "/reservations" // Ensure this matches your endpoint
+                                                ).permitAll() // Allow these paths without authentication
+                                                .anyRequest().authenticated() // Require authentication for all other
+                                                                              // requests
+                                )
+                                .formLogin(form -> form
+                                                .loginPage("http://localhost:3000/#/login")
+                                                .loginProcessingUrl("/login")
+                                                .successHandler(new CustomAuthenticationSuccessHandler())
+                                                .failureHandler(new CustomAuthenticationFailureHandler())
+                                                .permitAll())
+                                .logout(logout -> logout
+                                                .permitAll() // Allow everyone to access logout
+                                );
                 logger.info("Security filter chain configured successfully.");
-                return http.build();  // Build and return the SecurityFilterChain
+                return http.build(); // Build and return the SecurityFilterChain
         }
 
 }
