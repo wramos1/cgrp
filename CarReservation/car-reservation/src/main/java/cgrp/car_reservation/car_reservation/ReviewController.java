@@ -19,7 +19,7 @@ public class ReviewController {
     private UserService userService;
 
 
-    @PostMapping("/newreview")
+/*    @PostMapping("/newreview")
     public Review createNewReview(@RequestBody Review newReview)
     {
         reviewService.createReview(newReview);
@@ -37,7 +37,7 @@ public class ReviewController {
 
 
         return reviewService.writeReview(reviewDTO, currentUser);
-    }
+    }*/
 
     // this is to write a review to a specific vehicle which is specified by its customVehicleID attribute
     @PostMapping("/leavereview")
@@ -46,11 +46,11 @@ public class ReviewController {
         return reviewService.leaveReview(reviewDTO);
     }
 
-    @GetMapping("/getMyReviews/{lastName}")
+   /* @GetMapping("/getMyReviews/{lastName}")
     public List<Review> getReviews(@PathVariable String lastName)
     {
         return reviewService.userSpecificReviews(lastName);
-    }
+    }*/
 
     @GetMapping("/hello")
     private String hello(){

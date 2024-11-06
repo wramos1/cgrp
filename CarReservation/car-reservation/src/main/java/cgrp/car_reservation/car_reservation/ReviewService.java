@@ -23,7 +23,7 @@ public class ReviewService {
     @Autowired
     private EmailSenderService emailSenderService; // this will send email confirming a review that has been left
 
-    // calls on the repository layer object to create the document in the database
+/*    // calls on the repository layer object to create the document in the database
     public Review createReview(Review review)
     {
         reviewRepository.save(review); // saves the review in the database
@@ -54,20 +54,20 @@ public class ReviewService {
         }
 
         return userSpecificReviews;
-    }
+    }*/
 
     // leave a review; will save the review in the mongodb, and will have a refrence to the vehicle the review is on
     public Review leaveReview(ReviewDTO reviewDTO)
     {
         Vehicle vehicleReviewIsOn = vehicleRepository.findByCustomVehicleID(reviewDTO.getCustomVehicleID()); // this should return the vehicle that we are leaving the review on
 
-        User tempUser = new User("arthur", "hello", "arthur@csun.edu"); // constructs a temporary user to test this with
+        User tempUser = new User("FASTCARArthur", "hello", "arthur@csun.edu"); // constructs a temporary user to test this with
 
         // maybe use delegation here in order to make it simplier and more reusable
 
         String customReviewID = UUID.randomUUID().toString().replace("-" ,""); // will replace the dashes in the UUID with nothing
 
-        Review newReview = new Review(customReviewID, reviewDTO.getReviewRating(), reviewDTO.getReviewBody(), tempUser,vehicleReviewIsOn); // constructs a review object with that in it
+        Review newReview = new Review(customReviewID, reviewDTO.getReviewRating(), reviewDTO.getReviewBody(), tempUser.getUsername(), vehicleReviewIsOn); // constructs a review object with that in it
 
         reviewRepository.save(newReview); // saves the review to the repository
 
