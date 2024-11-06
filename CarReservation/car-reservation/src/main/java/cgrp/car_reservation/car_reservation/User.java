@@ -27,6 +27,15 @@ public class User {
     @DocumentReference
     private List<Review> reviewsLeft;
 
+    // this is a constructor that is just being used right now for testing purposes
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.reservations = null;
+        this.reviewsLeft = null;
+    }
+
     public void addReservation(Reservation reservation){
         this.reservations.add(reservation);
     }

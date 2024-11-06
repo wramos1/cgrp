@@ -39,6 +39,13 @@ public class ReviewController {
         return reviewService.writeReview(reviewDTO, currentUser);
     }
 
+    // this is to write a review to a specific vehicle which is specified by its customVehicleID attribute
+    @PostMapping("/leavereview")
+    public Review leaveReview(@RequestBody ReviewDTO reviewDTO) // this is going to get the review DTO object and go from there
+    {
+        return reviewService.leaveReview(reviewDTO);
+    }
+
     @GetMapping("/getMyReviews/{lastName}")
     public List<Review> getReviews(@PathVariable String lastName)
     {
