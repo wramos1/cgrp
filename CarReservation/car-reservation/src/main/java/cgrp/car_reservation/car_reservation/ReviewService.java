@@ -20,6 +20,9 @@ public class ReviewService {
     @Autowired
     private VehicleService vehicleService; // the vehicle service will be called in order to properly make the needed adjustemnts
 
+    @Autowired
+    private EmailSenderService emailSenderService; // this will send email confirming a review that has been left
+
     // calls on the repository layer object to create the document in the database
     public Review createReview(Review review)
     {
@@ -78,6 +81,10 @@ public class ReviewService {
 
 
         vehicleService.addReviewToVehicle(reviewDTO.getCustomVehicleID(), currentReview); // this call to a method in vehicle service should add the recently created review as a refrence in the vehicle on which the review is for
+
+        // test out if this will work with sending some stuff in an email with reviews
+        emailSenderService.reviewVerificationEmail(currentReview);
+
 
         return currentReview;
     }
