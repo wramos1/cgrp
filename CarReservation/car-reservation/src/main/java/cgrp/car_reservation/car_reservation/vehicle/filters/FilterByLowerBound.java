@@ -4,6 +4,11 @@ import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
+/*
+ * Takes a list of vehicles and a lower price bound
+ * and finds all cars that are more expensive
+ * than the lower bound
+ */
 
 public class FilterByLowerBound implements VehicleFilter {
     private List<Vehicle> vehicles;

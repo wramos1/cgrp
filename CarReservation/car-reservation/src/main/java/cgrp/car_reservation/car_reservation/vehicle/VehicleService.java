@@ -47,12 +47,6 @@ public class VehicleService {
         return new FilterByKeyword(vehicles, keyword).filter();
     }
 
-
-   /* public Review leaveNewRating(ReviewDTO review)
-    {
-        Review actualReview = new Review()
-    }*/
-
     // this will be used by us to create the new vehicle and generate the uniqueID for it
     public Vehicle createNewVehicle(VehicleDTO tempVehicle)
     {

@@ -4,7 +4,12 @@ import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ * Takes a list of vehicles, an upper price bound,
+ * a lower price bound, and finds all cars that
+ * are cheaper than the upper bound and more expensive
+ * than the lower bound
+ * */
 public class FilterByUpperAndLowerBounds implements VehicleFilter {
     private List<Vehicle> vehicles;
     private double upperBound;
