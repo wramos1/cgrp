@@ -32,15 +32,21 @@ public class VehicleController {
     }
 
     @GetMapping("/mostExpensive/{upperRange}")
-    public List<Vehicle> getVehicleCheaperThan(@PathVariable double lowerRange, @PathVariable double upperRange) // will return the vehicles to endpoint GET request the vehicles within that certain price range
+    public List<Vehicle> getVehicleCheaperThan(@PathVariable double upperRange) // will return the vehicles to endpoint GET request the vehicles within that certain price range
     {
         return vehicleService.filterByPrice(null, upperRange);
     }
 
     @GetMapping("/cheapest/{lowerRange}")
-    public List<Vehicle> getVehiclePricierThan(@PathVariable double lowerRange, @PathVariable double upperRange) // will return the vehicles to endpoint GET request the vehicles within that certain price range
+    public List<Vehicle> getVehiclePricierThan(@PathVariable double lowerRange) // will return the vehicles to endpoint GET request the vehicles within that certain price range
     {
-        return vehicleService.filterByPrice(lowerRange, Double.MAX_VALUE);
+        return vehicleService.filterByPrice(lowerRange, null);
+    }
+
+    @GetMapping("/keyword/{keyword}")
+    public List<Vehicle> getVehiclesByKeyword(@PathVariable String keyword) // will return the vehicles to endpoint GET request the vehicles within that certain price range
+    {
+        return vehicleService.filterByKeyword(keyword);
     }
 
     // create a new car to utilize the UUID
