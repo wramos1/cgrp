@@ -92,8 +92,9 @@ public class ReviewService {
         userService.leaveNewReview(currentUser.getUsername(), currentReview); // adds the review to the user
 
         // test out if this will work with sending some stuff in an email with reviews
-        emailSenderService.reviewVerificationEmail(currentReview, currentUser);
+        //emailSenderService.reviewVerificationEmail(currentReview, currentUser);
 
+        emailSenderService.reviewVerificationEmailWithAttachement(currentReview, currentUser);
 
         return currentReview;
     }
