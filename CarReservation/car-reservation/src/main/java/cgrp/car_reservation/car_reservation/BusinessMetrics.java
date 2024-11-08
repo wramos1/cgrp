@@ -81,4 +81,10 @@ public class BusinessMetrics {
     public void setLowRatedReviewsToAddress(List<Review> lowRatedReviewsToAddress) {
         this.lowRatedReviewsToAddress = lowRatedReviewsToAddress;
     }
+
+    public void addLowRatedReview(Review review)
+    {
+        lowRatedReviewsToAddress.add(review);
+    }
+
 }

@@ -27,6 +27,9 @@ public class ReviewService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BusinessMetricsService businessMetricsService;
+
 /*    // calls on the repository layer object to create the document in the database
     public Review createReview(Review review)
     {
@@ -93,6 +96,8 @@ public class ReviewService {
 
         // test out if this will work with sending some stuff in an email with reviews
         //emailSenderService.reviewVerificationEmail(currentReview, currentUser);
+
+        businessMetricsService.addPotentialLowReview(currentReview);
 
         emailSenderService.reviewVerificationEmailWithAttachement(currentReview, currentUser);
 
