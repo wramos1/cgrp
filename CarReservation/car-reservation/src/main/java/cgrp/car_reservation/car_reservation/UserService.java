@@ -43,14 +43,12 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public Review leaveNewReview(String username, Review review)
+    public void leaveNewReview(String username, Review review)
     {
         User user = userRepository.findByUsername(username); // will return the user that wants to leave the review
 
         reviewRepository.save(review); // saves the review for now in the db
 
-
-        return review;
     }
 
     // get the User by its username attribute

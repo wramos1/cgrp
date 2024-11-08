@@ -28,14 +28,14 @@ public class EmailSenderService {
     }
 
     // this will send an email to the logged in user; will be dummy for now
-    public void reviewVerificationEmail(Review review)
+    public void reviewVerificationEmail(Review review, User reviewLeaver)
     {
         SimpleMailMessage reviewEmail = new SimpleMailMessage();
 
-        reviewEmail.setTo("buffband2020@gmail.com");
+        reviewEmail.setTo(reviewLeaver.getEmail());
         reviewEmail.setFrom("cgrpventures@gmail.com");
         reviewEmail.setSubject("Confirming a review you left on the " + review.getVehicleReviewIsOn().getYear() + " " + review.getVehicleReviewIsOn().getMake() + " " + review.getVehicleReviewIsOn().getModel());
-        reviewEmail.setText("Rating: " + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
+        reviewEmail.setText("Hi " + reviewLeaver.getUsername() + ", \n Thank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
 
 
         mailSender.send(reviewEmail);

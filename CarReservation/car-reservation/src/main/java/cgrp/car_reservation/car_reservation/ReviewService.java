@@ -1,6 +1,7 @@
 package cgrp.car_reservation.car_reservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class ReviewService {
 
     @Autowired
     private EmailSenderService emailSenderService; // this will send email confirming a review that has been left
+
+    @Autowired
+    private UserService userService;
 
 /*    // calls on the repository layer object to create the document in the database
     public Review createReview(Review review)
@@ -61,13 +65,14 @@ public class ReviewService {
     {
         Vehicle vehicleReviewIsOn = vehicleRepository.findByCustomVehicleID(reviewDTO.getCustomVehicleID()); // this should return the vehicle that we are leaving the review on
 
-        User tempUser = new User("FASTCARArthur", "hello", "arthur@csun.edu"); // constructs a temporary user to test this with
+        //User tempUser = new User("FASTCARArthur", "hello", "arthur@csun.edu"); // constructs a temporary user to test this with
 
-        // maybe use delegation here in order to make it simplier and more reusable
+        // should get the current user who is logged in
+        User currentLoggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String customReviewID = UUID.randomUUID().toString().replace("-" ,""); // will replace the dashes in the UUID with nothing
 
-        Review newReview = new Review(customReviewID, reviewDTO.getReviewRating(), reviewDTO.getReviewBody(), tempUser.getUsername(), vehicleReviewIsOn); // constructs a review object with that in it
+        Review newReview = new Review(customReviewID, reviewDTO.getReviewRating(), reviewDTO.getReviewBody(), currentLoggedInUser.getUsername(), vehicleReviewIsOn); // constructs a review object with that in it
 
         reviewRepository.save(newReview); // saves the review to the repository
 
@@ -82,8 +87,10 @@ public class ReviewService {
 
         vehicleService.addReviewToVehicle(reviewDTO.getCustomVehicleID(), currentReview); // this call to a method in vehicle service should add the recently created review as a refrence in the vehicle on which the review is for
 
+        userService.leaveNewReview(currentLoggedInUser.getUsername(), currentReview); // adds the review to the user
+
         // test out if this will work with sending some stuff in an email with reviews
-        emailSenderService.reviewVerificationEmail(currentReview);
+        emailSenderService.reviewVerificationEmail(currentReview, currentLoggedInUser);
 
 
         return currentReview;
