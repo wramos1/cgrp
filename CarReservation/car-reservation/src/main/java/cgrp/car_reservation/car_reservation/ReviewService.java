@@ -99,7 +99,7 @@ public class ReviewService {
 
         businessMetricsService.addPotentialLowReview(currentReview);
 
-        emailSenderService.reviewVerificationEmailWithAttachement(currentReview, currentUser);
+        emailSenderService.reviewVerificationEmailWithAttachement(currentReview, currentUser, businessMetricsService.isLowReview(currentReview));
 
         return currentReview;
     }

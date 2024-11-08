@@ -19,7 +19,7 @@ public class BusinessMetricsService {
     }
 
     // checks if the review is considered to be a low rating
-    private boolean isLowReview(Review review)
+    public boolean isLowReview(Review review)
     {
         if(review.getReviewRating() < 3.0)
             return true;
@@ -37,6 +37,8 @@ public class BusinessMetricsService {
             businessMetrics.getFirst().addLowRatedReview(review);
 
             businessMetricsRepository.save(businessMetrics.getFirst()); // it will now update the business metrics object in the database
+
+            System.out.println("low review added");
 
         }
         else

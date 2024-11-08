@@ -72,6 +72,38 @@ public class EmailSenderService {
         }
     }
 
+    // function/method overloading
+    public void reviewVerificationEmailWithAttachement(Review review, User reviewLeaver, boolean lowRatedReview)
+    {
+        try {
+
+            MimeMessage reviewEmail = mailSender.createMimeMessage();
+            MimeMessageHelper reviewEmailHelper = new MimeMessageHelper(reviewEmail, true);
+
+            reviewEmailHelper.setFrom("cgrpventures@gmail.com");
+            reviewEmailHelper.setTo("buffband2020@gmail.com");
+            reviewEmail.setSubject("Confirming the review you left on the " + review.getVehicleReviewIsOn().getYear() + " " + review.getVehicleReviewIsOn().getMake() + " " + review.getVehicleReviewIsOn().getModel());
+
+            if(lowRatedReview)
+            {
+                reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername() + ", \nThank you for your review, it really means a lot! We are sorry to hear that you were not completely satisfied with your rental and we look forward to addressing your concerns. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
+            }
+            else {
+                reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername() + ", \nThank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
+            }
+
+
+            reviewEmailHelper.addAttachment("2025.png", new File("C:\\Users\\artla\\Downloads\\2025.png"));
+
+            mailSender.send(reviewEmail);
+
+        }
+        catch(Exception e)
+        {
+            e.getMessage();
+        }
+    }
+
 
 
 }
