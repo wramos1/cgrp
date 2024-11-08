@@ -32,7 +32,8 @@ public class EmailSenderService {
     {
         SimpleMailMessage reviewEmail = new SimpleMailMessage();
 
-        reviewEmail.setTo(reviewLeaver.getEmail());
+        //reviewEmail.setTo(reviewLeaver.getEmail());
+        reviewEmail.setTo("buffband2020@gmail.com");
         reviewEmail.setFrom("cgrpventures@gmail.com");
         reviewEmail.setSubject("Confirming a review you left on the " + review.getVehicleReviewIsOn().getYear() + " " + review.getVehicleReviewIsOn().getMake() + " " + review.getVehicleReviewIsOn().getModel());
         reviewEmail.setText("Hi " + reviewLeaver.getUsername() + ", \n Thank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());

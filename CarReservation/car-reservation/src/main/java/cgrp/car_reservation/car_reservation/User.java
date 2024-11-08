@@ -48,6 +48,10 @@ public class User {
         return this.reservations.contains(reservation);
     }
 
+    public void addReview(Review newReview)
+    {
+        reviewsLeft.add(newReview);
+    }
 
     public void leaveReview()
     {

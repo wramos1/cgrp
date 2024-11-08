@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,14 @@ public class UserController {
         ObjectId objectId = new ObjectId(id);
         logger.info("found user!");
         return userService.getUserById(objectId);
+    }
+
+
+    // this returns the login info of the current user
+    @GetMapping("/currentuser")
+    public String getCurrentUsername()
+    {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
   /*  @PostMapping("/leaveReview/{username}")
