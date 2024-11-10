@@ -2,6 +2,8 @@ package cgrp.car_reservation.car_reservation.user;
 
 import cgrp.car_reservation.car_reservation.review.Review;
 import cgrp.car_reservation.car_reservation.review.ReviewRepository;
+import cgrp.car_reservation.car_reservation.user.registration.ManagerRegistration;
+import cgrp.car_reservation.car_reservation.user.registration.UserRegistration;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
@@ -27,15 +30,14 @@ public class UserService {
     private ReviewRepository reviewRepository; // will allow for the creation of the review
 
     public User registerUser(UserDto userDto){
-        logger.info("Registering user: {}", userDto.getUsername());
-
-        User newUser = new User();
-
-        newUser.setUsername(userDto.getUsername());
-        newUser.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        newUser.setEmail(userDto.getEmail());
-        return userRepository.save(newUser);
+        return new UserRegistration(userRepository, passwordEncoder).register(userDto);
     }
+
+    public User registerManager(UserDto userDto){
+        return new ManagerRegistration(userRepository, passwordEncoder).register(userDto);
+    }
+
+
 
     public List<User> getAllUsers() {
         return userRepository.findAll();

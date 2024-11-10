@@ -28,14 +28,21 @@ public class ReservationController {
     //creating a new reservation
     @PostMapping("/reserve")
     public ResponseEntity<String> createReservation(@RequestBody ReservationDto reservationDto, @AuthenticationPrincipal UserDetails userDetails){
-
+        //finds the logged in user
         reservationDto.setUserId(userService.getUserByUsername(userDetails.getUsername()).getUserId());//this line is fucked
+
+
         try {
+
+            //attempts to create the reservation given the user input
             Reservation reservation = reservationService.createReservation(reservationDto);
+
             return ResponseEntity.ok("Vehicle reserved successfully!");
         } catch (VehicleNotAvailableException e) {
+
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (RuntimeException e) {
+
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
         }
     }
@@ -45,6 +52,8 @@ public class ReservationController {
         return reservationService.getAllReservations();
     }
 
+    //cancels a users reservation, only needs the reservation object which can be accessed
+    //from the users reservation array
     public boolean cancelReservation(Reservation reservation, @AuthenticationPrincipal UserDetails userDetails){
         User user = userService.getUserbyUsername(userDetails.getUsername());
         reservationService.cancelReservation(reservation, user);

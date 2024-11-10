@@ -1,30 +1,32 @@
 package cgrp.car_reservation.car_reservation.web_security;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-import org.slf4j.Logger;
 
 import java.util.Arrays;
+import java.util.List;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig {
 
-        private final CustomUserDetailsService userDetailsService;
-        private static final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
-
-        public WebSecurityConfig(CustomUserDetailsService userDetailsService) {
-                this.userDetailsService = userDetailsService;
+        public WebSecurityConfig(CustomUserDetailsService customUserDetailsService){
         }
 
         @Bean
@@ -32,18 +34,12 @@ public class WebSecurityConfig {
                 return new BCryptPasswordEncoder();
         }
 
-        // Define a CORS filter bean
-        @Bean
-        public CorsFilter corsFilter() {
-                return new CorsFilter(corsConfigurationSource());
-        }
-
         // Define a CORS configuration source bean
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
                 CorsConfiguration configuration = new CorsConfiguration();
-                configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Allow your frontend
-                configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allow
+                configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Allow your frontend
+                configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allow
                                                                                                            // necessary
                                                                                                            // HTTP
                                                                                                            // methods
@@ -58,9 +54,9 @@ public class WebSecurityConfig {
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                logger.info("Configuring security filter chain...");
                 http
-                                .csrf(csrf -> csrf.disable()) // For simplicity, disabling CSRF (Not recommended for
+                        .cors(withDefaults())
+                        .csrf(AbstractHttpConfigurer::disable) // For simplicity, disabling CSRF (Not recommended for
                                                               // production)
                                 .authorizeHttpRequests(authz -> authz
                                                 .requestMatchers(
@@ -76,7 +72,10 @@ public class WebSecurityConfig {
                                                                 "/register-user.html",
                                                                 "/login.html",
                                                                 "/reservations" // Ensure this matches your endpoint
-                                                ).permitAll() // Allow these paths without authentication
+                                                ).permitAll()// Allow these paths without authentication
+                                                .requestMatchers(
+                                                        "/admin/**"
+                                                ).hasRole("ADMIN")
                                                 .anyRequest().authenticated() // Require authentication for all other
                                                                               // requests
                                 )
@@ -86,10 +85,7 @@ public class WebSecurityConfig {
                                                 .successHandler(new CustomAuthenticationSuccessHandler())
                                                 .failureHandler(new CustomAuthenticationFailureHandler())
                                                 .permitAll())
-                                .logout(logout -> logout
-                                                .permitAll() // Allow everyone to access logout
-                                );
-                logger.info("Security filter chain configured successfully.");
+                                .logout(LogoutConfigurer::permitAll);// Allow everyone to access logout
                 return http.build(); // Build and return the SecurityFilterChain
         }
 

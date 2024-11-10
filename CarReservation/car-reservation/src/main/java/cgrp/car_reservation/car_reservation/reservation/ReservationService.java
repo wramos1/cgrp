@@ -27,11 +27,6 @@ public class ReservationService {
 
     private static final Logger logger = LoggerFactory.getLogger(ReservationService.class);
 
-
-    public Reservation getReservationByUser(User user){
-        return reservationRepository.findByUser(user);
-    }
-
     public List<Reservation> getAllReservations(){
         return reservationRepository.findAll();
     }
@@ -41,25 +36,19 @@ public class ReservationService {
         Vehicle vehicle = vehicleRepository.findById(reservationDto.getVehicleId()).orElseThrow(()->new RuntimeException("Vehicle not found"));
         //checks if vehicle is available this sets reservation fields
         if(vehicle.isCurrentlyRented()){
-            Reservation reservation = new Reservation();
-            reservation.setUser(user);
-            reservation.setVehicle(vehicle);
-            reservation.setRentDate(reservationDto.getStartDate());
-            reservation.setReturnDate(reservationDto.getEndDate());
 
+            //creates reservation with params from user
+            Reservation reservation = new Reservation(user,vehicle,reservationDto.getStartDate(),reservationDto.getEndDate());
+
+            //sets vehicle currently rented to true
             vehicle.setCurrentlyRented(false);
             vehicleRepository.save(vehicle);
 
-            ArrayList<Reservation> userReservations = (ArrayList<Reservation>) user.getReservations();
-            logger.info("Current userReservations: {}", userReservations);
+            //user method for adding reservation to its array
+            user.addReservation(reservation);
 
-            userReservations.add(reservation);
-            logger.info("Updated userReservations: {}", userReservations);
-
-            user.setReservations(userReservations);
-
+            //updates user
             userRepository.save(user);
-            logger.info("Reservation added to user!: {}", reservation);
 
             return reservationRepository.save(reservation);
         } else {

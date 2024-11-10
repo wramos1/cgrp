@@ -20,6 +20,15 @@ public class User {
     private @Setter String password;
     private String email;
 
+    private String role;
+
+    public User(String username, String password, String email, String role){
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+    }
+
     //holds references to all users reservations
     @DocumentReference
     private List<Reservation> reservations = new ArrayList<>();
@@ -47,4 +56,5 @@ public class User {
     }
 
     public User(){}
+
 }

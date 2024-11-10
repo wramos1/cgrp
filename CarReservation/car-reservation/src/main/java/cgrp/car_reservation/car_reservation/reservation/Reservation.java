@@ -28,6 +28,14 @@ public class Reservation {
     private LocalDate rentDate;
     private double chargeAmount;
 
+    //reservation constructor for reservation service
+    public Reservation(User user, Vehicle vehicle, LocalDate returnDate, LocalDate rentDate){
+        this.user = user;
+        this.vehicle = vehicle;
+        this.rentDate = rentDate;
+        this.returnDate = returnDate;
+    }
+
 
     public void calculateChargeAmount(){
         Period period = Period.between(rentDate,returnDate);
