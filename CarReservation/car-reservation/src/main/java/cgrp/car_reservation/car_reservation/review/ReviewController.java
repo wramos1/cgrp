@@ -40,10 +40,22 @@ public class ReviewController {
     }
 
     @GetMapping("/getMyReviews")
-    public List<Review> getReviews(){
+    public List<Review> getReviews() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName(); // this gets the current logged in user, username
 
         return reviewService.userSpecificReviews(username);
+    }
+    // this is to write a review to a specific vehicle which is specified by its customVehicleID attribute
+    @PostMapping("/leavereview")
+    public Review leaveReview(@RequestBody ReviewDTO reviewDTO) // this is going to get the review DTO object and go from there
+    {
+        return reviewService.leaveReview(reviewDTO);
+    }
+
+    @GetMapping("/getMyReviews/{lastName}")
+    public List<Review> getReviews(@PathVariable String lastName)
+    {
+        return reviewService.userSpecificReviews(lastName);
     }
 
     @GetMapping("/hello")
