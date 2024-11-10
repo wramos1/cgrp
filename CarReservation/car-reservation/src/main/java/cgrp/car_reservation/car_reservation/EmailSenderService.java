@@ -93,7 +93,6 @@ public class EmailSenderService {
             }
 
             reviewEmailHelper.addAttachment("2025.png", new File("C:\\Users\\artla\\Downloads\\2025.png"));
-            reviewEmailHelper.addAttachment()
 
             mailSender.send(reviewEmail);
 

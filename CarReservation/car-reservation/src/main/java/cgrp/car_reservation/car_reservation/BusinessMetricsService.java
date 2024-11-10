@@ -1,5 +1,6 @@
 package cgrp.car_reservation.car_reservation;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,9 @@ public class BusinessMetricsService {
 
     @Autowired
     private BusinessMetricsRepository businessMetricsRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     public void createNewBusinessMetrics(BusinessMetricsDTO businessMetricsDTO)
     {
@@ -34,7 +38,13 @@ public class BusinessMetricsService {
 
         if(isLowReview(review))
         {
-            businessMetrics.getFirst().addLowRatedReview(review);
+            businessMetrics.getFirst().addLowRatedReview(review); // something is wrong with this method that is not adding in the new review
+
+            //print out all of the reviews that are in the business metrics right nwow
+            for(Review nowReview : businessMetrics.getFirst().getLowRatedReviewsToAddress())
+            {
+                System.out.println(nowReview.getReviewID());
+            }
 
             businessMetricsRepository.save(businessMetrics.getFirst()); // it will now update the business metrics object in the database
 
@@ -45,6 +55,13 @@ public class BusinessMetricsService {
             return;
 
     }
+
+    public BusinessMetrics getCurrenMetrics()
+    {
+        return businessMetricsRepository.findAll().getFirst();
+    }
+
+
 
 
 }

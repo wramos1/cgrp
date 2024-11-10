@@ -21,10 +21,15 @@ public class BusinessMetrics {
     private int lifetimeNumRentals; // numbers of rentals in the entire lifetime of the rental company
 
     @DocumentReference
-    private List<Vehicle> currentlyRentedVehicles; // will refrence/store the vehicles which are currently rented out
+    private List<Vehicle> currentlyRentedVehicles = new ArrayList<>(); // will refrence/store the vehicles which are currently rented out
 
     @DocumentReference
-    private List<Review> lowRatedReviewsToAddress; // reviews with low ratings that need to be addressed and looked over by managment
+    private List<Review> lowRatedReviewsToAddress = new ArrayList<>(); // reviews with low ratings that need to be addressed and looked over by managment
+
+    public BusinessMetrics()
+    {
+
+    }
 
     public BusinessMetrics(int numVehiclesCurrentlyRented, double totalRentalRevenue, int lifetimeNumRentals, List<Vehicle> currentlyRentedVehicles, List<Review> lowRatedReviewsToAddress) {
         this.numVehiclesCurrentlyRented = numVehiclesCurrentlyRented;
@@ -32,6 +37,12 @@ public class BusinessMetrics {
         this.lifetimeNumRentals = lifetimeNumRentals;
         this.currentlyRentedVehicles = new ArrayList<Vehicle>();
         this.lowRatedReviewsToAddress = new ArrayList<Review>();
+    }
+
+    public BusinessMetrics(int numVehiclesCurrentlyRented, double totalRentalRevenue, int lifetimeNumRentals) {
+        this.numVehiclesCurrentlyRented = numVehiclesCurrentlyRented;
+        this.totalRentalRevenue = totalRentalRevenue;
+        this.lifetimeNumRentals = lifetimeNumRentals;
     }
 
     public int getNumVehiclesCurrentlyRented() {
@@ -84,7 +95,7 @@ public class BusinessMetrics {
 
     public void addLowRatedReview(Review review)
     {
-        lowRatedReviewsToAddress.add(review);
+        this.getLowRatedReviewsToAddress().addFirst(review);
     }
 
 }
