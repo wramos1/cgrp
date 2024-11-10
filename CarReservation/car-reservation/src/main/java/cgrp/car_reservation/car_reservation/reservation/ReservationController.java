@@ -28,7 +28,7 @@ public class ReservationController {
     //creating a new reservation
     @PostMapping("/reserve")
     public ResponseEntity<String> createReservation(@RequestBody ReservationDto reservationDto, @AuthenticationPrincipal UserDetails userDetails){
-        //finds the logged in user
+        //finds the logged-in user
         reservationDto.setUserId(userService.getUserByUsername(userDetails.getUsername()).getUserId());//this line is fucked
 
 

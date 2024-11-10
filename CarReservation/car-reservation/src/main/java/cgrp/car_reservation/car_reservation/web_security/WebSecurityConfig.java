@@ -1,17 +1,14 @@
 package cgrp.car_reservation.car_reservation.web_security;
 
+import cgrp.car_reservation.car_reservation.user.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -30,9 +27,7 @@ public class WebSecurityConfig {
         }
 
         @Bean
-        public PasswordEncoder passwordEncoder() {
-                return new BCryptPasswordEncoder();
-        }
+        public PasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}
 
         // Define a CORS configuration source bean
         @Bean
@@ -75,7 +70,7 @@ public class WebSecurityConfig {
                                                 ).permitAll()// Allow these paths without authentication
                                                 .requestMatchers(
                                                         "/admin/**"
-                                                ).hasRole("ADMIN")
+                                                ).hasAuthority("ADMIN")
                                                 .anyRequest().authenticated() // Require authentication for all other
                                                                               // requests
                                 )

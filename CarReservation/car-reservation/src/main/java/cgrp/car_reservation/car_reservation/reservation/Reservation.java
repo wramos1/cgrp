@@ -23,22 +23,25 @@ public class Reservation {
     @DocumentReference
     private Vehicle vehicle;
     @Setter
-    private LocalDate returnDate;
+    private LocalDate endDate;
     @Setter
-    private LocalDate rentDate;
+    private LocalDate startDate;
+
+    private LocalDate reservationDate;
     private double chargeAmount;
 
     //reservation constructor for reservation service
-    public Reservation(User user, Vehicle vehicle, LocalDate returnDate, LocalDate rentDate){
+    public Reservation(User user, Vehicle vehicle, LocalDate returnDate, LocalDate rentDate, LocalDate reservationDate){
         this.user = user;
         this.vehicle = vehicle;
-        this.rentDate = rentDate;
-        this.returnDate = returnDate;
+        this.startDate = rentDate;
+        this.endDate = returnDate;
+        this.reservationDate = reservationDate;
     }
 
 
     public void calculateChargeAmount(){
-        Period period = Period.between(rentDate,returnDate);
+        Period period = Period.between(startDate, endDate);
         chargeAmount = period.getDays()*vehicle.getDailyRentRate();
     }
 }

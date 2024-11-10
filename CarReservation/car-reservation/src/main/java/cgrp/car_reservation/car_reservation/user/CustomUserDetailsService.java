@@ -1,4 +1,4 @@
-package cgrp.car_reservation.car_reservation.web_security;
+package cgrp.car_reservation.car_reservation.user;
 
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserRepository;

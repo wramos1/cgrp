@@ -15,26 +15,31 @@ import java.util.List;
 
 @Service
 public class UserService {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private PasswordEncoder passwordEncoder;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private ReviewRepository reviewRepository; // will allow for the creation of the review
 
     public User registerUser(UserDto userDto){
+        if(userRepository.findByUsername(userDto.getUsername())!= null){
+            throw new UsernameAlreadyTakenException("Supplied username is already taken!");
+        }
         return new UserRegistration(userRepository, passwordEncoder).register(userDto);
+
     }
 
     public User registerManager(UserDto userDto){
+        if(userRepository.findByUsername(userDto.getUsername())!= null){
+            throw new UsernameAlreadyTakenException("Supplied username is already taken!");
+        }
         return new ManagerRegistration(userRepository, passwordEncoder).register(userDto);
+
     }
 
 

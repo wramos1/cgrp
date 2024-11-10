@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class ReservationService {
         if(vehicle.isCurrentlyRented()){
 
             //creates reservation with params from user
-            Reservation reservation = new Reservation(user,vehicle,reservationDto.getStartDate(),reservationDto.getEndDate());
+            Reservation reservation = new Reservation(user,vehicle,reservationDto.getStartDate(),reservationDto.getEndDate(), LocalDate.now());
 
             //sets vehicle currently rented to true
             vehicle.setCurrentlyRented(false);

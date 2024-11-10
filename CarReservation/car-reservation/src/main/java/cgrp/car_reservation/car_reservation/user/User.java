@@ -20,9 +20,9 @@ public class User {
     private @Setter String password;
     private String email;
 
-    private String role;
+    private String[] role;
 
-    public User(String username, String password, String email, String role){
+    public User(String username, String password, String email, String[] role){
         this.username = username;
         this.password = password;
         this.email = email;
