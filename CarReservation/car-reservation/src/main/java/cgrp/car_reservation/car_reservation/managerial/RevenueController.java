@@ -11,14 +11,9 @@ public class RevenueController {
     @Autowired
     private RevenueService revenueService;
 
-    /*@GetMapping("/monthly-revenue")
+    @GetMapping("/monthly-revenue")
     public double getMonthlyRevenue(){
         return revenueService.thisMonthRevenue();
-    }*/
-
-    @GetMapping("/monthly-revenue")
-    public String getMonthlyRevenue() {
-        return "Success";
     }
 
     @PostMapping("/monthly-revenue/{startMonth}/{endMonth}")

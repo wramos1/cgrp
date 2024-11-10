@@ -54,9 +54,8 @@ public class ReservationController {
 
     //cancels a users reservation, only needs the reservation object which can be accessed
     //from the users reservation array
-    public boolean cancelReservation(Reservation reservation, @AuthenticationPrincipal UserDetails userDetails){
+    public Reservation cancelReservation(Reservation reservation, @AuthenticationPrincipal UserDetails userDetails){
         User user = userService.getUserbyUsername(userDetails.getUsername());
-        reservationService.cancelReservation(reservation, user);
-        return true;//code to return false if cancellation doesn't go through
+        return reservationService.cancelReservation(reservation, user);
     }
 }

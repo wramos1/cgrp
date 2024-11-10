@@ -31,12 +31,13 @@ public class Reservation {
     private double chargeAmount;
 
     //reservation constructor for reservation service
-    public Reservation(User user, Vehicle vehicle, LocalDate returnDate, LocalDate rentDate, LocalDate reservationDate){
+    public Reservation(User user, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate){
         this.user = user;
         this.vehicle = vehicle;
-        this.startDate = rentDate;
-        this.endDate = returnDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.reservationDate = reservationDate;
+        calculateChargeAmount();
     }
 
 

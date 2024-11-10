@@ -14,7 +14,8 @@ import org.springframework.context.annotation.ComponentScan;
 		"cgrp.car_reservation.car_reservation.vehicle",
 		"cgrp.car_reservation.car_reservation.review",
 		"cgrp.car_reservation.car_reservation.payment_card",
-		"cgrp.car_reservation.car_reservation.web_security"
+		"cgrp.car_reservation.car_reservation.web_security",
+		"cgrp.car_reservation.car_reservation.managerial"
 })
 public class CarReservationApplication {
 	private static final Logger logger = LoggerFactory.getLogger(CarReservationApplication.class);

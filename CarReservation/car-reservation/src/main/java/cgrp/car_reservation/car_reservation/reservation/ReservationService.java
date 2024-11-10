@@ -36,13 +36,20 @@ public class ReservationService {
         User user = userRepository.findById(reservationDto.getUserId()).orElseThrow(()->new RuntimeException("User not found"));
         Vehicle vehicle = vehicleRepository.findById(reservationDto.getVehicleId()).orElseThrow(()->new RuntimeException("Vehicle not found"));
         //checks if vehicle is available this sets reservation fields
-        if(vehicle.isCurrentlyRented()){
+        if(!vehicle.isCurrentlyRented()){
+
 
             //creates reservation with params from user
-            Reservation reservation = new Reservation(user,vehicle,reservationDto.getStartDate(),reservationDto.getEndDate(), LocalDate.now());
+            Reservation reservation = new Reservation(
+                    user,
+                    vehicle,
+                    reservationDto.getEndDate(),
+                    reservationDto.getStartDate(),
+                    LocalDate.now()
+            );
 
             //sets vehicle currently rented to true
-            vehicle.setCurrentlyRented(false);
+            vehicle.setCurrentlyRented(true);
             vehicleRepository.save(vehicle);
 
             //user method for adding reservation to its array
@@ -57,14 +64,16 @@ public class ReservationService {
             throw new VehicleNotAvailableException("The vehicle is currently unavailable for reservation.");
         }
     }
-    public boolean cancelReservation(Reservation reservation, User user){
+    public Reservation cancelReservation(Reservation reservation, User user){
 
         if(user.hasReservation(reservation)){
             reservation.getVehicle().setCurrentlyRented(true);
             vehicleRepository.save(reservation.getVehicle());
             user.removeReservation(reservation);
-            return true;
+            return reservation;
         }
-        return false;
+        if(reservationRepository.existsById(reservation.getReservationID()))
+            throw new RuntimeException("Reservation does not belong to this user.");
+        throw new RuntimeException("Reservation does not exist.");
     }
 }
