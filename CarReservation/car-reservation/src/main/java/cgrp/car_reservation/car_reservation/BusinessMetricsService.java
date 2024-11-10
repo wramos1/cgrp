@@ -38,7 +38,7 @@ public class BusinessMetricsService {
 
             businessMetricsRepository.save(businessMetrics.getFirst()); // it will now update the business metrics object in the database
 
-            System.out.println("low review added");
+            System.out.println("low review added to " + businessMetrics.getFirst().getBusinessMetricID());
 
         }
         else

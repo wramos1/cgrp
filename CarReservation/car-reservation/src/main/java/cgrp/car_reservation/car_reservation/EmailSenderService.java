@@ -86,14 +86,14 @@ public class EmailSenderService {
 
             if(lowRatedReview)
             {
-                reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername() + ", \nThank you for your review, it really means a lot! We are sorry to hear that you were not completely satisfied with your rental and we look forward to addressing your concerns. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
+                reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername() + ", \n\nThank you for your review, it really means a lot! We are sorry to hear that you were not completely satisfied with your rental and we look forward to addressing your concerns. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
             }
             else {
-                reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername() + ", \nThank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
+                reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername() + ", \n\nThank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
             }
 
-
             reviewEmailHelper.addAttachment("2025.png", new File("C:\\Users\\artla\\Downloads\\2025.png"));
+            reviewEmailHelper.addAttachment()
 
             mailSender.send(reviewEmail);
 
