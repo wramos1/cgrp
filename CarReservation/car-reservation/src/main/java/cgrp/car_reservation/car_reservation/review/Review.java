@@ -1,7 +1,9 @@
 package cgrp.car_reservation.car_reservation.review;
 
-import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,37 +21,18 @@ public class Review {
 
     private String reviewBody;
 
-   // @DocumentReference
-    private User reviewLeaver;
 
+    private String reviewLeaverUsername;
+
+    @JsonIgnore
     @DocumentReference // allows the database schema of the review to refrence this particular vehicle and this annotation allows the compilier and the mongodb driver to do that automatically
     private Vehicle vehicleReviewIsOn;
 
-    public Review(double reviewRating, String reviewBody, User reviewLeaver, Vehicle vehicleReviewIsOn, ObjectId reviewID) {
-        this.reviewRating = reviewRating;
-        this.reviewBody = reviewBody;
-        this.reviewLeaver = reviewLeaver;
-        this.vehicleReviewIsOn = vehicleReviewIsOn;
-        this.reviewID = reviewID;
-    }
-    public Review(double reviewRating, String reviewBody, User reviewLeaver, Vehicle vehicleReviewIsOn) {
-        this.reviewRating = reviewRating;
-        this.reviewBody = reviewBody;
-        this.reviewLeaver = reviewLeaver;
-        this.vehicleReviewIsOn = vehicleReviewIsOn;
-    }
-
-    public Review(double reviewRating, String reviewBody, User reviewLeaver) {
-        this.reviewRating = reviewRating;
-        this.reviewBody = reviewBody;
-        this.reviewLeaver = reviewLeaver;
-    }
-
-    public Review(String customReviewID, double reviewRating, String reviewBody, User reviewLeaver, Vehicle vehicleReviewIsOn) {
+    public Review(String customReviewID, double reviewRating, String reviewBody, String reviewLeaverUsername, Vehicle vehicleReviewIsOn) {
         this.customReviewID = customReviewID;
         this.reviewRating = reviewRating;
         this.reviewBody = reviewBody;
-        this.reviewLeaver = reviewLeaver;
+        this.reviewLeaverUsername = reviewLeaverUsername;
         this.vehicleReviewIsOn = vehicleReviewIsOn;
     }
 
@@ -57,6 +40,15 @@ public class Review {
     {
 
     }
+
+    public String getReviewLeaverUsername() {
+        return reviewLeaverUsername;
+    }
+
+    public void setReviewLeaverUsername(String reviewLeaverUsername) {
+        this.reviewLeaverUsername = reviewLeaverUsername;
+    }
+
 
     public ObjectId getReviewID() {
         return reviewID;
@@ -74,13 +66,7 @@ public class Review {
         this.vehicleReviewIsOn = vehicleReviewIsOn;
     }
 
-    public User getReviewLeaver() {
-        return reviewLeaver;
-    }
 
-    public void setReviewLeaver(User reviewLeaver) {
-        this.reviewLeaver = reviewLeaver;
-    }
 
     public String getReviewBody() {
         return reviewBody;

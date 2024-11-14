@@ -1,12 +1,12 @@
-package cgrp.car_reservation.car_reservation.user;
+package cgrp.car_reservation.car_reservation;
 
-import cgrp.car_reservation.car_reservation.review.Review;
+import cgrp.car_reservation.car_reservation.user.User;
+import cgrp.car_reservation.car_reservation.user.UserService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,12 +37,17 @@ public class UserController {
         return userService.getUserById(objectId);
     }
 
-    @PostMapping("/leaveReview/{username}")
-    public Review leaveNewReview(@PathVariable String username, @RequestBody Review review) {
+
+    // this returns the login info of the current user
+    @GetMapping("/currentuser")
+    public String getCurrentUsername()
+    {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
+  /*  @PostMapping("/leaveReview/{username}")
+    public Review leaveNewReview(@PathVariable String username, @RequestBody Review review)
+    {
         return userService.leaveNewReview(username, review);
-    }
-    @GetMapping("/user")
-    public User getCurrentUser(@AuthenticationPrincipal UserDetails userDetails){
-        return userService.getUserbyUsername(userDetails.getUsername());  // Or other user details
-    }
+    }*/
 }

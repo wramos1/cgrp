@@ -31,7 +31,7 @@ public class User {
 
     //holds references to all users reservations
     @DocumentReference
-    private List<Reservation> reservations = new ArrayList<>();
+    private List<Reservation> reservations;
 
     //holds references to all reviews the user has left
     @DocumentReference
@@ -42,8 +42,8 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.reservations = null;
-        this.reviewsLeft = null;
+        this.reservations = new ArrayList<Reservation>();
+        this.reviewsLeft = new ArrayList<Review>();
     }
 
     public void addReservation(Reservation reservation){
@@ -58,6 +58,10 @@ public class User {
         return this.reservations.contains(reservation);
     }
 
+    public void addReview(Review newReview)
+    {
+        reviewsLeft.add(newReview);
+    }
 
     public void leaveReview()
     {

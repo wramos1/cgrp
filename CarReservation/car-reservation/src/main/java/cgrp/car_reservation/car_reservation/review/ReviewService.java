@@ -1,11 +1,14 @@
 package cgrp.car_reservation.car_reservation.review;
 
-import cgrp.car_reservation.car_reservation.email.EmailSenderService;
+import cgrp.car_reservation.car_reservation.EmailSenderService;
+import cgrp.car_reservation.car_reservation.business_metrics.BusinessMetricsService;
 import cgrp.car_reservation.car_reservation.user.User;
+import cgrp.car_reservation.car_reservation.user.UserService;
 import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
 import cgrp.car_reservation.car_reservation.vehicle.VehicleRepository;
 import cgrp.car_reservation.car_reservation.vehicle.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,7 +31,13 @@ public class ReviewService {
     @Autowired
     private EmailSenderService emailSenderService; // this will send email confirming a review that has been left
 
-    // calls on the repository layer object to create the document in the database
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private BusinessMetricsService businessMetricsService;
+
+/*    // calls on the repository layer object to create the document in the database
     public Review createReview(Review review)
     {
         reviewRepository.save(review); // saves the review in the database
@@ -59,20 +68,23 @@ public class ReviewService {
         }
 
         return userSpecificReviews;
-    }
+    }*/
 
     // leave a review; will save the review in the mongodb, and will have a refrence to the vehicle the review is on
     public Review leaveReview(ReviewDTO reviewDTO)
     {
         Vehicle vehicleReviewIsOn = vehicleRepository.findByCustomVehicleID(reviewDTO.getCustomVehicleID()); // this should return the vehicle that we are leaving the review on
 
-        User tempUser = new User("arthur", "hello", "arthur@csun.edu"); // constructs a temporary user to test this with
+        //User tempUser = new User("FASTCARArthur", "hello", "arthur@csun.edu"); // constructs a temporary user to test this with
 
-        // maybe use delegation here in order to make it simplier and more reusable
+        // should get the current user who is logged in
+        String currentLoggedInUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User currentUser = userService.getUserByUsername(currentLoggedInUsername);
 
         String customReviewID = UUID.randomUUID().toString().replace("-" ,""); // will replace the dashes in the UUID with nothing
 
-        Review newReview = new Review(customReviewID, reviewDTO.getReviewRating(), reviewDTO.getReviewBody(), tempUser,vehicleReviewIsOn); // constructs a review object with that in it
+        Review newReview = new Review(customReviewID, reviewDTO.getReviewRating(), reviewDTO.getReviewBody(), currentUser.getUsername(), vehicleReviewIsOn); // constructs a review object with that in it
 
         reviewRepository.save(newReview); // saves the review to the repository
 
@@ -87,9 +99,14 @@ public class ReviewService {
 
         vehicleService.addReviewToVehicle(reviewDTO.getCustomVehicleID(), currentReview); // this call to a method in vehicle service should add the recently created review as a refrence in the vehicle on which the review is for
 
-        // test out if this will work with sending some stuff in an email with reviews
-        emailSenderService.reviewVerificationEmail(currentReview);
+        userService.leaveNewReview(currentUser.getUsername(), currentReview); // adds the review to the user
 
+        // test out if this will work with sending some stuff in an email with reviews
+        //emailSenderService.reviewVerificationEmail(currentReview, currentUser);
+
+        businessMetricsService.addPotentialLowReview(currentReview);
+
+        emailSenderService.reviewVerificationEmailWithAttachement(currentReview, currentUser, businessMetricsService.isLowReview(currentReview));
 
         return currentReview;
     }
