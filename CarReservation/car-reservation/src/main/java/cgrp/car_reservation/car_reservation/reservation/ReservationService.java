@@ -1,5 +1,6 @@
 package cgrp.car_reservation.car_reservation.reservation;
 
+import cgrp.car_reservation.car_reservation.transaction.TransactionService;
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserRepository;
 import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ReservationService {
@@ -26,6 +28,9 @@ public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
 
+    @Autowired
+    private TransactionService transactionService;
+
     private static final Logger logger = LoggerFactory.getLogger(ReservationService.class);
 
     public List<Reservation> getAllReservations(){
@@ -33,20 +38,19 @@ public class ReservationService {
     }
 
     public Reservation createReservation(ReservationDto reservationDto){
-        User user = userRepository.findById(reservationDto.getUserId()).orElseThrow(()->new RuntimeException("User not found"));
-        Vehicle vehicle = vehicleRepository.findById(reservationDto.getVehicleId()).orElseThrow(()->new RuntimeException("Vehicle not found"));
-        //checks if vehicle is available this sets reservation fields
+        User user = userRepository.findById(reservationDto.getUserId())
+                .orElseThrow(()->new RuntimeException("User not found"));
+        Vehicle vehicle = vehicleRepository.findByCustomVehicleID(reservationDto.getCustomVehicleId());
+        if (vehicle == null) {
+            throw new RuntimeException("Vehicle not found");
+        }//checks if vehicle is available this sets reservation fields
         if(!vehicle.isCurrentlyRented()){
 
 
+            String customReservationID = UUID.randomUUID().toString().substring(0,12);// the UUID will be this long
+
             //creates reservation with params from user
-            Reservation reservation = new Reservation(
-                    user,
-                    vehicle,
-                    reservationDto.getEndDate(),
-                    reservationDto.getStartDate(),
-                    LocalDate.now()
-            );
+            Reservation reservation = new Reservation(customReservationID, user, vehicle, reservationDto.getEndDate(), reservationDto.getStartDate(), LocalDate.now());
 
             //sets vehicle currently rented to true
             vehicle.setCurrentlyRented(true);
@@ -58,7 +62,12 @@ public class ReservationService {
             //updates user
             userRepository.save(user);
 
-            return reservationRepository.save(reservation);
+            reservation = reservationRepository.save(reservation);
+
+
+            transactionService.createNewRentalTransaction(reservation, null); // will call transaction service to create transaction based on this reservation
+
+            return reservation;
         } else {
             logger.warn("Attempted to reserve an unavailable vehicle: {}", vehicle.getVehicleID());
             throw new VehicleNotAvailableException("The vehicle is currently unavailable for reservation.");
@@ -67,9 +76,12 @@ public class ReservationService {
     public Reservation cancelReservation(Reservation reservation, User user){
 
         if(user.hasReservation(reservation)){
-            reservation.getVehicle().setCurrentlyRented(true);
+            reservation.getVehicle().setCurrentlyRented(false);
             vehicleRepository.save(reservation.getVehicle());
             user.removeReservation(reservation);
+
+            transactionService.createNewTransaction(reservation, "cancel");
+
             return reservation;
         }
         if(reservationRepository.existsById(reservation.getReservationID()))

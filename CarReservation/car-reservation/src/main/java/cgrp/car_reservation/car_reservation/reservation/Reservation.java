@@ -18,6 +18,9 @@ import java.time.Period;
 public class Reservation {
     @Id
     private ObjectId reservationID;
+
+    private String customReservationID; // custom string ID for reservation
+
     @DocumentReference
     private User user;
     @DocumentReference
@@ -40,6 +43,15 @@ public class Reservation {
         calculateChargeAmount();
     }
 
+    public Reservation(String customReservationID, User user, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate) {
+        this.customReservationID = customReservationID;
+        this.user = user;
+        this.vehicle = vehicle;
+        this.endDate = endDate;
+        this.startDate = startDate;
+        this.reservationDate = reservationDate;
+        calculateChargeAmount();
+    }
 
     public void calculateChargeAmount(){
         Period period = Period.between(startDate, endDate);

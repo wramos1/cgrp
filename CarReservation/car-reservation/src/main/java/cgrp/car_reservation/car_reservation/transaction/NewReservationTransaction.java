@@ -5,6 +5,8 @@ import cgrp.car_reservation.car_reservation.reservation.Reservation;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
+import java.time.LocalDateTime;
+
 
 @Document(collection = "transactons")
 public class NewReservationTransaction extends Transaction {
@@ -19,5 +21,8 @@ public class NewReservationTransaction extends Transaction {
         this.cardOnTransaction = cardOnTransaction;
     }
 
-
+    public NewReservationTransaction(String transactionNote, LocalDateTime transactionDateTime, Reservation reservationInvolvedInTransaction, paymentCard cardOnTransaction) {
+        super(transactionNote, transactionDateTime, reservationInvolvedInTransaction);
+        this.cardOnTransaction = cardOnTransaction;
+    }
 }

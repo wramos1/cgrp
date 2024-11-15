@@ -6,6 +6,8 @@ import cgrp.car_reservation.car_reservation.payment_card.paymentCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class TransactionService {
 
@@ -13,9 +15,9 @@ public class TransactionService {
     private TransactionRepository transactionRepository;
 
 
-    void createNewRentalTransaction(Reservation transactionReservation,paymentCard cardOnTransaction)
+    public void createNewRentalTransaction(Reservation transactionReservation,paymentCard cardOnTransaction)
     {
-        NewReservationTransaction newRentalTransaction = new NewReservationTransaction("New Vehicle Rental", transactionReservation, cardOnTransaction); // creates a new rental transaction
+        NewReservationTransaction newRentalTransaction = new NewReservationTransaction("New Vehicle Rental", LocalDateTime.now(), transactionReservation, cardOnTransaction); // creates a new rental transaction
 
         transactionRepository.save(newRentalTransaction);
 
@@ -23,7 +25,7 @@ public class TransactionService {
 
 
     // this is for transaction such as modify or cancel that does not involve a payment card
-    void createNewTransaction(Reservation transactionReservation, String transactionType)
+    public void createNewTransaction(Reservation transactionReservation, String transactionType)
     {
         Transaction newTransaction = new Transaction(null, transactionReservation);
 
@@ -35,7 +37,7 @@ public class TransactionService {
             newTransaction.setTransactionNote("Miscellaneous Transaction");
         }
 
-        transactionRepository.save(newTransaction); 
+        transactionRepository.save(newTransaction);
 
     }
 
