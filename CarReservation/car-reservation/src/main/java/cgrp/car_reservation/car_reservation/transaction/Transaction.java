@@ -18,6 +18,24 @@ public class Transaction {
     private Reservation reservationInvolvedInTransaction; // this is the reservation that is involved with the transaction
 
 
+    public Transaction(String transactionNote, Reservation reservationInvolvedInTransaction) {
+        this.transactionNote = transactionNote;
+        this.reservationInvolvedInTransaction = reservationInvolvedInTransaction;
+    }
 
+    public String getTransactionNote() {
+        return transactionNote;
+    }
 
+    public void setTransactionNote(String transactionNote) {
+        this.transactionNote = transactionNote;
+    }
+
+    public Reservation getReservationInvolvedInTransaction() {
+        return reservationInvolvedInTransaction;
+    }
+
+    public void setReservationInvolvedInTransaction(Reservation reservationInvolvedInTransaction) {
+        this.reservationInvolvedInTransaction = reservationInvolvedInTransaction;
+    }
 }
