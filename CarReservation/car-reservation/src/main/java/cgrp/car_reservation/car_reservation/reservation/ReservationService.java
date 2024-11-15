@@ -33,9 +33,12 @@ public class ReservationService {
     }
 
     public Reservation createReservation(ReservationDto reservationDto){
-        User user = userRepository.findById(reservationDto.getUserId()).orElseThrow(()->new RuntimeException("User not found"));
-        Vehicle vehicle = vehicleRepository.findById(reservationDto.getVehicleId()).orElseThrow(()->new RuntimeException("Vehicle not found"));
-        //checks if vehicle is available this sets reservation fields
+        User user = userRepository.findById(reservationDto.getUserId())
+                .orElseThrow(()->new RuntimeException("User not found"));
+        Vehicle vehicle = vehicleRepository.findByCustomVehicleID(reservationDto.getCustomVehicleId());
+        if (vehicle == null) {
+            throw new RuntimeException("Vehicle not found");
+        }//checks if vehicle is available this sets reservation fields
         if(!vehicle.isCurrentlyRented()){
 
 
