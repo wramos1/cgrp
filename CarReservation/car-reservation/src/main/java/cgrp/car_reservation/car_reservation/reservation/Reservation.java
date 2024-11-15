@@ -33,6 +33,11 @@ public class Reservation {
     private LocalDate reservationDate;
     private double chargeAmount;
 
+    public Reservation()
+    {
+
+    }
+
     //reservation constructor for reservation service
     public Reservation(User user, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate){
         this.user = user;

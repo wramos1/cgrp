@@ -1,5 +1,6 @@
 package cgrp.car_reservation.car_reservation.reservation;
 
+import cgrp.car_reservation.car_reservation.transaction.Transaction;
 import cgrp.car_reservation.car_reservation.transaction.TransactionService;
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserRepository;
@@ -73,7 +74,9 @@ public class ReservationService {
             throw new VehicleNotAvailableException("The vehicle is currently unavailable for reservation.");
         }
     }
-    public Reservation cancelReservation(Reservation reservation, User user){
+    public Reservation cancelReservation(String reservationID, User user){
+
+        Reservation reservation = reservationRepository.findByCustomReservationID(reservationID); // finds the reservation by the custom reservation ID
 
         if(user.hasReservation(reservation)){
             reservation.getVehicle().setCurrentlyRented(false);
@@ -87,5 +90,27 @@ public class ReservationService {
         if(reservationRepository.existsById(reservation.getReservationID()))
             throw new RuntimeException("Reservation does not belong to this user.");
         throw new RuntimeException("Reservation does not exist.");
+    }
+
+    public Transaction cancelVehicleReservation(String customReservationID, User user)
+    {
+        Reservation reservation = reservationRepository.findByCustomReservationID(customReservationID);
+        if(user.hasReservation(reservation))
+        {
+            Vehicle vehicle = reservation.getVehicle();
+            vehicle.setCurrentlyRented(false);
+
+            vehicleRepository.save(vehicle); // updates that vehicle in the database
+
+            user.removeReservation(reservation);
+
+            userRepository.save(user); // updates that user in the database
+
+            return transactionService.createNewTransaction(reservation, "cancel");
+
+        }
+
+
+        return null;
     }
 }

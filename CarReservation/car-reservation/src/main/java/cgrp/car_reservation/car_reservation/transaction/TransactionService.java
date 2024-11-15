@@ -25,7 +25,7 @@ public class TransactionService {
 
 
     // this is for transaction such as modify or cancel that does not involve a payment card
-    public void createNewTransaction(Reservation transactionReservation, String transactionType)
+    public Transaction createNewTransaction(Reservation transactionReservation, String transactionType)
     {
         Transaction newTransaction = new Transaction(null, transactionReservation);
 
@@ -37,7 +37,7 @@ public class TransactionService {
             newTransaction.setTransactionNote("Miscellaneous Transaction");
         }
 
-        transactionRepository.save(newTransaction);
+        return transactionRepository.save(newTransaction);
 
     }
 
