@@ -98,12 +98,13 @@ public class ReservationService {
             //user method for adding reservation to its array
             user.addReservation(reservation); // this is not adding the reservation to the user, which is causing error in the canceling of the reservation
 
+            // this shows the current
             for(int i = 0; i < user.getReservations().size(); i++)
             {
                 System.out.println(user.getReservations().get(i).getCustomReservationID());
             }
 
-            //updates user
+            //updates user (this has to be fixed to properly save the user with the reservations as it is above)
             userRepository.save(user);
 
             reservation = reservationRepository.save(reservation);
