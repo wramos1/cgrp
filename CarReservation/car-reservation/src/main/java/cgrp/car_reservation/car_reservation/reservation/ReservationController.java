@@ -48,6 +48,7 @@ public class ReservationController {
         }
     }
 
+
     @GetMapping("/reserve")
     public List<Reservation> getAllReservations(){
         return reservationService.getAllReservations();
@@ -55,9 +56,14 @@ public class ReservationController {
 
     //cancels a users reservation, only needs the reservation object which can be accessed
     //from the users reservation array
-    @PostMapping("/cancel/{customReservationID}")
-    public Transaction cancelReservation(@PathVariable String customReservationID, @AuthenticationPrincipal UserDetails userDetails){
+    @PostMapping("/cancel")
+    public String cancelReservation(@RequestBody String customReservationID, @AuthenticationPrincipal UserDetails userDetails){
         User user = userService.getUserbyUsername(userDetails.getUsername());
-        return reservationService.cancelVehicleReservation(customReservationID, user);
+
+        System.out.println(user.getUsername());
+        System.out.println(customReservationID);
+
+         return reservationService.cancelVehicleReservation(customReservationID, user);
+
     }
 }

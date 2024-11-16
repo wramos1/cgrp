@@ -4,10 +4,12 @@ import cgrp.car_reservation.car_reservation.transaction.Transaction;
 import cgrp.car_reservation.car_reservation.transaction.TransactionService;
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserRepository;
+import cgrp.car_reservation.car_reservation.user.UserService;
 import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
 import cgrp.car_reservation.car_reservation.vehicle.VehicleNotAvailableException;
 import cgrp.car_reservation.car_reservation.vehicle.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +29,9 @@ public class ReservationService {
     private UserRepository userRepository;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private ReservationRepository reservationRepository;
 
     @Autowired
@@ -37,6 +42,39 @@ public class ReservationService {
     public List<Reservation> getAllReservations(){
         return reservationRepository.findAll();
     }
+
+    public void createNewReservation(ReservationDto reservationDto)
+    {
+        String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        User currentUser = userRepository.findByUsername(currentUserName);
+
+        Vehicle rentingVehicle = vehicleRepository.findByCustomVehicleID(reservationDto.getCustomVehicleId()); // gets the vehicle from the db
+
+        if(rentingVehicle.isCurrentlyRented() == false) // this is the case that it is available to be rented
+        {
+            String customReservationID = UUID.randomUUID().toString().substring(0,12);
+
+            Reservation newReservation = new Reservation(customReservationID, currentUser, rentingVehicle, reservationDto.getEndDate(), reservationDto.getStartDate(), LocalDate.now());
+
+            // Save the reservation to the reservation repository
+            reservationRepository.save(newReservation);
+
+            rentingVehicle.setCurrentlyRented(true);
+
+            vehicleRepository.save(rentingVehicle); // saves the vehiclce with the updated field
+
+            currentUser.addReservation(newReservation); // adds the reservation to the user, the reservation at this point should have an objectID which db will use to refrence it
+
+            userRepository.save(currentUser); // saves the updated user object to the db
+
+            transactionService.createNewRentalTransaction(newReservation, null);
+
+        }
+
+
+    }
+
 
     public Reservation createReservation(ReservationDto reservationDto){
         User user = userRepository.findById(reservationDto.getUserId())
@@ -58,7 +96,12 @@ public class ReservationService {
             vehicleRepository.save(vehicle);
 
             //user method for adding reservation to its array
-            user.addReservation(reservation);
+            user.addReservation(reservation); // this is not adding the reservation to the user, which is causing error in the canceling of the reservation
+
+            for(int i = 0; i < user.getReservations().size(); i++)
+            {
+                System.out.println(user.getReservations().get(i).getCustomReservationID());
+            }
 
             //updates user
             userRepository.save(user);
@@ -78,9 +121,13 @@ public class ReservationService {
 
         Reservation reservation = reservationRepository.findByCustomReservationID(reservationID); // finds the reservation by the custom reservation ID
 
-        if(user.hasReservation(reservation)){
-            reservation.getVehicle().setCurrentlyRented(false);
-            vehicleRepository.save(reservation.getVehicle());
+        if(userService.checkIfHasReservation(reservationID, user)) // will return true if the user has that
+        {
+            Vehicle reservedVehicle = reservation.getVehicle();
+            reservedVehicle.setCurrentlyRented(false); // because the reservation on it is being cancelled
+            vehicleRepository.save(reservedVehicle);
+
+
             user.removeReservation(reservation);
 
             transactionService.createNewTransaction(reservation, "cancel");
@@ -92,10 +139,12 @@ public class ReservationService {
         throw new RuntimeException("Reservation does not exist.");
     }
 
-    public Transaction cancelVehicleReservation(String customReservationID, User user)
+    public String cancelVehicleReservation(String customReservationID, User user)
     {
         Reservation reservation = reservationRepository.findByCustomReservationID(customReservationID);
-        if(user.hasReservation(reservation))
+
+        // this conditional is the issue
+        if(userService.checkIfHasReservation(customReservationID, user))
         {
             Vehicle vehicle = reservation.getVehicle();
             vehicle.setCurrentlyRented(false);
@@ -106,11 +155,12 @@ public class ReservationService {
 
             userRepository.save(user); // updates that user in the database
 
-            return transactionService.createNewTransaction(reservation, "cancel");
+            transactionService.createNewTransaction(reservation, "cancel");
 
+            return "Worked";
         }
 
 
-        return null;
+        return "Something Went Wrong";
     }
 }
