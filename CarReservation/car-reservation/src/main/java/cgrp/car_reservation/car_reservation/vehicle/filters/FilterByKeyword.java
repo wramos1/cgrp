@@ -13,20 +13,44 @@ import java.util.List;
 public class FilterByKeyword implements VehicleFilter {
     private List<Vehicle> vehicles;
     public String keyword;
+    public String[] tokenizedKeyword; // this is the keyword searches tokenized
 
     public FilterByKeyword (List<Vehicle> vehicles, String keyword){
         this.vehicles = vehicles;
         this.keyword = keyword;
+        tokenizedKeyword = keyword.split(" "); // will split the keyword about each space
     }
 
+    // come up with algorithm that adds all of the keywords, and singles it down
+    // make something with true
     @Override
     public List<Vehicle> filter() {
         List<Vehicle> approvedVehicles = new ArrayList<>();
+        boolean currentValidSearchedVehicle = true;
 
         for(Vehicle vehicle : vehicles){
-            if(vehicle.getVehicleSearchTerm().contains(keyword)){
+
+            currentValidSearchedVehicle = true;
+
+            for(String keywordToken : tokenizedKeyword)
+            {
+                if(vehicle.getVehicleSearchTerm().contains(keywordToken))
+                {
+                    // does nothing
+                }
+                else
+                {
+                    currentValidSearchedVehicle = false; // this will set the boolean value to false, so it will make it know that this car
+                    break;
+                }
+            }
+
+            // if it is true, this means that it has all of the keywords, not just one of them
+            if(currentValidSearchedVehicle == true)
+            {
                 approvedVehicles.add(vehicle);
             }
+
         }
         return approvedVehicles;
     }
