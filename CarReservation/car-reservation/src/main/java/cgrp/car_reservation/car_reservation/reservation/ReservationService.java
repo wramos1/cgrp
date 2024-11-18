@@ -61,6 +61,10 @@ public class ReservationService {
             //updates user
             userRepository.save(user);
 
+            logger.info("Users Reservations: {}",user.getReservations());
+
+            logger.info("Vehicle user is currently renting: {}",user.getReservations().get(0).getVehicle().getMake());
+
             return reservationRepository.save(reservation);
         } else {
             logger.warn("Attempted to reserve an unavailable vehicle: {}", vehicle.getVehicleID());
