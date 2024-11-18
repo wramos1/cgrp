@@ -1,4 +1,4 @@
-package cgrp.car_reservation.car_reservation;
+package cgrp.car_reservation.car_reservation.email;
 
 import cgrp.car_reservation.car_reservation.email.Email;
 import cgrp.car_reservation.car_reservation.review.Review;
@@ -21,8 +21,7 @@ public class EmailSenderService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendVerificationEmail(Email email)
-    {
+    public void sendVerificationEmail(Email email) {
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setFrom("cgrpventures@gmail.com");
@@ -32,28 +31,26 @@ public class EmailSenderService {
 
         mailSender.send(message);
 
-
-
     }
 
     // this will send an email to the logged in user; will be dummy for now
-    public void reviewVerificationEmail(Review review, User reviewLeaver)
-    {
+    public void reviewVerificationEmail(Review review, User reviewLeaver) {
         SimpleMailMessage reviewEmail = new SimpleMailMessage();
 
-        //reviewEmail.setTo(reviewLeaver.getEmail());
+        // reviewEmail.setTo(reviewLeaver.getEmail());
         reviewEmail.setTo("buffband2020@gmail.com");
         reviewEmail.setFrom("cgrpventures@gmail.com");
-        reviewEmail.setSubject("Confirming a review you left on the " + review.getVehicleReviewIsOn().getYear() + " " + review.getVehicleReviewIsOn().getMake() + " " + review.getVehicleReviewIsOn().getModel());
-        reviewEmail.setText("Hi " + reviewLeaver.getUsername() + ", \n Thank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
-
+        reviewEmail.setSubject("Confirming a review you left on the " + review.getVehicleReviewIsOn().getYear() + " "
+                + review.getVehicleReviewIsOn().getMake() + " " + review.getVehicleReviewIsOn().getModel());
+        reviewEmail.setText("Hi " + reviewLeaver.getUsername()
+                + ", \n Thank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n"
+                + "Rating: " + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
 
         mailSender.send(reviewEmail);
 
     }
 
-    public void reviewVerificationEmailWithAttachement(Review review, User reviewLeaver)
-    {
+    public void reviewVerificationEmailWithAttachement(Review review, User reviewLeaver) {
         try {
 
             MimeMessage reviewEmail = mailSender.createMimeMessage();
@@ -61,23 +58,23 @@ public class EmailSenderService {
 
             reviewEmailHelper.setFrom("cgrpventures@gmail.com");
             reviewEmailHelper.setTo("buffband2020@gmail.com");
-            reviewEmail.setSubject("Confirming a review you left on the " + review.getVehicleReviewIsOn().getYear() + " " + review.getVehicleReviewIsOn().getMake() + " " + review.getVehicleReviewIsOn().getModel());
-            reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername() + ", \n Thank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
+            reviewEmail.setSubject("Confirming a review you left on the " + review.getVehicleReviewIsOn().getYear()
+                    + " " + review.getVehicleReviewIsOn().getMake() + " " + review.getVehicleReviewIsOn().getModel());
+            reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername()
+                    + ", \n Thank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n"
+                    + "Rating: " + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
 
             reviewEmailHelper.addAttachment("2025.png", new File("C:\\Users\\artla\\Downloads\\2025.png"));
 
             mailSender.send(reviewEmail);
 
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.getMessage();
         }
     }
 
     // function/method overloading
-    public void reviewVerificationEmailWithAttachement(Review review, User reviewLeaver, boolean lowRatedReview)
-    {
+    public void reviewVerificationEmailWithAttachement(Review review, User reviewLeaver, boolean lowRatedReview) {
         try {
 
             MimeMessage reviewEmail = mailSender.createMimeMessage();
@@ -85,27 +82,26 @@ public class EmailSenderService {
 
             reviewEmailHelper.setFrom("cgrpventures@gmail.com");
             reviewEmailHelper.setTo("buffband2020@gmail.com");
-            reviewEmail.setSubject("Confirming the review you left on the " + review.getVehicleReviewIsOn().getYear() + " " + review.getVehicleReviewIsOn().getMake() + " " + review.getVehicleReviewIsOn().getModel());
+            reviewEmail.setSubject("Confirming the review you left on the " + review.getVehicleReviewIsOn().getYear()
+                    + " " + review.getVehicleReviewIsOn().getMake() + " " + review.getVehicleReviewIsOn().getModel());
 
-            if(lowRatedReview)
-            {
-                reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername() + ", \n\nThank you for your review, it really means a lot! We are sorry to hear that you were not completely satisfied with your rental and we look forward to addressing your concerns. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
-            }
-            else {
-                reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername() + ", \n\nThank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n" + "Rating: "  + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
+            if (lowRatedReview) {
+                reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername()
+                        + ", \n\nThank you for your review, it really means a lot! We are sorry to hear that you were not completely satisfied with your rental and we look forward to addressing your concerns. Thank You, CGRP\n\n"
+                        + "Rating: " + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
+            } else {
+                reviewEmailHelper.setText("Hi " + reviewLeaver.getUsername()
+                        + ", \n\nThank You for your review, it really means a lot! Below is a confirmation of the review you left. Thank You, CGRP\n\n"
+                        + "Rating: " + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
             }
 
             reviewEmailHelper.addAttachment("2025.png", new File("C:\\Users\\artla\\Downloads\\2025.png"));
 
             mailSender.send(reviewEmail);
 
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.getMessage();
         }
     }
-
-
 
 }
