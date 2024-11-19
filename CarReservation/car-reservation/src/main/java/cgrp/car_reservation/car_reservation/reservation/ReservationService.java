@@ -58,8 +58,7 @@ public class ReservationService {
             //user method for adding reservation to its array
             user.addReservation(reservation);
 
-            //updates user
-            userRepository.save(user);
+            //updates useruserRepository.save(user);
 
             logger.info("Users Reservations: {}",user.getReservations());
 
