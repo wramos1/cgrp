@@ -1,12 +1,14 @@
 package cgrp.car_reservation.car_reservation.email;
 
 import cgrp.car_reservation.car_reservation.email.Email;
+import cgrp.car_reservation.car_reservation.reservation.Reservation;
 import cgrp.car_reservation.car_reservation.review.Review;
 import cgrp.car_reservation.car_reservation.user.User;
 import jakarta.activation.DataSource;
 import jakarta.activation.FileDataSource;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.task.TaskExecutionProperties;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -102,6 +104,25 @@ public class EmailSenderService {
         } catch (Exception e) {
             e.getMessage();
         }
+    }
+
+    public void reservationVerificationEmail(Reservation reservation)
+    {
+        SimpleMailMessage reservationEmail = new SimpleMailMessage();
+
+        reservationEmail.setFrom("cgrpventures@gmail.com");
+        reservationEmail.setTo("buffband2020@gmail.com");
+
+        reservationEmail.setSubject("Confirming your reservation from " + reservation.getStartDate().toString() + " to " + reservation.getEndDate().toString());
+
+        reservationEmail.setText("Hi " + reservation.getUser().getUsername() +
+                 ", \n\nThank you for your business, we truly appreciate it. Below is a confirmation of your reservation: \n\n" + "Year: " +
+               reservation.getVehicle().getYear() + "\n Make: " + reservation.getVehicle().getMake() + "\n Model: " + reservation.getVehicle().getModel() +
+                "\n Reservation Duration: " + reservation.getStartDate().toString() + " - " + reservation.getEndDate().toString() + "\n\n From CGRP, we wish you the very best in your travels!");
+
+        mailSender.send(reservationEmail);
+
+
     }
 
 }
