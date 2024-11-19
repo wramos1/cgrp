@@ -106,6 +106,8 @@ public class EmailSenderService {
         }
     }
 
+
+    // sends email whenever, a reservation is made
     public void reservationVerificationEmail(Reservation reservation)
     {
         SimpleMailMessage reservationEmail = new SimpleMailMessage();
@@ -122,6 +124,26 @@ public class EmailSenderService {
 
         mailSender.send(reservationEmail);
 
+
+    }
+
+
+    // sends email whenever a reservation is cancelled
+    public void cancelReservationVerificationEmail(Reservation reservation)
+    {
+        SimpleMailMessage cancelReservationEmail = new SimpleMailMessage();
+
+        cancelReservationEmail.setFrom("cgrpventures@gmail.com");
+        cancelReservationEmail.setTo("buffband2020@gmail.com");
+
+        cancelReservationEmail.setSubject("Confirming your reservation cancellation for " + reservation.getStartDate().toString() + " to " + reservation.getEndDate().toString());
+
+
+        cancelReservationEmail.setText("Hi " + reservation.getUser().getUsername() + ", \n\nNo worries in your cancellation. At CGRP we take our customer's priorities seriously and look forward to earning your business in the future! Below is a confirmation of the reservation you cancelled: \n\n"
+        + "Year: " + reservation.getVehicle().getYear() + "\nMake: " + reservation.getVehicle().getMake() + "\nModel: " + reservation.getVehicle().getModel() +
+                 "\nReservation Duration: " + reservation.getStartDate().toString() + " - " + reservation.getEndDate().toString());
+
+        mailSender.send(cancelReservationEmail);
 
     }
 
