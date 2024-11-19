@@ -1,5 +1,6 @@
 package cgrp.car_reservation.car_reservation.reservation;
 
+import cgrp.car_reservation.car_reservation.email.EmailSenderService;
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserRepository;
 import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
@@ -25,6 +26,9 @@ public class ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     private static final Logger logger = LoggerFactory.getLogger(ReservationService.class);
 
@@ -63,6 +67,8 @@ public class ReservationService {
             logger.info("Users Reservations: {}",user.getReservations());
 
             logger.info("Vehicle user is currently renting: {}",user.getReservations().get(0).getVehicle().getMake());
+
+            emailSenderService.reservationVerificationEmail(reservation);
 
             return reservationRepository.save(reservation);
         } else {

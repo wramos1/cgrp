@@ -117,8 +117,8 @@ public class EmailSenderService {
 
         reservationEmail.setText("Hi " + reservation.getUser().getUsername() +
                  ", \n\nThank you for your business, we truly appreciate it. Below is a confirmation of your reservation: \n\n" + "Year: " +
-               reservation.getVehicle().getYear() + "\n Make: " + reservation.getVehicle().getMake() + "\n Model: " + reservation.getVehicle().getModel() +
-                "\n Reservation Duration: " + reservation.getStartDate().toString() + " - " + reservation.getEndDate().toString() + "\n\n From CGRP, we wish you the very best in your travels!");
+               reservation.getVehicle().getYear() + "\nMake: " + reservation.getVehicle().getMake() + "\nModel: " + reservation.getVehicle().getModel() +
+                "\nReservation Duration: " + reservation.getStartDate().toString() + " - " + reservation.getEndDate().toString() + "\n\nFrom CGRP, we wish you the very best in your travels!");
 
         mailSender.send(reservationEmail);
 
