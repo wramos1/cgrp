@@ -31,30 +31,31 @@ public class User {
 
     //holds references to all users reservations
     @DocumentReference
-    private List<Reservation> reservations;
+    private List<Reservation> reservations = new ArrayList<Reservation>();
 
     //holds references to all reviews the user has left
     @DocumentReference
-    private List<Review> reviewsLeft;
+    private List<Review> reviewsLeft = new ArrayList<Review>();
 
     // this is a constructor that is just being used right now for testing purposes
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.reservations = new ArrayList<Reservation>();
-        this.reviewsLeft = new ArrayList<Review>();
     }
 
-    public void addReservation(Reservation reservation){
-        this.reservations.add(reservation);
+    // changed return value to boolean to see if it is adding in the reservation
+    public boolean addReservation(Reservation reservation){
+
+        return this.reservations.add(reservation);
     }
 
     public void removeReservation(Reservation reservation){
         this.reservations.remove(reservation);
     }
 
-    public boolean hasReservation(Reservation reservation){
+    public boolean hasReservation(Reservation reservation)
+    {
         return this.reservations.contains(reservation);
     }
 

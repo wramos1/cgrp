@@ -1,5 +1,7 @@
 package cgrp.car_reservation.car_reservation.user;
 
+import cgrp.car_reservation.car_reservation.reservation.Reservation;
+import cgrp.car_reservation.car_reservation.reservation.ReservationRepository;
 import cgrp.car_reservation.car_reservation.review.Review;
 import cgrp.car_reservation.car_reservation.review.ReviewRepository;
 import cgrp.car_reservation.car_reservation.user.registration.ManagerRegistration;
@@ -25,6 +27,7 @@ public class UserService {
 
     @Autowired
     private ReviewRepository reviewRepository; // will allow for the creation of the review
+
 
     public User registerUser(UserDto userDto){
         if(userRepository.findByUsername(userDto.getUsername())!= null){
@@ -68,6 +71,21 @@ public class UserService {
     public User getUserByUsername(String username)
     {
         return userRepository.findByUsername(username);
+    }
+
+    // checks if the user has that reservation
+    public boolean checkIfHasReservation(String reservationID, User user)
+    {
+        for(Reservation reservation : user.getReservations())
+        {
+            if(reservation.getCustomReservationID().equals(reservationID))
+                return true; // will return true if user has that reservation
+        }
+
+
+        System.out.println("It is not finding this reservation");
+
+        return false;
     }
 
 }
