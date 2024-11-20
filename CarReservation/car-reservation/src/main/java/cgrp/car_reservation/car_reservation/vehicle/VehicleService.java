@@ -77,5 +77,13 @@ public class VehicleService {
 
     }
 
+    public void setAllVehiclesToAvailable(){
+        List<Vehicle> vehicles = vehicleRepository.findAll();
+        for(Vehicle vehicle : vehicles) {
+            vehicle.setCurrentlyRented(false);
+            vehicleRepository.save(vehicle);
+        }
+    }
+
 
 }

@@ -65,6 +65,12 @@ public class VehicleController {
     }
 
 
+    @GetMapping("/reset")
+    public void setAllVehiclesToAvailable(){
+        vehicleService.setAllVehiclesToAvailable();
+    }
+
+
 
 
 
