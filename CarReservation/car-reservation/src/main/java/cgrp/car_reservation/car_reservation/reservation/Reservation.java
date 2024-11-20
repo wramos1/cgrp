@@ -43,6 +43,7 @@ public class Reservation {
 
     public void calculateChargeAmount(){
         Period period = Period.between(startDate, endDate);
-        chargeAmount = period.getDays()*vehicle.getDailyRentRate();
+        int days = period.getDays()+1;
+        chargeAmount = days*vehicle.getDailyRentRate();
     }
 }
