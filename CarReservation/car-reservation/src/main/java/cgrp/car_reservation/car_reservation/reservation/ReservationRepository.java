@@ -6,4 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ReservationRepository extends MongoRepository<Reservation, ObjectId> {
     Reservation findByUser(User user);
+
+    public Reservation findByCustomReservationID(String customReservationID);
+
 }

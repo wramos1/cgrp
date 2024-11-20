@@ -1,5 +1,6 @@
 package cgrp.car_reservation.car_reservation.reservation;
 
+import cgrp.car_reservation.car_reservation.transaction.Transaction;
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserService;
 import cgrp.car_reservation.car_reservation.vehicle.VehicleNotAvailableException;
@@ -47,6 +48,7 @@ public class ReservationController {
         }
     }
 
+
     @GetMapping("/reserve")
     public List<Reservation> getAllReservations(){
         return reservationService.getAllReservations();
@@ -54,8 +56,14 @@ public class ReservationController {
 
     //cancels a users reservation, only needs the reservation object which can be accessed
     //from the users reservation array
-    public Reservation cancelReservation(Reservation reservation, @AuthenticationPrincipal UserDetails userDetails){
+    @PostMapping("/cancel")
+    public String cancelReservation(@RequestBody String customReservationID, @AuthenticationPrincipal UserDetails userDetails){
         User user = userService.getUserbyUsername(userDetails.getUsername());
-        return reservationService.cancelReservation(reservation, user);
+
+        System.out.println(user.getUsername());
+        System.out.println(customReservationID);
+
+         return reservationService.cancelVehicleReservation(customReservationID, user);
+
     }
 }
