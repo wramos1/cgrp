@@ -20,4 +20,6 @@ public class ReservationDto {
         this.startDate = rentDate;
         this.endDate = returnDate;
     }
+
+
 }
