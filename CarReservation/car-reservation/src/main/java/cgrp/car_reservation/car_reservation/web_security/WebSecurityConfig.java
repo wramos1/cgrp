@@ -84,7 +84,15 @@ public class WebSecurityConfig {
                                                 .successHandler(new CustomAuthenticationSuccessHandler())
                                                 .failureHandler(new CustomAuthenticationFailureHandler())
                                                 .permitAll())
-                                .logout(LogoutConfigurer::permitAll)
+                                .logout(logout -> logout
+                                                .logoutUrl("/logout")
+                                                .logoutSuccessHandler(new CustomLogoutSuccessHandler()) // Use custom
+                                                                                                        // logout
+                                                                                                        // success
+                                                                                                        // handler
+                                                .invalidateHttpSession(true) // Invalidate the session
+                                                .deleteCookies("JSESSIONID") // Delete session cookies
+                                                .permitAll())
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Create a
                                                                                                           // session if
