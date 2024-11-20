@@ -103,4 +103,9 @@ public class BusinessMetrics {
         this.getCurrentlyRentedVehicles().add(0, vehicle);
     }
 
+    public void removeReservedVehicle(Vehicle vehicle)
+    {
+        this.getCurrentlyRentedVehicles().remove(vehicle); // should remove this vehicle from the currently rented
+    }
+
 }

@@ -78,13 +78,33 @@ public class BusinessMetricsService {
             businessMetrics.get(0).addReservedVehicles(reservation.getVehicle());
 
             businessMetricsRepository.save(businessMetrics.get(0));
+        }
+
+    }
 
 
+    // will properly update the business metrics to indicate that the reservation has been cancelled
+    public void cancelledVehicleReservation(Reservation cancelledReservation)
+    {
+        List<BusinessMetrics> businessMetrics = businessMetricsRepository.findAll();
+
+        if(businessMetrics.isEmpty() == false)
+        {
+            businessMetrics.get(0).removeReservedVehicle(cancelledReservation.getVehicle());
+
+            double preCancelTotalRevenue = businessMetrics.get(0).getTotalRentalRevenue();
+            int preCancelLifetimeRentals = businessMetrics.get(0).getLifetimeNumRentals();
+
+            preCancelTotalRevenue -= cancelledReservation.getChargeAmount(); // subtracts the charge amount from the total revenue since it was cancelled it would not be "charged"
+            preCancelLifetimeRentals--;
+
+            businessMetrics.get(0).setTotalRentalRevenue(preCancelTotalRevenue); // updates the revenue from the cancellation
+            businessMetrics.get(0).setLifetimeNumRentals(preCancelLifetimeRentals);
+
+            businessMetricsRepository.save(businessMetrics.get(0));
 
 
         }
-
-
     }
 
 }
