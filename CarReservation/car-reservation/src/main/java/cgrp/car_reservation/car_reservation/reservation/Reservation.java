@@ -2,6 +2,7 @@ package cgrp.car_reservation.car_reservation.reservation;
 
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
@@ -21,6 +22,7 @@ public class Reservation {
 
     private String customReservationID; // custom string ID for reservation
 
+    @JsonIgnore
     @DocumentReference
     private User user;
     @DocumentReference

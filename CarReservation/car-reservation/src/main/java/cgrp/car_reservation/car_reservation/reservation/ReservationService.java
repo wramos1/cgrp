@@ -61,6 +61,7 @@ public class ReservationService {
 
         User currentUser = userRepository.findByUsername(currentUserName);
 
+
         Vehicle rentingVehicle = vehicleRepository.findByCustomVehicleID(reservationDto.getCustomVehicleId()); // gets the vehicle from the db
 
         if(rentingVehicle.isCurrentlyRented() == false) // this is the case that it is available to be rented
@@ -70,7 +71,7 @@ public class ReservationService {
             Reservation newReservation = new Reservation(customReservationID, currentUser, rentingVehicle, reservationDto.getEndDate(), reservationDto.getStartDate(), LocalDate.now());
 
             // Save the reservation to the reservation repository
-            reservationRepository.save(newReservation);
+            newReservation = reservationRepository.save(newReservation);
 
             rentingVehicle.setCurrentlyRented(true);
 
@@ -78,7 +79,7 @@ public class ReservationService {
 
             currentUser.addReservation(newReservation); // adds the reservation to the user, the reservation at this point should have an objectID which db will use to refrence it
 
-            userRepository.save(currentUser); // saves the updated user object to the db
+            userRepository.save(currentUser); // saves the updated user object to the db; this is not saving the reservations
 
             transactionService.createNewRentalTransaction(newReservation, null);
 
@@ -143,12 +144,13 @@ public class ReservationService {
     }
 
 
-    public String cancelVehicleReservation(String customReservationID, User user)
+    // maybe test it with object id
+    public String cancelVehicleReservation(Reservation reservation, User user)
     {
-        Reservation reservation = reservationRepository.findByCustomReservationID(customReservationID);
+        //Reservation reservation = reservationRepository.findByCustomReservationID(customReservationID);
 
         // this conditional is the issue
-        if(userService.checkIfHasReservation(customReservationID, user))
+        if(userService.checkIfHasReservation(reservation, user))
         {
             Vehicle vehicle = reservation.getVehicle();
             vehicle.setCurrentlyRented(false);

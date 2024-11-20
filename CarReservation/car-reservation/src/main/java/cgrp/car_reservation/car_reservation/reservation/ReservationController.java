@@ -56,14 +56,17 @@ public class ReservationController {
 
     //cancels a users reservation, only needs the reservation object which can be accessed
     //from the users reservation array
+    // make it object ID
     @PostMapping("/cancel")
-    public String cancelReservation(@RequestBody String customReservationID, @AuthenticationPrincipal UserDetails userDetails){
+    public String cancelReservation(@RequestBody Reservation reservation, @AuthenticationPrincipal UserDetails userDetails){
         User user = userService.getUserbyUsername(userDetails.getUsername());
 
-        System.out.println(user.getUsername());
-        System.out.println(customReservationID);
 
-         return reservationService.cancelVehicleReservation(customReservationID, user);
+
+        System.out.println(user.getUsername());
+        System.out.println(reservation.getCustomReservationID());
+
+         return reservationService.cancelVehicleReservation(reservation, user);
 
     }
 }

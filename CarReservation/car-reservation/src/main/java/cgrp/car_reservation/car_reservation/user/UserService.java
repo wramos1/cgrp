@@ -10,6 +10,7 @@ import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -86,6 +87,27 @@ public class UserService {
         System.out.println("It is not finding this reservation");
 
         return false;
+    }
+
+    public boolean checkIfHasReservation(Reservation reservation, User user)
+    {
+
+        if(user.hasReservation(reservation))
+            return true;
+
+
+        System.out.println("It is not finding this reservation");
+
+        return false;
+    }
+
+
+    public User currentUser()
+    {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return userRepository.findByUsername(username);
+
     }
 
 }

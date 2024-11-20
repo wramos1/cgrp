@@ -39,10 +39,17 @@ public class UserController {
         return userService.getUserById(objectId);
     }
 
+    @GetMapping("/{objectid}")
+    public User getUserByObjectId(@PathVariable ObjectId objectId)
+    {
+        return userService.getUserById(objectId);
+    }
+
     // this returns the login info of the current user
     @GetMapping("/currentuser")
-    public String getCurrentUsername() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
+    public User getCurrentUsername() {
+
+        return userService.currentUser();
     }
 
     /*
