@@ -147,4 +147,22 @@ public class EmailSenderService {
 
     }
 
+    //sends email confirming when a reservation has been modified
+    public void modifiedReservationVerificationEmail(Reservation oldReservation, Reservation modifiedReservation)
+    {
+        SimpleMailMessage modifiedReservationEmail = new SimpleMailMessage();
+
+        modifiedReservationEmail.setFrom("cgrpventures@gmail.com");
+        modifiedReservationEmail.setTo("buffband2020@gmail.com");
+
+        modifiedReservationEmail.setSubject("Confirming your reservation modification for the " + modifiedReservation.getVehicle().getYear() + " " + modifiedReservation.getVehicle().getMake() + " " + modifiedReservation.getVehicle().getModel());
+
+        modifiedReservationEmail.setText("Hi " + modifiedReservation.getUser().getUsername() + ", \n\nBelow is a confirmation of your modified reservation: \n\n"
+                                + "Previous Reservation Duration: " + oldReservation.getStartDate().toString() + " - " + oldReservation.getEndDate().toString() +
+                                "\nNewly Modified Reservation Duration: " + modifiedReservation.getStartDate().toString() + " - " + modifiedReservation.getEndDate().toString());
+
+        mailSender.send(modifiedReservationEmail);
+
+    }
+
 }
