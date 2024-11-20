@@ -1,5 +1,7 @@
 package cgrp.car_reservation.car_reservation.reservation;
 
+import cgrp.car_reservation.car_reservation.business_metrics.BusinessMetrics;
+import cgrp.car_reservation.car_reservation.business_metrics.BusinessMetricsService;
 import cgrp.car_reservation.car_reservation.email.EmailSenderService;
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserRepository;
@@ -29,6 +31,9 @@ public class ReservationService {
 
     @Autowired
     private EmailSenderService emailSenderService;
+
+    @Autowired
+    private BusinessMetricsService businessMetricsService;
 
     private static final Logger logger = LoggerFactory.getLogger(ReservationService.class);
 
@@ -70,12 +75,16 @@ public class ReservationService {
 
             emailSenderService.reservationVerificationEmail(reservation);
 
+            businessMetricsService.addNewVehicleReservation(reservation); // will update the business metrics to show this reservation
+
             return reservationRepository.save(reservation);
         } else {
             logger.warn("Attempted to reserve an unavailable vehicle: {}", vehicle.getVehicleID());
             throw new VehicleNotAvailableException("The vehicle is currently unavailable for reservation.");
         }
     }
+
+
     public Reservation cancelReservation(Reservation reservation, User user){
 
         if(user.hasReservation(reservation)){

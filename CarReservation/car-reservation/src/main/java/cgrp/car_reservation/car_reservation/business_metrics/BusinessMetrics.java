@@ -98,4 +98,9 @@ public class BusinessMetrics {
         this.getLowRatedReviewsToAddress().add(0, review); // Adds the review at the beginning of the list
     }
 
+    public void addReservedVehicles(Vehicle vehicle)
+    {
+        this.getCurrentlyRentedVehicles().add(0, vehicle);
+    }
+
 }

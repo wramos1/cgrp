@@ -1,7 +1,9 @@
 package cgrp.car_reservation.car_reservation.business_metrics;
 
+import cgrp.car_reservation.car_reservation.reservation.Reservation;
 import cgrp.car_reservation.car_reservation.review.Review;
 import cgrp.car_reservation.car_reservation.review.ReviewRepository;
+import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,4 +55,36 @@ public class BusinessMetricsService {
         List<BusinessMetrics> businessMetrics = businessMetricsRepository.findAll();
         return businessMetrics.isEmpty() ? null : businessMetrics.get(0);
     }
+
+    // will add the vehicle that is being currently reserved to the list of vehicles that are currently being reserved in order for a manager to see it
+    public void addNewVehicleReservation(Reservation reservation)
+    {
+        List<BusinessMetrics> businessMetrics = businessMetricsRepository.findAll();
+
+        if(businessMetrics.isEmpty() == false) // this means that it has the business metric we want
+        {
+            int currentLifetimRentals = businessMetrics.get(0).getLifetimeNumRentals();
+            double totalRentalRevenue = businessMetrics.get(0).getTotalRentalRevenue();
+
+            currentLifetimRentals++;
+
+
+            businessMetrics.get(0).setLifetimeNumRentals(currentLifetimRentals); // increments the lifetime number of rentals
+
+            totalRentalRevenue += reservation.getChargeAmount(); // will add to the total rental revenue
+
+            businessMetrics.get(0).setTotalRentalRevenue(totalRentalRevenue);
+
+            businessMetrics.get(0).addReservedVehicles(reservation.getVehicle());
+
+            businessMetricsRepository.save(businessMetrics.get(0));
+
+
+
+
+        }
+
+
+    }
+
 }
