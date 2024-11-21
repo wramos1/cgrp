@@ -107,4 +107,20 @@ public class BusinessMetricsService {
         }
     }
 
+    // will modify the total lifetime revenue in the business metrics in order for it
+    public void modifiedVehicleReservation(double oldReservationCharge, double modifiedReservationCharge)
+    {
+        List<BusinessMetrics> businessMetrics = businessMetricsRepository.findAll();
+
+        if(businessMetrics.isEmpty() == false)
+        {
+            businessMetrics.get(0).setTotalRentalRevenue(businessMetrics.get(0).getTotalRentalRevenue() - oldReservationCharge); // subtracts the older reservation amount from the total lifetime revenue
+
+            businessMetrics.get(0).setTotalRentalRevenue(businessMetrics.get(0).getTotalRentalRevenue()+modifiedReservationCharge); // adds the new modified charge
+
+            businessMetricsRepository.save(businessMetrics.get(0));
+        }
+    }
+
+
 }

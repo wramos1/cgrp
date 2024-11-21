@@ -58,6 +58,7 @@ public class Reservation {
         calculateChargeAmount();
     }
 
+
     public void calculateChargeAmount(){
         Period period = Period.between(startDate, endDate);
         int days = period.getDays()+1;

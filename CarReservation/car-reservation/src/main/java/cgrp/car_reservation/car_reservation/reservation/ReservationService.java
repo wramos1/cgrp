@@ -14,12 +14,15 @@ import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
 import cgrp.car_reservation.car_reservation.vehicle.VehicleNotAvailableException;
 import cgrp.car_reservation.car_reservation.vehicle.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -172,13 +175,26 @@ public class ReservationService {
     public String modifyReservation(ModifyReservationDTO modifyReservationDTO)
     {
         Reservation reservationToBeModified = reservationRepository.findByCustomReservationID(modifyReservationDTO.getCustomReservationID());
+        double currentReservationChargeAmount = reservationToBeModified.getChargeAmount();
+        double modifiedReservationChargeAmount = 0.0;
+        LocalDate oldStartDate = LocalDate.of(reservationToBeModified.getStartDate().getYear(), reservationToBeModified.getStartDate().getMonth(), reservationToBeModified.getStartDate().getDayOfMonth());
+        LocalDate oldEndDate = LocalDate.of(reservationToBeModified.getEndDate().getYear(), reservationToBeModified.getEndDate().getMonth(), reservationToBeModified.getEndDate().getDayOfMonth());
+
 
         reservationToBeModified.setStartDate(modifyReservationDTO.getNewStartDate());
         reservationToBeModified.setEndDate(modifyReservationDTO.getNewEndDate());
         reservationToBeModified.calculateChargeAmount(); // this will calculate the new amount charge based on the modified reservation
+        reservationToBeModified.setReservationDate(LocalDate.now()); // updates the timestamp of the reservation
 
+        modifiedReservationChargeAmount = reservationToBeModified.getChargeAmount();
 
         reservationToBeModified = reservationRepository.save(reservationToBeModified); // saves the updated reservation with the new dates
+
+        transactionService.createNewTransaction(reservationToBeModified, "modify"); // will create a transaction in the transactions collection in db
+
+        businessMetricsService.modifiedVehicleReservation(currentReservationChargeAmount, modifiedReservationChargeAmount); // will update the business metrics to mark the changes of the modification of the reservation
+
+        emailSenderService.modifiedReservationVerificationEmail(oldStartDate, oldEndDate, reservationToBeModified);
 
         return (reservationToBeModified == null) ? "Failure" : "Success";
     }

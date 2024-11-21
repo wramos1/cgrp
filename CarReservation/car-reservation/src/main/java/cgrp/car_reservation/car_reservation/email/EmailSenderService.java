@@ -15,6 +15,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.time.LocalDate;
 
 // this service class will be the one that sends emails out to the user to confirm something they have done
 @Service
@@ -148,7 +149,7 @@ public class EmailSenderService {
     }
 
     //sends email confirming when a reservation has been modified
-    public void modifiedReservationVerificationEmail(Reservation oldReservation, Reservation modifiedReservation)
+    public void modifiedReservationVerificationEmail(LocalDate oldStartDate, LocalDate oldEndDate, Reservation modifiedReservation)
     {
         SimpleMailMessage modifiedReservationEmail = new SimpleMailMessage();
 
@@ -158,7 +159,7 @@ public class EmailSenderService {
         modifiedReservationEmail.setSubject("Confirming your reservation modification for the " + modifiedReservation.getVehicle().getYear() + " " + modifiedReservation.getVehicle().getMake() + " " + modifiedReservation.getVehicle().getModel());
 
         modifiedReservationEmail.setText("Hi " + modifiedReservation.getUser().getUsername() + ", \n\nBelow is a confirmation of your modified reservation: \n\n"
-                                + "Previous Reservation Duration: " + oldReservation.getStartDate().toString() + " - " + oldReservation.getEndDate().toString() +
+                                + "Previous Reservation Duration: " + oldStartDate.toString() + " - " + oldEndDate.toString() +
                                 "\nNewly Modified Reservation Duration: " + modifiedReservation.getStartDate().toString() + " - " + modifiedReservation.getEndDate().toString());
 
         mailSender.send(modifiedReservationEmail);
