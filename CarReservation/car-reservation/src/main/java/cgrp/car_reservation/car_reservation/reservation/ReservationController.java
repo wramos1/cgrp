@@ -66,4 +66,13 @@ public class ReservationController {
          return reservationService.cancelVehicleReservation(customReservationID, user);
 
     }
+
+    @PostMapping("/modify")
+   public String modifyReservation(@RequestBody ModifyReservationDTO modifyReservationDTO, @AuthenticationPrincipal UserDetails userDetails)
+    {
+
+        return reservationService.modifyReservation(modifyReservationDTO);
+    }
+
+
 }

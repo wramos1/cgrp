@@ -63,4 +63,7 @@ public class Reservation {
         int days = period.getDays()+1;
         chargeAmount = days*vehicle.getDailyRentRate();
     }
+
+
+
 }

@@ -167,4 +167,20 @@ public class ReservationService {
 
         return "Something Went Wrong";
     }
+
+    // modifies the reservation; will require new dates to be inputted by the user (works)
+    public String modifyReservation(ModifyReservationDTO modifyReservationDTO)
+    {
+        Reservation reservationToBeModified = reservationRepository.findByCustomReservationID(modifyReservationDTO.getCustomReservationID());
+
+        reservationToBeModified.setStartDate(modifyReservationDTO.getNewStartDate());
+        reservationToBeModified.setEndDate(modifyReservationDTO.getNewEndDate());
+        reservationToBeModified.calculateChargeAmount(); // this will calculate the new amount charge based on the modified reservation
+
+
+        reservationToBeModified = reservationRepository.save(reservationToBeModified); // saves the updated reservation with the new dates
+
+        return (reservationToBeModified == null) ? "Failure" : "Success";
+    }
+
 }
