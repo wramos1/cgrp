@@ -61,6 +61,10 @@ public class UserService {
     {
         User user = userRepository.findByUsername(username); // will return the user that wants to leave the review
 
+        // see who is the user
+
+        System.out.println(user.getUsername());
+
         user.addReview(review); // adds the review to the user, which is the review that the user left
 
         userRepository.save(user); // saves(updates) the current user object in the db to match the neccesary changess

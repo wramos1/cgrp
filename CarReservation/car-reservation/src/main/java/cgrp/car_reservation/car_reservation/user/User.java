@@ -2,6 +2,7 @@ package cgrp.car_reservation.car_reservation.user;
 
 import cgrp.car_reservation.car_reservation.reservation.Reservation;
 import cgrp.car_reservation.car_reservation.review.Review;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
@@ -61,7 +62,8 @@ public class User {
 
     public void addReview(Review newReview)
     {
-        reviewsLeft.add(newReview);
+
+        this.reviewsLeft.add(newReview);
     }
 
     public void leaveReview()

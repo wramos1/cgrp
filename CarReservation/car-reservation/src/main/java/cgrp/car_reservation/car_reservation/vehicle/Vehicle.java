@@ -2,6 +2,8 @@ package cgrp.car_reservation.car_reservation.vehicle;
 
 import cgrp.car_reservation.car_reservation.feature.Feature;
 import cgrp.car_reservation.car_reservation.review.Review;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
@@ -35,6 +37,7 @@ public class Vehicle {
     @DocumentReference(lazy = true) // in the db, the id of each feature will be stored in the Vehcile document so it will be a refrence
     private List<Feature> vehicleFeatures = new ArrayList<Feature>();
 
+    @JsonManagedReference // this will be serialized
     @DocumentReference(lazy = true) // allows for the document to be refrenced using its unique MongoID; lazy = false will allow for the refrenced data to be loaded in
     private List<Review> reviewsOfVehicle = new ArrayList<Review>();
 

@@ -41,8 +41,9 @@ public class UserController {
 
     // this returns the login info of the current user
     @GetMapping("/currentuser")
-    public String getCurrentUsername() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
+    public User getCurrentUsername() {
+
+        return userService.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
     /*

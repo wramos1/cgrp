@@ -77,20 +77,11 @@ public class ReviewService {
      * }
      */
 
-    // leave a review; will save the review in the mongodb, and will have a refrence
+    // leave a review; will save the review in the mongodb, and will have a reference
     // to the vehicle the review is on
     public Review leaveReview(ReviewDTO reviewDTO) {
         Vehicle vehicleReviewIsOn = vehicleRepository.findByCustomVehicleID(reviewDTO.getCustomVehicleID()); // this
-                                                                                                             // should
-                                                                                                             // return
-                                                                                                             // the
-                                                                                                             // vehicle
-                                                                                                             // that we
-                                                                                                             // are
-                                                                                                             // leaving
-                                                                                                             // the
-                                                                                                             // review
-                                                                                                             // on
+                                                                                                             // should// review// on
 
         // User tempUser = new User("FASTCARArthur", "hello", "arthur@csun.edu"); //
         // constructs a temporary user to test this with

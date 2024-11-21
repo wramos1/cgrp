@@ -1,6 +1,7 @@
 package cgrp.car_reservation.car_reservation.review;
 
 import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,7 @@ public class Review {
 
     private String reviewLeaverUsername;
 
-    @JsonIgnore
+    @JsonBackReference // this will ommit this from
     @DocumentReference // allows the database schema of the review to refrence this particular vehicle and this annotation allows the compilier and the mongodb driver to do that automatically
     private Vehicle vehicleReviewIsOn;
 
