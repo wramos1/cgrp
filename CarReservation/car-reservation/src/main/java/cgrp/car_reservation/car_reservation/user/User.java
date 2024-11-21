@@ -30,11 +30,11 @@ public class User {
     }
 
     //holds references to all users reservations
-    @DocumentReference
+    @DocumentReference(lazy = true)
     private List<Reservation> reservations = new ArrayList<Reservation>();
 
     //holds references to all reviews the user has left
-    @DocumentReference
+    @DocumentReference(lazy = true)
     private List<Review> reviewsLeft = new ArrayList<Review>();
 
     // this is a constructor that is just being used right now for testing purposes
