@@ -12,7 +12,11 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.time.LocalDate;
 import java.time.Period;
 
-
+/**
+ * Reservation class 
+ *
+ * @author CodeGerbils
+ */
 @Document(collection = "reservations")
 @Getter @Setter
 public class Reservation {

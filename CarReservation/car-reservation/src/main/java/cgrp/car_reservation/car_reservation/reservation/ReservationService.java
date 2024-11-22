@@ -27,6 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Reservation Service Class implements reservation logic.
+ *
+ * @author  CodeGerbils
+ */
 @Service
 public class ReservationService {
 
@@ -57,6 +62,7 @@ public class ReservationService {
     public List<Reservation> getAllReservations(){
         return reservationRepository.findAll();
     }
+
 
     public void createNewReservation(ReservationDto reservationDto)
     {
@@ -90,7 +96,11 @@ public class ReservationService {
 
     }
 
-
+    /**
+     * Creates new reservation, while also updating vehicle rental status and logging the reservation transaction. Updates business metrics following reservations and sends email verification for new reservation.
+     *
+     * @param reservationDto Reservation Data Transfer Object that is passed in from the front end to the back end
+     */
     public Reservation createReservation(ReservationDto reservationDto){
         User user = userRepository.findById(reservationDto.getUserId())
                 .orElseThrow(()->new RuntimeException("User not found"));
@@ -171,7 +181,13 @@ public class ReservationService {
         return "Something Went Wrong";
     }
 
-    // modifies the reservation; will require new dates to be inputted by the user (works)
+
+    /**
+     * Modifies an existing reservation with a new start and end rental date. Logs modifying reservation transaction, updates business metrics, and sends verification email.
+     *
+     * @param modifyReservationDTO Modifying Reservation Data Transfer Object which specifies which reservation to modifies as well as the new start and end rental dates.
+     * @return
+     */
     public String modifyReservation(ModifyReservationDTO modifyReservationDTO)
     {
         Reservation reservationToBeModified = reservationRepository.findByCustomReservationID(modifyReservationDTO.getCustomReservationID());
