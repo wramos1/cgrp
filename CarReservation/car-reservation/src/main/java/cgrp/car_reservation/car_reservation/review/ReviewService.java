@@ -15,7 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-// has the business logic of the reviews
+
+/**
+ * Class Name: ReviewService
+ * Date of Code:
+ * Programmer's Name:
+ *
+ * Description: Provides logic for review classes.
+ *
+ */
 @Service
 public class ReviewService {
 

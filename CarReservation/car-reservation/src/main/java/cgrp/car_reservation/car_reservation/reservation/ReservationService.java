@@ -32,7 +32,7 @@ import java.util.UUID;
  * Date of Code:
  * Programmer's Name:
  *
- * Description: Provides the logic for reservation classes. 
+ * Description: Provides the logic for reservation classes.
  *
  */
 @Service
