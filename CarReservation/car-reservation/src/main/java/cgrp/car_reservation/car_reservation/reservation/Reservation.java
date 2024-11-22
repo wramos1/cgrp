@@ -13,9 +13,16 @@ import java.time.LocalDate;
 import java.time.Period;
 
 /**
- * Reservation class represents car rental reservation made by the user.
+ * Class Name: Reservation
+ * Date of Code:
+ * Programmer's Name:
  *
- * @author CodeGerbils
+ * Description: Represents a vehicle rental reservation initiated by the user based on a specific vehicle.
+ *
+ * Important Data Structures: User, holds user info
+ *                            Vehicle, holds vehicle info
+ *                            LocalDate, holds date information necessary for reservation
+ *
  */
 @Document(collection = "reservations")
 @Getter @Setter
@@ -85,7 +92,7 @@ public class Reservation {
 
 
     /**
-     * Calculates the charge amount for the reservation, and updates the reservation object accordingly. 
+     * Calculates the charge amount for the reservation, and updates the reservation object accordingly.
      */
     public void calculateChargeAmount(){
         Period period = Period.between(startDate, endDate);
