@@ -28,9 +28,12 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Reservation Service Class implements reservation logic.
+ * Class Name: ReservationService
+ * Date of Code:
+ * Programmer's Name:
  *
- * @author  CodeGerbils
+ * Description: Provides the logic for reservation classes.
+ *
  */
 @Service
 public class ReservationService {

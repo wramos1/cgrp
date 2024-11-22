@@ -2,6 +2,18 @@ package cgrp.car_reservation.car_reservation.reservation;
 
 import java.time.LocalDate;
 
+/**
+ * Class Name: Modify Reservation Data Transfer Object
+ * Date of Code:
+ * Programmer's Name:
+ *
+ * Description: Modify Reservation Data Transfer Object is used to send modification information pertaining to reservation from front end to back end.
+ *
+ * Important Data Structures: LocalDate, which stores the date necessary to reservation modification
+ *
+ *
+ *
+ */
 public class ModifyReservationDTO {
 
     private String customReservationID;
