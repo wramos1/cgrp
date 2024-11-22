@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.Period;
 
 /**
- * Reservation class 
+ * Reservation class represents car rental reservation made by the user.
  *
  * @author CodeGerbils
  */
@@ -42,7 +42,17 @@ public class Reservation {
 
     }
 
-    //reservation constructor for reservation service
+
+    /**
+     *
+     * Constructs the Reservation object
+     *
+     * @param user User making reservation
+     * @param vehicle Vehicle reservation is on
+     * @param endDate End date of reservation
+     * @param startDate Start date of reservation
+     * @param reservationDate Timestamp of when the reservation was made
+     */
     public Reservation(User user, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate){
         this.user = user;
         this.vehicle = vehicle;
@@ -52,6 +62,17 @@ public class Reservation {
         calculateChargeAmount();
     }
 
+
+    /**
+     *
+     * Constructs the Reservation object
+     *
+     * @param user User making reservation
+     * @param vehicle Vehicle reservation is on
+     * @param endDate End date of reservation
+     * @param startDate Start date of reservation
+     * @param reservationDate Timestamp of when the reservation was made
+     */
     public Reservation(String customReservationID, User user, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate) {
         this.customReservationID = customReservationID;
         this.user = user;
@@ -63,6 +84,9 @@ public class Reservation {
     }
 
 
+    /**
+     * Calculates the charge amount for the reservation, and updates the reservation object accordingly. 
+     */
     public void calculateChargeAmount(){
         Period period = Period.between(startDate, endDate);
         int days = period.getDays()+1;
