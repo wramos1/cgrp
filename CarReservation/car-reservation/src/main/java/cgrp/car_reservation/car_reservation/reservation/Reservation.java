@@ -14,14 +14,19 @@ import java.time.Period;
 
 /**
  * Class Name: Reservation
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: October 7, 2024
+ * Programmer's Name: Alberto S
  *
  * Description: Represents a vehicle rental reservation initiated by the user based on a specific vehicle.
  *
- * Important Data Structures: User, holds user info
- *                            Vehicle, holds vehicle info
- *                            LocalDate, holds date information necessary for reservation
+ * Important Functions: Getters and Setters
+ *
+ * Data Structures: <br>
+ *  - User, holds user info <br>
+ *  - Vehicle, holds vehicle info <br>
+ *  - LocalDate, holds date information necessary for reservation <br>
+ *
+ * Algorithms: N/A
  *
  */
 @Document(collection = "reservations")

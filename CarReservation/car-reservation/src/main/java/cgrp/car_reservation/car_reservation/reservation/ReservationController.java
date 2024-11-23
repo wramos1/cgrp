@@ -17,10 +17,16 @@ import java.util.List;
 
 /**
  * Class Name: ReservationController
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: October 7, 2024
+ * Programmer's Name: Alberto S
  *
  * Description: Receives the endpoints from front end in regard to reservations .
+ *
+ * Important Functions:
+ *  -createReservation: creates a vehicle rental reservation for the logged in user
+ *  -modifyReservation: modifies reservation based on a new start date and end date for the vehicle rental reservation
+ *  -cancelReservation: cancels specific reservation
+ *
  *
  * Important Data Structures: ReservationService, handles reservation logic by delegation from RestController class
  *                            UserService, handles user logic

@@ -4,14 +4,16 @@ import java.time.LocalDate;
 
 /**
  * Class Name: Modify Reservation Data Transfer Object
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: November 20, 2024
+ * Programmer's Name: Arthur
  *
  * Description: Modify Reservation Data Transfer Object is used to send modification information pertaining to reservation from front end to back end.
  *
- * Important Data Structures: LocalDate, which stores the date necessary to reservation modification
+ * Important Functions: Getters and Setters
  *
+ * Data Structures: LocalDate, which stores the date necessary to reservation modification
  *
+ * Algorithms: N/A
  *
  */
 public class ModifyReservationDTO {

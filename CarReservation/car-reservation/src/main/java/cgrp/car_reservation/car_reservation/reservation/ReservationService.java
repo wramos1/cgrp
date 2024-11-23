@@ -29,10 +29,19 @@ import java.util.UUID;
 
 /**
  * Class Name: ReservationService
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: October 7, 2024 & November 19, 2024
+ * Programmer's Name: Arthur & Alberto S
  *
  * Description: Provides the logic for reservation classes.
+ *
+ * Important Functions:
+ * -createReservation: Creates a new reservation for the logged in user based on the vehicle of their choosing
+ * -modifyReservation: Modifies existing reservation with a newly specified start and end date for the reservation
+ * -cancelReservation: Cancels an existing reservation
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  *
  */
 @Service

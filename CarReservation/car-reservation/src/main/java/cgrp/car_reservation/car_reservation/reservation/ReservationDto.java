@@ -9,14 +9,17 @@ import java.util.Date;
 
 /**
  * Class Name: Reservation Data Transfer Object
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: October 7, 2024
+ * Programmer's Name: Alberto S
  *
- * Function: Reservation Data Transfer Object is utilized to transfer reservation data from front end to back end in order to create reservation.
+ * Description: Reservation Data Transfer Object is utilized to transfer reservation data from front end to back end in order to create reservation.
  *
- * Important Data Structures: LocalDate, which stores the date necessary to the reservation
+ * Important Functions: Getters and Setters
  *
+ * Data Structures:
+ * -LocalDate, which stores the date necessary to the reservation
  *
+ * Algorithms: N/A
  *
  * @author CodeGerbils
  */
