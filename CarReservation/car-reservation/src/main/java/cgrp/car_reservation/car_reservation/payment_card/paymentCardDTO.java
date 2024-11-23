@@ -2,7 +2,27 @@ package cgrp.car_reservation.car_reservation.payment_card;
 
 import java.time.LocalDate;
 
-// this will get the passsed in neccesary info from the user from front end, the data transfer object
+/**
+ *
+ * Module Name: paymentCardDTO.java<br>*
+ * Date of code: 11/14/2024<br>*
+ * Programmers Name: Arthur<br>*
+ * Description: This class acts as a Data Transfer Object (DTO) for transferring payment card data from the front end to the backend.<br>*
+ * Functions:<br>
+ * - getCardNumber(): Returns the card number.<br>*
+ * - setCardNumber(int cardNumber): Sets the card number.<br>*
+ * - getYear(): Returns the year of the card's expiration date.<br>*
+ * - setYear(int year): Sets the year of the card's expiration date.<br>*
+ * - getDay(): Returns the day of the card's expiration date.<br>*
+ * - setDay(int day): Sets the day of the card's expiration date.<br>*
+ * - getMonth(): Returns the month of the card's expiration date.<br>*
+ * - setMonth(int month): Sets the month of the card's expiration date.<br>*
+ * - getNameOnCard(): Returns the name on the card.<br>*
+ * - setNameOnCard(String nameOnCard): Sets the name on the card.<br>*
+ * - getCvv(): Returns the CVV of the card.<br>*
+ * - setCvv(int cvv): Sets the CVV of the card.<br>*
+ * Data structures: N/A<br>*
+ */
 public class paymentCardDTO {
 
     private int cardNumber;

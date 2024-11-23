@@ -3,7 +3,19 @@ package cgrp.car_reservation.car_reservation.payment_card;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-// will be handleing all of the REST api requests
+/**
+ *
+ * Module Name: paymentCardController.java<br>*
+ * Date of code: 11/14/2024<br>*
+ * Programmers Name: Arthur<br>*
+ * Description: This class handles REST API requests for operations related to payment cards.<br>*
+ * Functions:<br>
+ * - createCard(paymentCard card): Creates a new payment card using the provided card information.<br>*
+ * - createNewCard(paymentCardDTO cardDTO): Creates a new payment card using a DTO object.<br>*
+ * - getTestCard(): Creates and returns a sample test payment card using hardcoded values.<br>*
+ * - welcomePage(): Returns a welcome message for the card page.<br>*
+ * Data structures: N/A<br>*
+ */
 @RestController
 @RequestMapping("/card")
 public class paymentCardController {

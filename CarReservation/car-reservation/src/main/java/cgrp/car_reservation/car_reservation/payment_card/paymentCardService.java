@@ -5,7 +5,19 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
-// will have all of the neccesary logic needed on the object if needed
+/**
+ *
+ * Module Name: paymentCardService.java<br>*
+ * Date of code: 11/14/2024<br>*
+ * Programmers Name: Arthur<br>*
+ * Description: This class contains all necessary business logic related to payment card operations, including
+ * creating new cards, validating card details, and processing card data.<br>*
+ * Functions:<br>
+ * - createNewPaymentCard(paymentCard card): Saves a new payment card to the database.<br>*
+ * - createCardFromDTO(paymentCardDTO cardDTO): Converts user input from a DTO into a paymentCard object and saves it to the database.<br>*
+ * - verifyCard(paymentCard currentCard): Validates the card number using the Luhn Algorithm to check if it is a valid card.<br>*
+ * Data structures: N/A<br>*
+ */
 @Service
 public class paymentCardService {
 
