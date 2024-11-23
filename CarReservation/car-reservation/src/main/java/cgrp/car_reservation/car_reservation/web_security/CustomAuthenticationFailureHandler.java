@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * ClasName: CustomAuthenticationFailureHandler
+ * Class Name: CustomAuthenticationFailureHandler
  * Date of Code: November 4, 2024
  * Programmer's Name:
  *
