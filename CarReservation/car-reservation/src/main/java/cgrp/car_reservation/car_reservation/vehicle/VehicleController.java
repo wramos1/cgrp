@@ -11,7 +11,7 @@ import java.util.List;
  * Date of Code:
  * Programmer's Name:
  *
- * Description: Provides endpoints to access  
+ * Description: Provides endpoints to access
  */
 @RestController
 @RequestMapping("/home")
