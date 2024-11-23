@@ -16,7 +16,7 @@ import java.util.List;
  * Date of Code: October 7, 2024
  * Programmer's Name:
  *
- * Description: Provides access the endpoints that are request from front end for all things pertaining the User class.
+ * Description: Provides access to the endpoints that are request from front end for all things pertaining the User class.
  *
  *
  *

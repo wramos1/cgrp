@@ -8,6 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Class Name: AuthController <br>
+ * Date of Code: <br>
+ * Programmer's Name: <br>
+ *
+ * Description: <br>
+ *
+ */
 @Controller
 @RequestMapping("/")
 public class AuthController {

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * ClassName: CustomerUserDetailsService
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: October 7, 2024
+ * Programmer's Name: Alberto Sandoval
  *
  * Description: 
  *

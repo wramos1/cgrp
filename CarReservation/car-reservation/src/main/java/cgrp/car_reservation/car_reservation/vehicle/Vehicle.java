@@ -12,6 +12,14 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class Name: Vehicle <br>
+ * Date of Code:
+ * Programmer's Name:
+ *
+ * Description: Represents vehicle in the system which the user can rent.
+ *
+ */
 @Setter
 @Getter
 @Document(collection = "vehicles")
