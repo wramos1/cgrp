@@ -10,46 +10,46 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class Name: CustomLogoutSuccessHandler
- * Date of Code: November 20, 2024
- * Programmer's Name:
+ * Class Name: CustomLogoutSuccessHandler<br>
+ * Date of Code: November 20, 2024<br>
+ * Programmer's Name:<br>
  *
- * Brief Description:
+ * Brief Description:<br>
  * This class implements the LogoutSuccessHandler interface to handle
- * user logout events
+ * user logout events<br>
  * in a Spring Security application. Upon successful logout, it sends a
  * structured JSON response
- * to the client, providing feedback on the logout status.
+ * to the client, providing feedback on the logout status.<br>
  *
- * Important Functions:
- * 1. onLogoutSuccess:
- * - Input:
- * - HttpServletRequest request: The incoming HTTP request.
- * - HttpServletResponse response: The HTTP response to be customized.
+ * Important Functions:<br>
+ * 1. onLogoutSuccess:<br>
+ * - Input:<br>
+ * - HttpServletRequest request: The incoming HTTP request.<br>
+ * - HttpServletResponse response: The HTTP response to be customized.<br>
  * - Authentication authentication: Contains details of the authenticated user
- * (if applicable).
- * - Output:
- * - None (void method).
- * - Description:
+ * (if applicable).<br>
+ * - Output:<br>
+ * - None (void method).<br>
+ * - Description:<br>
  * This method sets the HTTP response status code to 200 (OK) and content type
- * to JSON.
+ * to JSON.<br>
  * It then constructs a JSON response body containing a logout success message
- * and status.
+ * and status.<br>
  * The `ObjectMapper` from the Jackson library is used to convert the `Map` of
  * response data
- * to a JSON string, which is written to the response body.
+ * to a JSON string, which is written to the response body.<br>
  *
- * Important Data Structures:
- * - `Map<String, String>`: Used to store key-value pairs representing the
- * response message and status.
- * - `ObjectMapper`: Utilized to serialize the response data into a JSON string.
+ * Important Data Structures:<br>
+ * - `MapString, String>`: Used to store key-value pairs representing the
+ * response message and status.<br>
+ * - `ObjectMapper`: Utilized to serialize the response data into a JSON string.<br>
  *
- * Algorithms Used:
+ * Algorithms Used:<br>
  * - The method relies on standard HTTP response handling and JSON serialization
- * practices.
+ * practices.<br>
  * - The Jackson `ObjectMapper` was chosen for its simplicity and effectiveness
  * in converting Java
- * objects to JSON format.
+ * objects to JSON format.<br>
  */
 
 @Component

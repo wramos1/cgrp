@@ -6,21 +6,21 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 /**
- * Class Name: VehicleRepository
- * Date of Code:
- * Programmer's Name: Alberto S
+ * Class Name: VehicleRepository<br>
+ * Date of Code:10/7/2024<br>
+ * Programmer's Name: Alberto S<br>
  *
- * Description: Provides an interface to access MongoDB for vehicle objects
+ * Description: Provides an interface to access MongoDB for vehicle objects<br>
  *
- * Important Functions:
- *  -findByType: query database by attribute of vehicle type, return list of vehicles with matching type
- *  -findByMake; query database by attribute of vehicle make, return list of vehicles with matching make
- *  -findByYear: query database by attribute of vehicle year, return list of vehicles with matching year
- *  -findByCustomvehicleID: query database by attribute of customVehicleID, return list of vehicles with matching vehicle iD
+ * Important Functions:<br>
+ *  -findByType: query database by attribute of vehicle type, return list of vehicles with matching type<br>
+ *  -findByMake; query database by attribute of vehicle make, return list of vehicles with matching make<br>
+ *  -findByYear: query database by attribute of vehicle year, return list of vehicles with matching year<br>
+ *  -findByCustomvehicleID: query database by attribute of customVehicleID, return list of vehicles with matching vehicle iD<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms N/A
+ * Algorithms N/A<br>
  *
  */
 public interface VehicleRepository extends MongoRepository<Vehicle, ObjectId> {

@@ -49,7 +49,7 @@ import java.util.Map;
  * Important Data Structures:
  * - `UserDetails`: Represents the authenticated user details, including
  * username and roles.
- * - `Map<String, Object>`: Used to store and structure the user data in a
+ * - `MapString, Object>`: Used to store and structure the user data in a
  * key-value format before
  * converting it to JSON.
  * - `ObjectMapper`: A utility class from the Jackson library for converting

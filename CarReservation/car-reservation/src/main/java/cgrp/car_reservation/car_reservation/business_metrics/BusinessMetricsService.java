@@ -11,27 +11,27 @@ import java.util.List;
 
 /**
  *
- * Module Name: BusinessMetricsService.java
+ * Module Name: BusinessMetricsService.java<br>
  *
- * Date of code: 11/13/2024
+ * Date of code: 11/13/2024<br>
  *
- * Programmers Name: Arthur
+ * Programmers Name: Arthur<br>
  *
  * Description: Service class with logic for calculating
- * business stats and info
+ * business stats and info<br>
  *
- * Functions:
- *  -isLowReview(): tests if review is low
- *  -addPotentialLowReview(): adds review to array if low
- *  -getCurrentMetrics(): returns all business metric entities
+ * Functions:<br>
+ *  -isLowReview(): tests if review is low<br>
+ *  -addPotentialLowReview(): adds review to array if low<br>
+ *  -getCurrentMetrics(): returns all business metric entities<br>
  *  -addNewVehicleReservation(): adds reservation data
- *      to business metric object
+ *      to business metric object<br>
  *  -cancelledVehicleReservation(): updates business metric
- *      object if reservation is cancelled
+ *      object if reservation is cancelled<br>
  *  -modifiedVehicleReservation(): updates business metric
- *      object if reservation is modified
+ *      object if reservation is modified<br>
  *
- * Datastructures: N/A
+ * Datastructures: N/A<br>
  *
  */
 

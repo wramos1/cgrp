@@ -18,7 +18,7 @@ import java.time.LocalDate;
  * - verifyCard(paymentCard currentCard): Validates the card number using the Luhn Algorithm to check if it is a valid card.<br>*
  * Data structures: N/A<br>*
  *
- * Algorithms: Makes use of Luhns Algorithm to verify if the payment is a valid card number or not. Make use of this algorithm because of its simplicity and overall fit in a project of this nature.
+ * Algorithms: Makes use of Luhns Algorithm to verify if the payment is a valid card number or not. Make use of this algorithm because of its simplicity and overall fit in a project of this nature.<br>
  *
  */
 @Service

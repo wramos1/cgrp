@@ -13,20 +13,20 @@ import java.time.LocalDate;
 import java.time.Period;
 
 /**
- * Class Name: Reservation
- * Date of Code: October 7, 2024
- * Programmer's Name: Alberto S
+ * Class Name: Reservation<br>
+ * Date of Code: October 7, 2024<br>
+ * Programmer's Name: Alberto S<br>
  *
- * Description: Represents a vehicle rental reservation initiated by the user based on a specific vehicle.
+ * Description: Represents a vehicle rental reservation initiated by the user based on a specific vehicle.<br>
  *
- * Important Functions: Getters and Setters
+ * Important Functions: Getters and Setters<br>
  *
  * Data Structures: <br>
  *  - User, holds user info <br>
  *  - Vehicle, holds vehicle info <br>
  *  - LocalDate, holds date information necessary for reservation <br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  *
  */
 @Document(collection = "reservations")
@@ -57,13 +57,13 @@ public class Reservation {
 
     /**
      *
-     * Constructs the Reservation object
+     * Constructs the Reservation object<br>
      *
-     * @param user User making reservation
-     * @param vehicle Vehicle reservation is on
-     * @param endDate End date of reservation
-     * @param startDate Start date of reservation
-     * @param reservationDate Timestamp of when the reservation was made
+     * @param user User making reservation<br>
+     * @param vehicle Vehicle reservation is on<br>
+     * @param endDate End date of reservation<br>
+     * @param startDate Start date of reservation<br>
+     * @param reservationDate Timestamp of when the reservation was made<br>
      */
     public Reservation(User user, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate){
         this.user = user;
@@ -77,13 +77,13 @@ public class Reservation {
 
     /**
      *
-     * Constructs the Reservation object
+     * Constructs the Reservation object<br>
      *
-     * @param user User making reservation
-     * @param vehicle Vehicle reservation is on
-     * @param endDate End date of reservation
-     * @param startDate Start date of reservation
-     * @param reservationDate Timestamp of when the reservation was made
+     * @param user User making reservation<br>
+     * @param vehicle Vehicle reservation is on<br>
+     * @param endDate End date of reservation<br>
+     * @param startDate Start date of reservation<br>
+     * @param reservationDate Timestamp of when the reservation was made<br>
      */
     public Reservation(String customReservationID, User user, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate) {
         this.customReservationID = customReservationID;
@@ -97,7 +97,7 @@ public class Reservation {
 
 
     /**
-     * Calculates the charge amount for the reservation, and updates the reservation object accordingly.
+     * Calculates the charge amount for the reservation, and updates the reservation object accordingly.<br>
      */
     public void calculateChargeAmount(){
         Period period = Period.between(startDate, endDate);

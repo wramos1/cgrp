@@ -9,14 +9,14 @@ import java.util.List;
 * */
 
 /**
- * Interface Name: VehicleFilter
- * Date of Code: November 6, 2024
- * Programmer's Name: Alberto S
+ * Interface Name: VehicleFilter<br>
+ * Date of Code: November 6, 2024<br>
+ * Programmer's Name: Alberto S<br>
  *
- * Description: An interface to help create a guideline of what methods filters should implement.
+ * Description: An interface to help create a guideline of what methods filters should implement.<br>
  *
- * Important Functions:
- * -filter: returns a list of vehicles, each implementation of interface will have their own filter method
+ * Important Functions:<br>
+ * -filter: returns a list of vehicles, each implementation of interface will have their own filter method<br>
  *
  */
 public interface VehicleFilter {

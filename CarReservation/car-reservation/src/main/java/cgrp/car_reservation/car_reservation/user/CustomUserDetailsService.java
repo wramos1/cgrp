@@ -8,18 +8,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
- * ClassName: CustomerUserDetailsService
- * Date of Code: October 7, 2024
- * Programmer's Name: Alberto S
+ * ClassName: CustomerUserDetailsService<br>
+ * Date of Code: October 7, 2024<br>
+ * Programmer's Name: Alberto S<br>
  *
- * Description: Adds appropriate fields to user for Spring Security
+ * Description: Adds appropriate fields to user for Spring Security<br>
  *
- * Important Functions:
- * -loadByUsername: returns userDetails for user based on passed in parameter username of a user object
+ * Important Functions:<br>
+ * -loadByUsername: returns userDetails for user based on passed in parameter username of a user object<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  *
  *
  */

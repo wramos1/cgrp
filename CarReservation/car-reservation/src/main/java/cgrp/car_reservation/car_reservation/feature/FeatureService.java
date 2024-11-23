@@ -6,19 +6,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Module Name: Email.java
+ * Module Name: Email.java<br>
  *
- * Date of code: 10/9/2024
+ * Date of code: 10/9/2024<br>
  *
- * Programmers Name: Arthur
+ * Programmers Name: Arthur<br>
  *
- * Description: Service class with logic for features
+ * Description: Service class with logic for features<br>
  *
- * Functions:
- *  -createNewFeature(): creates a new feature, takes a feature object
- *  -getAllFeatures(): returns all feature objects
+ * Functions:<br>
+ *  -createNewFeature(): creates a new feature, takes a feature object<br>
+ *  -getAllFeatures(): returns all feature objects<br>
  *
- * Datastructures: N/A
+ * Datastructures: N/A<br>
  *
  */
 

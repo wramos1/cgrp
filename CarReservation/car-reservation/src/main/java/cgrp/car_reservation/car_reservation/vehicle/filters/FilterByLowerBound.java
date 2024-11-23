@@ -11,15 +11,15 @@ import java.util.List;
  */
 
 /**
- * Class Name: FilterByLowerBound
- * Date of Code: November 6, 2024
- * Programmer's Name: Alberto S
+ * Class Name: FilterByLowerBound<br>
+ * Date of Code: November 6, 2024<br>
+ * Programmer's Name: Alberto S<br>
  *
- * Description: Provides filter implementation for filtering vehicles with respect to lower bound in price.
+ * Description: Provides filter implementation for filtering vehicles with respect to lower bound in price.<br>
  *
- * Data Structures: List of all system Vehicles, ArrayList of vehicles who are in the filtering subset
+ * Data Structures: List of all system Vehicles, ArrayList of vehicles who are in the filtering subset<br>
  *
- * Algorithms: Simple Linear Search and Comparison of vehicle prices
+ * Algorithms: Simple Linear Search and Comparison of vehicle prices<br>
  *
  */
 public class FilterByLowerBound implements VehicleFilter {

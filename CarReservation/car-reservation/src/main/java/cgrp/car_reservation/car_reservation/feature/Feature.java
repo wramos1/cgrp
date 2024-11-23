@@ -5,18 +5,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * Module Name: Feature.java
+ * Module Name: Feature.java<br>
  *
- * Date of code: 10/9/2024
+ * Date of code: 10/9/2024<br>
  *
- * Programmers Name: Arthur
+ * Programmers Name: Arthur<br>
  *
- * Description: Entity class with feature info
+ * Description: Entity class with feature info<br>
  *
- * Functions: Constructors for other services classes ease
- * of use
+ * Functions: Constructors for other services classes ease<br>
+ * of use<br>
  *
- * Datastructures: N/A
+ * Datastructures: N/A<br>
  *
  *  */
 

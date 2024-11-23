@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * ClasName: UserController
- * Date of Code: October 7, 2024
- * Programmer's Name: Alberto S
+ * ClasName: UserController<br>
+ * Date of Code: October 7, 2024<br>
+ * Programmer's Name: Alberto S<br>
  *
- * Description: Provides access to the endpoints that are request from front end for all things pertaining the User class.
+ * Description: Provides access to the endpoints that are request from front end for all things pertaining the User class.<br>
  *
- * Important Functions:
- * -getAllUsers: returns all users in the system
- * -getCurrentUser: returns the current logged in user
+ * Important Functions:<br>
+ * -getAllUsers: returns all users in the system<br>
+ * -getCurrentUser: returns the current logged in user<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  *
  */
 @RestController

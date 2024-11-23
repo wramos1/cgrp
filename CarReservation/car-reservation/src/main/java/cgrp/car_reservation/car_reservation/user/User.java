@@ -13,19 +13,19 @@ import java.util.*;
 
 /**
  * Class Name: User <br>
- * Date of Code: October 7, 2024
- * Programmer's Name: Alberto S & Arthur
+ * Date of Code: October 7, 2024<br>
+ * Programmer's Name: Alberto S and Arthur<br>
  *
- * Description: Represents a user of the system, either a customer or manager.
+ * Description: Represents a user of the system, either a customer or manager.<br>
  *
- * Important Functions:
- * -addReservation: adds reservation to the user
- * -addReview: adds review left by user to the user
- * -hasReservation: checks if user has that specific reservation
+ * Important Functions:<br>
+ * -addReservation: adds reservation to the user<br>
+ * -addReview: adds review left by user to the user<br>
+ * -hasReservation: checks if user has that specific reservation<br>
  *
- * Data Structures: Simple Array for roles that user can have
+ * Data Structures: Simple Array for roles that user can have<br>
  *
- * Algorithms:  N/A
+ * Algorithms:  N/A<br>
  *
  */
 @Getter @Setter @Document(collection = "users")
@@ -55,7 +55,7 @@ public class User {
     private List<Review> reviewsLeft = new ArrayList<Review>();
 
     /**
-     * Default Constructor for a User object
+     * Default Constructor for a User object<br>
      */
     public User(){}
 
@@ -63,11 +63,11 @@ public class User {
 
     /**
      *
-     * Constructs the User object from a username, email, and password.
+     * Constructs the User object from a username, email, and password.<br>
      *
-     * @param username User's username
-     * @param password User's password
-     * @param email User's Email
+     * @param username User's username<br>
+     * @param password User's password<br>
+     * @param email User's Email<br>
      */
     public User(String username, String password, String email) {
         this.username = username;
@@ -78,9 +78,9 @@ public class User {
     // changed return value to boolean to see if it is adding in the reservation
 
     /**
-     * Adds a reservation to a user object, using a one-to-many relationship.
-     * @param reservation Reservation that the user is making
-     * @return true if reservation was successfully added
+     * Adds a reservation to a user object, using a one-to-many relationship.<br>
+     * @param reservation Reservation that the user is making<br>
+     * @return true if reservation was successfully added<br>
      */
     public boolean addReservation(Reservation reservation){
 
@@ -88,18 +88,18 @@ public class User {
     }
 
     /**
-     *  Removes a reservation from a user object.
-     * @param reservation Reservation that the user is removing
+     *  Removes a reservation from a user object.<br>
+     * @param reservation Reservation that the user is removing<br>
      */
     public void removeReservation(Reservation reservation){
         this.reservations.remove(reservation);
     }
 
     /**
-     * Checks if user has specific reservation
+     * Checks if user has specific reservation<br>
      *
-     * @param reservation Reservation being checked for in User
-     * @return true if User has that reservation
+     * @param reservation Reservation being checked for in User<br>
+     * @return true if User has that reservation<br>
      */
     public boolean hasReservation(Reservation reservation)
     {
@@ -107,8 +107,8 @@ public class User {
     }
 
     /**
-     * Adds a new review to user in which the user left, in a one-to-many relationship
-     * @param newReview Review left by User that is being added to User object
+     * Adds a new review to user in which the user left, in a one-to-many relationship<br>
+     * @param newReview Review left by User that is being added to User object<br>
      */
     public void addReview(Review newReview)
     {

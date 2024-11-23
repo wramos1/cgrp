@@ -32,10 +32,10 @@ public class TransactionService {
 
 
     /**
-     * Creates a new rental transaction and properly saves the transaction in the database.
+     * Creates a new rental transaction and properly saves the transaction in the database.<br>
      *
-     * @param transactionReservation Reservation that is a part of the transaction
-     * @param cardOnTransaction PaymentCard used as a part of the transaction
+     * @param transactionReservation Reservation that is a part of the transaction<br>
+     * @param cardOnTransaction PaymentCard used as a part of the transaction<br>
      */
     public void createNewRentalTransaction(Reservation transactionReservation,paymentCard cardOnTransaction)
     {
@@ -49,11 +49,11 @@ public class TransactionService {
     // this is for transaction such as modify or cancel that does not involve a payment card
 
     /**
-     * Creates a new transaction based on the type of the transaction and saves the transaction in the database.
+     * Creates a new transaction based on the type of the transaction and saves the transaction in the database.<br>
      *
-     * @param transactionReservation Resevation that is a part of the transaction.
-     * @param transactionType Type of transaction (Modify, Cancel, Other)
-     * @return the transaction that is saved
+     * @param transactionReservation Resevation that is a part of the transaction.<br>
+     * @param transactionType Type of transaction (Modify, Cancel, Other)<br>
+     * @return the transaction that is saved<br>
      */
     public Transaction createNewTransaction(Reservation transactionReservation, String transactionType)
     {

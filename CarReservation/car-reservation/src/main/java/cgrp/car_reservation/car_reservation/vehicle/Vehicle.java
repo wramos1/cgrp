@@ -14,16 +14,16 @@ import java.util.List;
 
 /**
  * Class Name: Vehicle <br>
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: 10/7/2024<br>
+ * Programmer's Name: Alberto S and Arthur<br>
  *
- * Description: Represents vehicle in the system which the user can rent.
+ * Description: Represents vehicle in the system which the user can rent.<br>
  *
- * Important Functions:
- *  -addReview: adds review to vehicle, input is a review
- *  -calculateNewVehicleRating: calculates new vehicle rating whenever a new review is added; input and output are void
+ * Important Functions:<br>
+ *  -addReview: adds review to vehicle, input is a review<br>
+ *  -calculateNewVehicleRating: calculates new vehicle rating whenever a new review is added; input and output are void<br>
  *
- *  Data Structures: ArrayList of Reviews, ArrayList of Features
+ *  Data Structures: ArrayList of Reviews, ArrayList of Features<br>
  *
  *
  */

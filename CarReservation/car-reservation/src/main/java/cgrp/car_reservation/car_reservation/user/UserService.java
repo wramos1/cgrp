@@ -16,19 +16,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.List;
 
 /**
- * Class Name: UserService
- * Date of Code: October 7, 2024
- * Programmer's Name: Alberto S & Arthur
+ * Class Name: UserService<br>
+ * Date of Code: October 7, 2024<br>
+ * Programmer's Name: Alberto S and Arthur<br>
  *
  * Description: Provides all of the necessary logic pertaining to the User class. <br>
  *
- * Important Functions:
- * -leaveNewReview: adds review left by user to the user object
- * -checkIfHasReservation: checks if the user has that specified reservation
+ * Important Functions:<br>
+ * -leaveNewReview: adds review left by user to the user object<br>
+ * -checkIfHasReservation: checks if the user has that specified reservation<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  *
  */
 @Service
@@ -45,10 +45,10 @@ public class UserService {
     private ReviewRepository reviewRepository; // will allow for the creation of the review
 
     /**
-     * Registers a user to be available in the system and databse
+     * Registers a user to be available in the system and databse<br>
      *
-     * @param userDto Temporary Data Transfer object for the User.
-     * @return User created for use in the system
+     * @param userDto Temporary Data Transfer object for the User.<br>
+     * @return User created for use in the system<br>
      */
     public User registerUser(UserDto userDto){
         if(userRepository.findByUsername(userDto.getUsername())!= null){
@@ -59,9 +59,9 @@ public class UserService {
     }
 
     /**
-     * Registers a manager to be available in the system and database.
-     * @param userDto Temporary Data Transfer object for the Manager.
-     * @return User class with manager role accessibility for user in the system.
+     * Registers a manager to be available in the system and database.<br>
+     * @param userDto Temporary Data Transfer object for the Manager.<br>
+     * @return User class with manager role accessibility for user in the system.<br>
      */
     public User registerManager(UserDto userDto){
         if(userRepository.findByUsername(userDto.getUsername())!= null){
@@ -72,35 +72,35 @@ public class UserService {
     }
 
     /**
-     * Returns all users present in the system
+     * Returns all users present in the system<br>
      *
-     * @return list of users in the system.
+     * @return list of users in the system.<br>
      */
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     /**
-     * Returns specific user based on query by username.
-     * @param username user username to query on
-     * @return User object which matches that username
+     * Returns specific user based on query by username.<br>
+     * @param username user username to query on<br>
+     * @return User object which matches that username<br>
      */
     public User getUserbyUsername(String username){return userRepository.findByUsername(username);}
 
     /**
-     * Returns specific user based on query by MongoDB ObjectId
-     * @param id objectId to query on
-     * @return User object which matches that objectid
+     * Returns specific user based on query by MongoDB ObjectId<br>
+     * @param id objectId to query on<br>
+     * @return User object which matches that objectid<br>
      */
     public User getUserById(ObjectId id){
         return userRepository.findById(id).orElse(null);
     }
 
     /**
-     * Adds a review to the user, a review which the user has left on specific vehicle
+     * Adds a review to the user, a review which the user has left on specific vehicle<br>
      *
-     * @param username username of the user
-     * @param review review left by the user
+     * @param username username of the user<br>
+     * @param review review left by the user<br>
      */
     public void leaveNewReview(String username, Review review)
     {
@@ -114,9 +114,9 @@ public class UserService {
 
     // get the User by its username attribute
     /**
-     * Returns specific user based on query by username.
-     * @param username user username to query on
-     * @return User object which matches that username
+     * Returns specific user based on query by username.<br>
+     * @param username user username to query on<br>
+     * @return User object which matches that username<br>
      */
     public User getUserByUsername(String username)
     {

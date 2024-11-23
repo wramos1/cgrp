@@ -7,18 +7,18 @@ import java.util.List;
 
 
 /**
- * Module Name: FeatureController.java
+ * Module Name: FeatureController.java<br>
  *
- * Date of code: 10/9/2024
+ * Date of code: 10/9/2024<br>
  *
- * Programmers Name: Arthur
+ * Programmers Name: Arthur<br>
  *
  * Description: Controller class with endpoints to
- * create and features and get all features
+ * create and features and get all features<br>
  *
- * Functions: N/A
+ * Functions: N/A<br>
  *
- * Datastructures: N/A
+ * Datastructures: N/A<br>
  *
  */
 

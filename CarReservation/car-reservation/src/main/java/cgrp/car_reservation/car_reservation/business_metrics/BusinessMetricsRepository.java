@@ -4,18 +4,18 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
- * Module Name: BusinessMetricsReposity.java
+ * Module Name: BusinessMetricsRepository.java<br>
  *
- * Date of code: 11/8/2024
+ * Date of code: 11/8/2024<br>
  *
- * Programmers Name: Arthur
+ * Programmers Name: Arthur<br>
  *
  * Description: Repository class that accesses BusinessMetric
- * objects in the database
+ * objects in the database<br>
  *
- * Functions: N/A
+ * Functions: N/A<br>
  *
- * Datastructures: N/A
+ * Datastructures: N/A<br>
  *
  *  */
 

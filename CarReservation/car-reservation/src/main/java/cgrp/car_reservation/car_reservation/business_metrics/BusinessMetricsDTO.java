@@ -8,21 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Module Name: BusinessMetricsDTO.java
+ * Module Name: BusinessMetricsDTO.java<br>
  *
- * Date of code: 11/8/2024
+ * Date of code: 11/8/2024<br>
  *
- * Programmers Name: Arthur
+ * Programmers Name: Arthur<br>
  *
  * Description: Data transfer object class with
  * appropriate fields needed for creating a
- * businessmetric entity
+ * businessmetric entity<br>
  *
  * Functions: Constructors for other services classes ease
- * of use
+ * of use<br>
  *
- * Datastructures: Array lists to store all vehicles
- * currently rented and all low reviews on vehicles
+ * Datastructures: Array lists to store all vehicles<br>
+ * currently rented and all low reviews on vehicles<br>
  *
  *  */
 

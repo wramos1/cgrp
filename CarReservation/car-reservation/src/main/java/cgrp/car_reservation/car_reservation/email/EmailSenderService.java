@@ -19,20 +19,20 @@ import java.time.LocalDate;
 
 /**
  *
- * Module Name: EmailSenderService.java
+ * Module Name: EmailSenderService.java<br>
  *
- * Date of code: 11/5/2024
+ * Date of code: 11/5/2024<br>
  *
- * Programmers Name: Arthur
+ * Programmers Name: Arthur<br>
  *
  * Description: Service class with logic for
- * sending emails
+ * sending emails<br>
  *
- * Functions:
+ * Functions:<br>
  *  -reservationVerificationEmail(): sends email to user
- *      when reservation is made
+ *      when reservation is made<br>
  *
- * Datastructures: N/A
+ * Datastructures: N/A<br>
  *
  */
 

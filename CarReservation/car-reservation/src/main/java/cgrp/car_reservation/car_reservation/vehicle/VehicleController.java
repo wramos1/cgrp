@@ -8,18 +8,18 @@ import java.util.List;
 
 /**
  * Class Name: VehicleController <br>
- * Date of Code:
- * Programmer's Name:
+ * Date of Code:10/7/2024<br>
+ * Programmer's Name: Alberto S<br>
  *
- * Description: Provides access to endpoints from the front end to the back end for logic pertaining to vehicles
+ * Description: Provides access to endpoints from the front end to the back end for logic pertaining to vehicles<br>
  *
- * Important Functions:
- *  -getAllVehicles: returns all vehicles in a list
- *  -getVehicleByPriceRange: returns list of vehicles between specified price range
- *  -getVehiclesCheaperThan: returns list of vehicles cheaper than specified price
- *  -getVehiclePricierThan: returns list of vehicles pricier than specified price
- *  -getVehiclesByKeyword: returns list of vehicles who match that search keyword
- *  -setAllVehiclesToAvailable: makes all vehicles in system available to be rented
+ * Important Functions:<br>
+ *  -getAllVehicles: returns all vehicles in a list<br>
+ *  -getVehicleByPriceRange: returns list of vehicles between specified price range<br>
+ *  -getVehiclesCheaperThan: returns list of vehicles cheaper than specified price<br>
+ *  -getVehiclePricierThan: returns list of vehicles pricier than specified price<br>
+ *  -getVehiclesByKeyword: returns list of vehicles who match that search keyword<br>
+ *  -setAllVehiclesToAvailable: makes all vehicles in system available to be rented<br>
  *
  */
 @RestController

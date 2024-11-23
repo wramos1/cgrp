@@ -1,17 +1,17 @@
 package cgrp.car_reservation.car_reservation.review;
 
 /**
- * Class Name: ReviewDTO
- * Date of Code: October 19, 2024
- * Programmer's Name: Arthur
+ * Class Name: ReviewDTO<br>
+ * Date of Code: October 19, 2024<br>
+ * Programmer's Name: Arthur<br>
  *
- * Description: Provides a data transfer object to transfer necessary review data from front end to back end to create a review
+ * Description: Provides a data transfer object to transfer necessary review data from front end to back end to create a review<br>
  *
- * Important Functions: Getters and Setters
+ * Important Functions: Getters and Setters<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  *
  */
 public class ReviewDTO {

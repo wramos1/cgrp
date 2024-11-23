@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.*;
  *
  * Description: Provides authentication for user and manger role in user class<br>
  *
- * Important Functions:
- * -registerUser: authenticates new user during registration
- * -registerManager: authenticates new manager during registration process
+ * Important Functions:<br>
+ * -registerUser: authenticates new user during registration<br>
+ * -registerManager: authenticates new manager during registration process<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  */
 @Controller
 @RequestMapping("/")

@@ -6,18 +6,18 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 /**
- * Class Name: ReviewRepository
- * Date of Code: October 19, 2024
- * Programmer's Name: Arthur
+ * Class Name: ReviewRepository<br>
+ * Date of Code: October 19, 2024<br>
+ * Programmer's Name: Arthur<br>
  *
- * Description: Interface for accessing the MongoDB repository for Reviews
+ * Description: Interface for accessing the MongoDB repository for Reviews<br>
  *
- * Important Functions:
- *  -findByCustomReviewID: query the database for review with specified id which is passed as a parameter, and returns corresponding review
+ * Important Functions:<br>
+ *  -findByCustomReviewID: query the database for review with specified id which is passed as a parameter, and returns corresponding review<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  *
  */
 public interface ReviewRepository extends MongoRepository<Review, ObjectId> {

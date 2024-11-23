@@ -28,20 +28,20 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Class Name: ReservationService
- * Date of Code: October 7, 2024 & November 19, 2024
- * Programmer's Name: Arthur & Alberto S
+ * Class Name: ReservationService<br>
+ * Date of Code: October 7, 2024 and November 19, 2024<br>
+ * Programmer's Name: Arthur and Alberto S<br>
  *
- * Description: Provides the logic for reservation classes.
+ * Description: Provides the logic for reservation classes.<br>
  *
- * Important Functions:
- * -createReservation: Creates a new reservation for the logged in user based on the vehicle of their choosing
- * -modifyReservation: Modifies existing reservation with a newly specified start and end date for the reservation
- * -cancelReservation: Cancels an existing reservation
+ * Important Functions:<br>
+ * -createReservation: Creates a new reservation for the logged in user based on the vehicle of their choosing<br>
+ * -modifyReservation: Modifies existing reservation with a newly specified start and end date for the reservation<br>
+ * -cancelReservation: Cancels an existing reservation<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  *
  */
 @Service

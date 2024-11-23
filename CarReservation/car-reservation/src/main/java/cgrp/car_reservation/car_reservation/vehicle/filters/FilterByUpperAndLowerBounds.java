@@ -12,18 +12,18 @@ import java.util.List;
  * */
 
 /**
- * Class Name: FilterByUpperAndLowerBounds
- * Date of Code: November 6, 2024
- * Programmer's Name: Alberto S
+ * Class Name: FilterByUpperAndLowerBounds<br>
+ * Date of Code: November 6, 2024<br>
+ * Programmer's Name: Alberto S<br>
  *
- * Description: Provides filter method implementation of filtering vehicles within a bounded range.
+ * Description: Provides filter method implementation of filtering vehicles within a bounded range.<br>
  *
- * Important Functions:
- *  -filter: returns list of vehicles which are bounded within that specified price range
+ * Important Functions:<br>
+ *  -filter: returns list of vehicles which are bounded within that specified price range<br>
  *
- *  Data Structures: List of all system vehicles, ArrayList of vehicles who are within that specified range
+ *  Data Structures: List of all system vehicles, ArrayList of vehicles who are within that specified range<br>
  *
- *  Algorithms: Simple Linear Search and Comparison of Vehicle Price
+ *  Algorithms: Simple Linear Search and Comparison of Vehicle Price<br>
  *
  */
 public class FilterByUpperAndLowerBounds implements VehicleFilter {

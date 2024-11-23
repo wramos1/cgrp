@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Module Name: BusinessMetricsController.java
+ * Module Name: BusinessMetricsController.java<br>
  *
- * Date of code: 11/8/2024
+ * Date of code: 11/8/2024<br>
  *
- * Programmers Name: Arthur
+ * Programmers Name: Arthur<br>
  *
- * Description: Controller class with endpoints that
- * return useful business info and stats
+ * Description: Controller class with endpoints that<br>
+ * return useful business info and stats<br>
  *
- * Functions: N/A
+ * Functions: N/A<br>
  *
- * Datastructures: N/A
+ * Datastructures: N/A<br>
  *  */
 @RestController
 @RequestMapping("/business")

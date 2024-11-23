@@ -5,19 +5,19 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
- * Class Name: ReservationRepository
- * Date of Code: October 7, 2024
- * Programmer's Name: Alberto S
+ * Class Name: ReservationRepository<br>
+ * Date of Code: October 7, 2024<br>
+ * Programmer's Name: Alberto S<br>
  *
- * Description: Interface for accessing MongoDB repository for Reservations
+ * Description: Interface for accessing MongoDB repository for Reservations<br>
  *
- * Important Functions:
- *  -findByUser: query database by User for specific reservation
- *  -findByCustomReservationID: query database for specific reservation matching reservation id
+ * Important Functions:<br>
+ *  -findByUser: query database by User for specific reservation<br>
+ *  -findByCustomReservationID: query database for specific reservation matching reservation id<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  *
  */
 public interface ReservationRepository extends MongoRepository<Reservation, ObjectId> {

@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
  *
  * Description: A child class of the Transaction class, in which this class is used for new transactions that involve a new payment card. <br>
  *
- * Important Functions: Getters and Setters
+ * Important Functions: Getters and Setters<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  *
  */
 @Document(collection = "transactons")
@@ -31,11 +31,11 @@ public class NewReservationTransaction extends Transaction {
     // calls the constructor of the base class before intializing what is in this current class
 
     /**
-     * Constructs a NewReservationTransaction object without the time and date stamp of the current transaction.
+     * Constructs a NewReservationTransaction object without the time and date stamp of the current transaction.<br>
      *
-     * @param transactionNote The type of transaction it is (New, Modify, Cancel).
-     * @param reservationInvolvedInTransaction Reservation which transaction is based upon.
-     * @param cardOnTransaction PaymentCard used for the reservation transaction.
+     * @param transactionNote The type of transaction it is (New, Modify, Cancel).<br>
+     * @param reservationInvolvedInTransaction Reservation which transaction is based upon.<br>
+     * @param cardOnTransaction PaymentCard used for the reservation transaction.<br>
      */
     public NewReservationTransaction(String transactionNote, Reservation reservationInvolvedInTransaction, paymentCard cardOnTransaction) {
         super(transactionNote, reservationInvolvedInTransaction);
@@ -44,12 +44,12 @@ public class NewReservationTransaction extends Transaction {
 
     /**
      *
-     * Constructs a NewReservationTransaction object with the time and date stamp of the current transaction.
+     * Constructs a NewReservationTransaction object with the time and date stamp of the current transaction.<br>
      *
-     * @param transactionNote The type of transaction it is (New, Modify, Cancel).
-     * @param transactionDateTime Time and date stamp of when transaction happened.
-     * @param reservationInvolvedInTransaction  Reservation which transaction is based upon.
-     * @param cardOnTransaction PaymentCard used for the reservation transaction.
+     * @param transactionNote The type of transaction it is (New, Modify, Cancel).<br>
+     * @param transactionDateTime Time and date stamp of when transaction happened.<br>
+     * @param reservationInvolvedInTransaction  Reservation which transaction is based upon.<br>
+     * @param cardOnTransaction PaymentCard used for the reservation transaction.<br>
      */
     public NewReservationTransaction(String transactionNote, LocalDateTime transactionDateTime, Reservation reservationInvolvedInTransaction, paymentCard cardOnTransaction) {
         super(transactionNote, transactionDateTime, reservationInvolvedInTransaction);

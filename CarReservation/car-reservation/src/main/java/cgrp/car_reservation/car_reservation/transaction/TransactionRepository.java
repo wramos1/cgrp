@@ -10,11 +10,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  *
  * Description: Provides interface to access the MongoDB database for Transaction objects <br>
  *
- * Important Functions: Inherited Methods
+ * Important Functions: Inherited Methods<br>
  *
- * Data Structures: N/A
+ * Data Structures: N/A<br>
  *
- * Algorithms: N/A
+ * Algorithms: N/A<br>
  *
  */
 public interface TransactionRepository extends MongoRepository<Transaction, ObjectId> {
