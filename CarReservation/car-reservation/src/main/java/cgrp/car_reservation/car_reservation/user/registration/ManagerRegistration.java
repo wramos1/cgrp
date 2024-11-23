@@ -10,6 +10,21 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Array;
 
+/**
+ * Class Name: ManagerRegistration
+ * Date of Code: November 9, 2024
+ * Programmer's Name: Alberto S
+ *
+ * Description: Provides registration for manager
+ *
+ * Important Functions:
+ *  -register: registers the manager role in the user class
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
+ *
+ */
 @Component
 public class ManagerRegistration {
     private final UserRepository userRepository;

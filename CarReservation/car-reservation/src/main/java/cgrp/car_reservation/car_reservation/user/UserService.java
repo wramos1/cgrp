@@ -18,9 +18,17 @@ import java.util.List;
 /**
  * Class Name: UserService
  * Date of Code: October 7, 2024
- * Programmer's Name:
+ * Programmer's Name: Alberto S & Arthur
  *
- * Description: Provides all of the neccesary logic pertaining to the User class. <br>
+ * Description: Provides all of the necessary logic pertaining to the User class. <br>
+ *
+ * Important Functions:
+ * -leaveNewReview: adds review left by user to the user object
+ * -checkIfHasReservation: checks if the user has that specified reservation
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  *
  */
 @Service

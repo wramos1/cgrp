@@ -5,9 +5,15 @@ import lombok.Getter;
 /**
  * Class Name: UserDto
  * Date of Code: October 7, 2024
- * Programmer's Name:
+ * Programmer's Name: Alberto S
  *
  * Description: Provides a temporary data transfer object in order to send information from front end to back end, to create a user in the system.
+ *
+ * Important Functions: Constructor
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  *
  */
 @Getter

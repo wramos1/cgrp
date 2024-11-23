@@ -14,11 +14,17 @@ import java.util.List;
 /**
  * ClasName: UserController
  * Date of Code: October 7, 2024
- * Programmer's Name:
+ * Programmer's Name: Alberto S
  *
  * Description: Provides access to the endpoints that are request from front end for all things pertaining the User class.
  *
+ * Important Functions:
+ * -getAllUsers: returns all users in the system
+ * -getCurrentUser: returns the current logged in user
  *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  *
  */
 @RestController

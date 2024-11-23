@@ -10,11 +10,18 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Class Name: AuthController <br>
- * Date of Code: <br>
- * Programmer's Name: <br>
+ * Date of Code: October 7, 2024 <br>
+ * Programmer's Name: Alberto S<br>
  *
- * Description: <br>
+ * Description: Provides authentication for user and manger role in user class<br>
  *
+ * Important Functions:
+ * -registerUser: authenticates new user during registration
+ * -registerManager: authenticates new manager during registration process
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  */
 @Controller
 @RequestMapping("/")

@@ -14,9 +14,18 @@ import java.util.*;
 /**
  * Class Name: User <br>
  * Date of Code: October 7, 2024
- * Programmer's Name:
+ * Programmer's Name: Alberto S & Arthur
  *
  * Description: Represents a user of the system, either a customer or manager.
+ *
+ * Important Functions:
+ * -addReservation: adds reservation to the user
+ * -addReview: adds review left by user to the user
+ * -hasReservation: checks if user has that specific reservation
+ *
+ * Data Structures: Simple Array for roles that user can have
+ *
+ * Algorithms:  N/A
  *
  */
 @Getter @Setter @Document(collection = "users")

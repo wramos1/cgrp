@@ -8,9 +8,14 @@ import java.util.List;
 /**
  * Class Name: UserRepository
  * Date of Code: October 7, 2024
- * Programmer's Name:
+ * Programmer's Name: Alberto S
  *
  * Description: Provides an interface to MongoDB database to access User objects
+ *
+ * Important Functions:
+ * -findByUsername: query database for user based on given username
+ * -findByEmail: query database for user based on given email
+ * -existsByEmail: return true if user with given email exists in the database
  *
  */
 public interface UserRepository extends MongoRepository <User, ObjectId>{

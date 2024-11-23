@@ -10,9 +10,17 @@ import org.springframework.stereotype.Service;
 /**
  * ClassName: CustomerUserDetailsService
  * Date of Code: October 7, 2024
- * Programmer's Name: Alberto Sandoval
+ * Programmer's Name: Alberto S
  *
- * Description: 
+ * Description: Adds appropriate fields to user for Spring Security
+ *
+ * Important Functions:
+ * -loadByUsername: returns userDetails for user based on passed in parameter username of a user object
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
+ *
  *
  */
 @Service
