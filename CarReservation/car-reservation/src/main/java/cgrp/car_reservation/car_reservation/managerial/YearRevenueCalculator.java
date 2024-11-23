@@ -6,6 +6,23 @@ import java.time.Month;
 import java.time.Year;
 import java.util.List;
 
+/**
+ * Module Name: MonthRevenueCalculator.java<br>
+ *
+ * Date of code: 11/21/2024<br>
+ *
+ * Programmers Name: Alberto<br>
+ *
+ * Description: Service class with methods for calculating
+ * revenue from reservations made in past month. Extends RevenueCalculator<br>
+ *
+ * Functions:<br>
+ *  -calculateRange(): calculates reservation charges from all reservations
+ *  of the past month<br>
+ *
+ * Datastructures: N/A<br>
+ */
+
 public class YearRevenueCalculator implements RevenueCalculator {
     private final int startYear;
     private final int endYear;

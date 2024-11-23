@@ -7,6 +7,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/*
+ * Module Name: EmailController.java
+ *
+ * Date of code: 11/21/2024
+ *
+ * Programmers Name: Arthur
+ *
+ * Description: Controller class with endpoints that
+ * send emails
+ *
+ * Functions: N/A
+ *
+ * Datastructures: N/A
+ *
+ *  */
+
 @RestController
 @RequestMapping("/emailtest")
 public class EmailController {

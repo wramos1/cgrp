@@ -6,9 +6,29 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
-
 import java.util.ArrayList;
 import java.util.List;
+
+/*
+* Module Name: Business Metrics.java
+*
+* Date of code: 11/21/2024
+*
+* Programmers Name: Arthur
+*
+* Description: Entity class with fields containing useful
+* business information and statistics
+*
+* Functions: Constructors for other services classes ease
+* of use
+*
+* Datastructures: Array lists to store all vehicles
+* currently rented and all low reviews on vehicles
+*
+*  */
+
+
+
 
 @Document(collection = "businessMetrics")
 public class BusinessMetrics {

@@ -17,7 +17,25 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.time.LocalDate;
 
-// this service class will be the one that sends emails out to the user to confirm something they have done
+/*
+ *
+ * Module Name: EmailSenderService.java
+ *
+ * Date of code: 11/21/2024
+ *
+ * Programmers Name: Arthur
+ *
+ * Description: Service class with logic for
+ * sending emails
+ *
+ * Functions:
+ *  -reservationVerificationEmail(): sends email to user
+ *      when reservation is made
+ *
+ * Datastructures: N/A
+ *
+ */
+
 @Service
 public class EmailSenderService {
 

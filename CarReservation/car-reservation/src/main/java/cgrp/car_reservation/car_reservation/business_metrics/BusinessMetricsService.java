@@ -9,6 +9,32 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/*
+ *
+ * Module Name: BusinessMetricsService.java
+ *
+ * Date of code: 11/21/2024
+ *
+ * Programmers Name: Arthur
+ *
+ * Description: Service class with logic for calculating
+ * business stats and info
+ *
+ * Functions:
+ *  -isLowReview(): tests if review is low
+ *  -addPotentialLowReview(): adds review to array if low
+ *  -getCurrentMetrics(): returns all business metric entities
+ *  -addNewVehicleReservation(): adds reservation data
+ *      to business metric object
+ *  -cancelledVehicleReservation(): updates business metric
+ *      object if reservation is cancelled
+ *  -modifiedVehicleReservation(): updates business metric
+ *      object if reservation is modified
+ *
+ * Datastructures: N/A
+ *
+ */
+
 @Service
 public class BusinessMetricsService {
 

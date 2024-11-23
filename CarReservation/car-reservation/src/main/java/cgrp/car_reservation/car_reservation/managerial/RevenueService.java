@@ -11,6 +11,22 @@ import java.time.Month;
 import java.time.Year;
 import java.util.List;
 
+/**
+ *
+ * Module Name: RevenueService.java<br>
+ *
+ * Date of code: 11/21/2024<br>
+ *
+ * Programmers Name: Alberto<br>
+ *
+ * Description: Service class with logic for revenue calculations<br>
+ * mostly
+ *
+ * Functions: calls functions with logic in RevenueCalculator child classes<br>
+ *
+ * Datastructures: N/A<br>
+ *
+ */
 
 @Component
 public class RevenueService {

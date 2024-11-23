@@ -7,6 +7,25 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Module Name: BusinessMetricsDTO.java
+ *
+ * Date of code: 11/21/2024
+ *
+ * Programmers Name: Arthur
+ *
+ * Description: Data transfer object class with
+ * appropriate fields needed for creating a
+ * businessmetric entity
+ *
+ * Functions: Constructors for other services classes ease
+ * of use
+ *
+ * Datastructures: Array lists to store all vehicles
+ * currently rented and all low reviews on vehicles
+ *
+ *  */
+
 public class BusinessMetricsDTO {
 
     private int numVehiclesCurrentlyRented; // this attribute could possibly be deleted with the inclusion of the array list object for the vehicles that are currently renetd out
