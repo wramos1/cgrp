@@ -15,6 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
+/**
+ * Class Name: UserService
+ * Date of Code: October 7, 2024
+ * Programmer's Name:
+ *
+ * Description: Provides all of the neccesary logic pertaining to the User class. <br>
+ *
+ */
 @Service
 public class UserService {
     @Autowired
@@ -28,7 +36,12 @@ public class UserService {
     @Autowired
     private ReviewRepository reviewRepository; // will allow for the creation of the review
 
-
+    /**
+     * Registers a user to be available in the system and databse
+     *
+     * @param userDto Temporary Data Transfer object for the User.
+     * @return User created for use in the system
+     */
     public User registerUser(UserDto userDto){
         if(userRepository.findByUsername(userDto.getUsername())!= null){
             throw new UsernameAlreadyTakenException("Supplied username is already taken!");
@@ -37,6 +50,11 @@ public class UserService {
 
     }
 
+    /**
+     * Registers a manager to be available in the system and database.
+     * @param userDto Temporary Data Transfer object for the Manager.
+     * @return User class with manager role accessibility for user in the system.
+     */
     public User registerManager(UserDto userDto){
         if(userRepository.findByUsername(userDto.getUsername())!= null){
             throw new UsernameAlreadyTakenException("Supplied username is already taken!");
@@ -45,18 +63,37 @@ public class UserService {
 
     }
 
-
-
+    /**
+     * Returns all users present in the system
+     *
+     * @return list of users in the system.
+     */
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    /**
+     * Returns specific user based on query by username.
+     * @param username user username to query on
+     * @return User object which matches that username
+     */
     public User getUserbyUsername(String username){return userRepository.findByUsername(username);}
 
+    /**
+     * Returns specific user based on query by MongoDB ObjectId
+     * @param id objectId to query on
+     * @return User object which matches that objectid
+     */
     public User getUserById(ObjectId id){
         return userRepository.findById(id).orElse(null);
     }
 
+    /**
+     * Adds a review to the user, a review which the user has left on specific vehicle
+     *
+     * @param username username of the user
+     * @param review review left by the user
+     */
     public void leaveNewReview(String username, Review review)
     {
         User user = userRepository.findByUsername(username); // will return the user that wants to leave the review
@@ -68,12 +105,24 @@ public class UserService {
     }
 
     // get the User by its username attribute
+    /**
+     * Returns specific user based on query by username.
+     * @param username user username to query on
+     * @return User object which matches that username
+     */
     public User getUserByUsername(String username)
     {
         return userRepository.findByUsername(username);
     }
 
     // checks if the user has that reservation
+    /**
+     * Returns boolean value if the user has that reservation present in its list of reservations.
+     *
+     * @param reservationID custom reservation id of that specific reservation
+     * @param user user being checked if it has reservation
+     * @return true if user has that reservation in its list of reservations
+     */
     public boolean checkIfHasReservation(String reservationID, User user)
     {
         for(Reservation reservation : user.getReservations())

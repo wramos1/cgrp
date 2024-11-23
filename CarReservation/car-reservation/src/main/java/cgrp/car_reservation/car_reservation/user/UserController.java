@@ -11,6 +11,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * ClasName: UserController
+ * Date of Code: October 7, 2024
+ * Programmer's Name:
+ *
+ * Description: Provides access to the endpoints that are request from front end for all things pertaining the User class.
+ *
+ *
+ *
+ */
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -22,6 +32,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * Provides an API endpoint for accessing all users of the system.
+     *
+     * @return all users in the database
+     */
     @GetMapping("/homepage")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
@@ -40,17 +55,16 @@ public class UserController {
     }
 
     // this returns the login info of the current user
+
+    /**
+     *  Provides an API endpoint for accessing the current logged in user.
+     *
+     * @return current logged in user
+     */
     @GetMapping("/currentuser")
     public String getCurrentUsername() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-    /*
-     * @PostMapping("/leaveReview/{username}")
-     * public Review leaveNewReview(@PathVariable String username, @RequestBody
-     * Review review)
-     * {
-     * return userService.leaveNewReview(username, review);
-     * }
-     */
+
 }
