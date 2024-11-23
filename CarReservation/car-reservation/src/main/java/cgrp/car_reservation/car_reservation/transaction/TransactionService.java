@@ -10,10 +10,18 @@ import java.time.LocalDateTime;
 
 /**
  * Class Name: TransactionService <br>
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: November 14, 2024 <br>
+ * Programmer's Name: Arthur <br>
  *
- * Description: Provides the logic necessary for all needed functionality of the transaction class.
+ * Description: Provides the logic necessary for all needed functionality of the transaction class. <br>
+ *
+ * Important Functions: <br>
+ *  -createNewRentalTransaction: inputted reservation and payment card, creates new vehicle rental transaction in database <br>
+ *  -createNewTransaction: inputted reservation and transaction type, creates a new transaction in database based on transaction type <br>
+ *
+ *  Data Structures: N/A <br>
+ *
+ *  Algorithms: N/A <br>
  *
  */
 @Service

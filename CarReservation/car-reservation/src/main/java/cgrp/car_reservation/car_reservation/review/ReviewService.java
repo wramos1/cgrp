@@ -18,10 +18,17 @@ import java.util.UUID;
 
 /**
  * Class Name: ReviewService
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: October 19, 2024
+ * Programmer's Name: Arthur
  *
  * Description: Provides logic for review classes.
+ *
+ * Important Functions:
+ *  -leaveReview: inputted temporary review data transfer obejct from the front end and returns the official review; updates business metrics, sends verification email, and adds review to vehicle
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  *
  */
 @Service

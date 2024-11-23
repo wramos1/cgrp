@@ -9,12 +9,16 @@ import java.time.LocalDateTime;
 
 /**
  * Class Name: NewReservationTransaction <br>
- * Date of Code: <br>
- * Programmer's Name: <br>
+ * Date of Code: November 14, 2024 <br>
+ * Programmer's Name: Arthur <br>
  *
  * Description: A child class of the Transaction class, in which this class is used for new transactions that involve a new payment card. <br>
  *
- * Important Functions: <br>
+ * Important Functions: Getters and Setters
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  *
  */
 @Document(collection = "transactons")

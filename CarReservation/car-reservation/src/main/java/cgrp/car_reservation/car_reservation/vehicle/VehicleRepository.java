@@ -12,6 +12,12 @@ import java.util.List;
  *
  * Description: Provides an interface to access MongoDB for vehicle objects
  *
+ * Important Functions:
+ *  -findByType: query database by attribute of vehicle type, return list of vehicles with matching type
+ *  -findByMake; query database by attribute of vehicle make, return list of vehicles with matching make
+ *  -findByYear: query database by attribute of vehicle year, return list of vehicles with matching year
+ *  -findByCustomvehicleID: query database by attribute of customVehicleID, return list of vehicles with matching vehicle iD
+ *
  * Data Structures: N/A
  *
  * Algorithms N/A

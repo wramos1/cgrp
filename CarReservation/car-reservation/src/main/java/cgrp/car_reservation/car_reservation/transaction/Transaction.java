@@ -11,10 +11,16 @@ import java.time.LocalDateTime;
 
 /**
  * Class Name: Transaction <br>
- * Date of Code: <br>
- * Programmer's Name: <br>
+ * Date of Code: November 14, 2024<br>
+ * Programmer's Name: Arthur <br>
  *
  * Description: Represents a transaction in the system whenever the user initiates a vehicle reservation. <br>
+ *
+ * Important Functions: Getters and Setters
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  *
  */
 @Document(collection = "transactions")

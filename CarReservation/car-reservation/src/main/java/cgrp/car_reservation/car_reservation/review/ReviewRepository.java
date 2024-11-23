@@ -7,10 +7,17 @@ import java.util.List;
 
 /**
  * Class Name: ReviewRepository
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: October 19, 2024
+ * Programmer's Name: Arthur
  *
  * Description: Interface for accessing the MongoDB repository for Reviews
+ *
+ * Important Functions:
+ *  -findByCustomReviewID: query the database for review with specified id which is passed as a parameter, and returns corresponding review
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  *
  */
 public interface ReviewRepository extends MongoRepository<Review, ObjectId> {

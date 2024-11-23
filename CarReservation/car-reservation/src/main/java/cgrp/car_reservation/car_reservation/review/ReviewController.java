@@ -9,13 +9,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import java.util.List;
 
 /**
- * Class Name: Review Controller
- * Date of Code:
- * Programmer's Name:
+ * Class Name: ReviewController
+ * Date of Code: October 19, 2024
+ * Programmer's Name: Arthur
  *
  * Description: Provides the endpoints for front end for all things in regard to review.
  *
+ * Important Functions:
+ * -leaveReview: passed in a review data transfer object from the front end and creates a review in the database
  *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  *
  */
 

@@ -11,10 +11,16 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 /**
  * Class Name: Review
- * Date of Code:
- * Programmer's Name:
+ * Date of Code: October 19, 2024
+ * Programmer's Name: Arthur
  *
  * Description: Represents a review left by the user on the vehicle
+ *
+ * Important Functions: Getters and Setters
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
  *
  */
 
