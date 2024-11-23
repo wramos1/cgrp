@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/*
+/**
  * Module Name: Email.java
  *
- * Date of code: 11/21/2024
+ * Date of code: 10/9/2024
  *
  * Programmers Name: Arthur
  *

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/*
+/**
  * Module Name: EmailController.java
  *
- * Date of code: 11/21/2024
+ * Date of code: 11/5/2024
  *
  * Programmers Name: Arthur
  *

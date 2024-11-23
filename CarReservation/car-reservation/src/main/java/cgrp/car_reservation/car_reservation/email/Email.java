@@ -1,9 +1,9 @@
 package cgrp.car_reservation.car_reservation.email;
 
-/*
+/**
  * Module Name: Email.java
  *
- * Date of code: 11/21/2024
+ * Date of code: 11/5/2024
  *
  * Programmers Name: Arthur
  *
