@@ -53,7 +53,6 @@ import java.io.PrintWriter;
  * and backend run on different origins.
  *
  */
-
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,

@@ -10,6 +10,22 @@ import java.util.List;
  * are cheaper than the upper bound and more expensive
  * than the lower bound
  * */
+
+/**
+ * Class Name: FilterByUpperAndLowerBounds
+ * Date of Code: November 6, 2024
+ * Programmer's Name: Alberto S
+ *
+ * Description: Provides filter method implementation of filtering vehicles within a bounded range.
+ *
+ * Important Functions:
+ *  -filter: returns list of vehicles which are bounded within that specified price range
+ *
+ *  Data Structures: List of all system vehicles, ArrayList of vehicles who are within that specified range
+ *
+ *  Algorithms: Simple Linear Search and Comparison of Vehicle Price
+ *
+ */
 public class FilterByUpperAndLowerBounds implements VehicleFilter {
     private List<Vehicle> vehicles;
     private double upperBound;

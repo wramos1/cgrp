@@ -10,6 +10,20 @@ import java.util.UUID;
 
 import java.util.List;
 
+/**
+ * Class Name: VehicleService
+ * Date of Code:
+ * Programmer's Name:
+ *
+ * Description: Provides necessary logic for all functionality pertaining to vehicle class.
+ *
+ * Important Functions:
+ *  -filterByPrice: is inputted an upper and lower bound for price of vehicle, returns list of vehicles within those bounds
+ *  -filterByKeyword: is inputted a search keyword, returns list of vehicles who match that search keyword
+ *  -addReviewToVehicle: is inputted a review and adds the review to the vehicle
+ *  -setAllVehiclesToAvailable: sets all vehicles in the system to be available to be rented
+ *
+ */
 @Service
 public class VehicleService {
 

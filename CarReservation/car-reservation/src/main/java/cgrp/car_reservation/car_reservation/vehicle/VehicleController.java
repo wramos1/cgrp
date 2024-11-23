@@ -11,7 +11,16 @@ import java.util.List;
  * Date of Code:
  * Programmer's Name:
  *
- * Description: Provides endpoints to access
+ * Description: Provides access to endpoints from the front end to the back end for logic pertaining to vehicles
+ *
+ * Important Functions:
+ *  -getAllVehicles: returns all vehicles in a list
+ *  -getVehicleByPriceRange: returns list of vehicles between specified price range
+ *  -getVehiclesCheaperThan: returns list of vehicles cheaper than specified price
+ *  -getVehiclePricierThan: returns list of vehicles pricier than specified price
+ *  -getVehiclesByKeyword: returns list of vehicles who match that search keyword
+ *  -setAllVehiclesToAvailable: makes all vehicles in system available to be rented
+ *
  */
 @RestController
 @RequestMapping("/home")

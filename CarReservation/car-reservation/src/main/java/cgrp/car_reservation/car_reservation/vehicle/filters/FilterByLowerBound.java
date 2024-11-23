@@ -10,6 +10,18 @@ import java.util.List;
  * than the lower bound
  */
 
+/**
+ * Class Name: FilterByLowerBound
+ * Date of Code: November 6, 2024
+ * Programmer's Name: Alberto S
+ *
+ * Description: Provides filter implementation for filtering vehicles with respect to lower bound in price.
+ *
+ * Data Structures: List of all system Vehicles, ArrayList of vehicles who are in the filtering subset
+ *
+ * Algorithms: Simple Linear Search and Comparison of vehicle prices
+ *
+ */
 public class FilterByLowerBound implements VehicleFilter {
     private List<Vehicle> vehicles;
     private double lowerBound;

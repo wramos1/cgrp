@@ -10,6 +10,21 @@ import java.util.List;
  * in their search term
  */
 
+/**
+ * Class Name: FilterByKeyword
+ * Date of Code: November 18, 2024
+ * Programmer's Name: Arthur & Alberto S
+ *
+ * Description: Provides filter method implementation for filtering vehicles based on a search keyword
+ *
+ * Important Functions:
+ * -filter: inputted search keyword, returns a list of vehicles who match that keyword
+ *
+ * Data Structures: List of all vehicles in the system, ArrayList of vehicles who match that keyword filtering
+ *
+ * Algorithms: Linearly go through each of the vehicles in the system; for each vehicle check to see if the each keyword matches that vehicle, if so then do nothing, if not then break out loop and do not add that vehicle to subset of filtered vehicles
+ *
+ */
 public class FilterByKeyword implements VehicleFilter {
     private List<Vehicle> vehicles;
     public String keyword;
