@@ -20,6 +20,68 @@ import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+/**
+ * Class Name: WebSecurityConfig
+ * Date of Code: November 18, 2024
+ * Programmer's Name:
+ *
+ * Brief Description:
+ * This class configures Spring Security for the application. It sets up
+ * authentication and authorization
+ * rules, integrates custom handlers for login and logout, configures CORS
+ * policies, and manages session
+ * behavior. The configuration ensures secure access control while allowing
+ * cross-origin communication with
+ * the frontend hosted at http://localhost:3000.
+ *
+ * Important Functions:
+ * 1. passwordEncoder:
+ * - Input: None.
+ * - Output: PasswordEncoder object.
+ * - Description:
+ * Creates and returns a `BCryptPasswordEncoder` bean for securely hashing and
+ * verifying passwords.
+ *
+ * 2. corsConfigurationSource:
+ * - Input: None.
+ * - Output: CorsConfigurationSource object.
+ * - Description:
+ * Configures Cross-Origin Resource Sharing (CORS) to allow requests from the
+ * specified frontend
+ * origin (http://localhost:3000), along with allowed methods, headers, and
+ * credentials.
+ *
+ * 3. securityFilterChain:
+ * - Input: HttpSecurity object.
+ * - Output: SecurityFilterChain object.
+ * - Description:
+ * Configures the security filter chain with the following features:
+ * - Disables CSRF for simplicity (not recommended for production).
+ * - Sets up authorization rules to allow unauthenticated access to specific
+ * endpoints and restrict
+ * access to `/admin/**` to users with the "ADMIN" authority.
+ * - Configures custom login and logout handlers.
+ * - Manages session creation and limits simultaneous sessions to one per user.
+ *
+ * Key Customizations:
+ * - **CORS Configuration**: Ensures smooth interaction between the backend and
+ * frontend by allowing
+ * specific origins, methods, and headers.
+ * - **Custom Handlers**:
+ * - `CustomAuthenticationSuccessHandler`: Handles successful login events.
+ * - `CustomAuthenticationFailureHandler`: Handles failed login attempts.
+ * - `CustomLogoutSuccessHandler`: Provides a structured response on successful
+ * logout.
+ * - **Session Management**: Restricts simultaneous sessions and handles session
+ * expiration gracefully.
+ *
+ * Important Data Structures:
+ * - `CorsConfiguration` and `UrlBasedCorsConfigurationSource`: Used to define
+ * and register CORS rules.
+ * - `HttpSecurity`: Configures the security filter chain, managing
+ * authentication, authorization, and session handling.
+ */
+
 @EnableWebSecurity
 @Configuration
 public class WebSecurityConfig {
