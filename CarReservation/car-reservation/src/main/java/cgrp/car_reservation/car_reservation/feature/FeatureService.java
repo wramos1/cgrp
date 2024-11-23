@@ -5,6 +5,24 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Module Name: Email.java
+ *
+ * Date of code: 10/9/2024
+ *
+ * Programmers Name: Arthur
+ *
+ * Description: Service class with logic for features
+ *
+ * Functions:
+ *  -createNewFeature(): creates a new feature, takes a feature object
+ *  -getAllFeatures(): returns all feature objects
+ *
+ * Datastructures: N/A
+ *
+ */
+
+
 @Service
 public class FeatureService {
 

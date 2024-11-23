@@ -5,6 +5,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Month;
 
+/**
+ * Module Name: RevenueController.java<br>
+ *
+ * Date of code: 11/10/2024<br>
+ *
+ * Programmers Name: Alberto<br>
+ *
+ * Description: Controller class containing mappings for
+ * revenue<br>
+ *
+ * Functions:N/A<br>
+ *
+ * Datastructures: N/A<br>
+ */
 @RestController
 @RequestMapping("/admin")
 public class RevenueController {
