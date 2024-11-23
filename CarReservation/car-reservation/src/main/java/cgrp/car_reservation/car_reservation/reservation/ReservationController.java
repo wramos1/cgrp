@@ -15,6 +15,19 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * Class Name: ReservationController
+ * Date of Code:
+ * Programmer's Name:
+ *
+ * Description: Receives the endpoints from front end in regard to reservations .
+ *
+ * Important Data Structures: ReservationService, handles reservation logic by delegation from RestController class
+ *                            UserService, handles user logic
+ *
+ *
+ */
+
 @RestController
 @RequestMapping("/reservations")
 public class ReservationController {

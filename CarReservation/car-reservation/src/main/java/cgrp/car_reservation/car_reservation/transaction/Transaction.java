@@ -9,6 +9,10 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * 
+ */
+
 @Document(collection = "transactions")
 public class Transaction {
 
