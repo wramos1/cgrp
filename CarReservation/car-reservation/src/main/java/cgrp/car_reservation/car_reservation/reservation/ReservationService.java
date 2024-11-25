@@ -66,38 +66,6 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
-
-    public void createNewReservation(ReservationDto reservationDto) {
-        String currentUserName = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        User currentUser = userRepository.findByUsername(currentUserName);
-
-        Vehicle rentingVehicle = vehicleRepository.findByCustomVehicleID(reservationDto.getCustomVehicleId()); // gets the vehicle from the db
-
-        if (rentingVehicle.isCurrentlyRented() == false) // this is the case that it is available to be rented
-        {
-            String customReservationID = UUID.randomUUID().toString().substring(0, 12);
-
-            Reservation newReservation = new Reservation(customReservationID, currentUser, rentingVehicle, reservationDto.getEndDate(), reservationDto.getStartDate(), LocalDate.now());
-
-            // Save the reservation to the reservation repository
-            reservationRepository.save(newReservation);
-
-            rentingVehicle.setCurrentlyRented(true);
-
-            vehicleRepository.save(rentingVehicle); // saves the vehiclce with the updated field
-
-            currentUser.addReservation(newReservation); // adds the reservation to the user, the reservation at this point should have an objectID which db will use to refrence it
-
-            userRepository.save(currentUser); // saves the updated user object to the db
-
-            transactionService.createNewRentalTransaction(newReservation, null);
-
-        }
-
-
-    }
-
     /**
      * Creates new reservation, while also updating vehicle rental status and logging the reservation transaction. Updates business metrics following reservations and sends email verification for new reservation.
      *
@@ -116,7 +84,7 @@ public class ReservationService {
             String customReservationID = UUID.randomUUID().toString().substring(0, 12);// the UUID will be this long
 
             //creates reservation with params from user
-            Reservation reservation = new Reservation(customReservationID, user, vehicle, reservationDto.getEndDate(), reservationDto.getStartDate(), LocalDate.now());
+            Reservation reservation = new Reservation(customReservationID, user.getUsername(), vehicle, reservationDto.getEndDate(), reservationDto.getStartDate(), LocalDate.now());
 
             //sets vehicle currently rented to true
             vehicle.setCurrentlyRented(true);

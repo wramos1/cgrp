@@ -54,58 +54,11 @@ public class ReviewService {
     @Autowired
     private BusinessMetricsService businessMetricsService;
 
-    /*
-     * // calls on the repository layer object to create the document in the
-     * database
-     * public Review createReview(Review review)
-     * {
-     * reviewRepository.save(review); // saves the review in the database
-     * return review;
-     * }
-     * 
-     * // writes the review
-     * public Review writeReview(ReviewDTO reviewDTO, User currentUser)
-     * {
-     * Review newReview = new Review(reviewDTO.getReviewRating(),
-     * reviewDTO.getReviewBody(), currentUser);
-     * 
-     * return reviewRepository.save(newReview);
-     * }
-     * 
-     * public List<Review> userSpecificReviews(String lastName)
-     * {
-     * List<Review> allReviews = reviewRepository.findAll();
-     * 
-     * List<Review> userSpecificReviews = new ArrayList<Review>(); // allocate that
-     * new array list that will hold this specific user's reviews
-     * 
-     * for(Review currentReview : allReviews)
-     * {
-     * if(currentReview.getReviewLeaver().getUsername().equals(lastName))
-     * {
-     * userSpecificReviews.add(currentReview);
-     * }
-     * 
-     * }
-     * 
-     * return userSpecificReviews;
-     * }
-     */
-
     // leave a review; will save the review in the mongodb, and will have a refrence
     // to the vehicle the review is on
     public Review leaveReview(ReviewDTO reviewDTO) {
         Vehicle vehicleReviewIsOn = vehicleRepository.findByCustomVehicleID(reviewDTO.getCustomVehicleID()); // this
-                                                                                                             // should
-                                                                                                             // return
-                                                                                                             // the
-                                                                                                             // vehicle
-                                                                                                             // that we
-                                                                                                             // are
-                                                                                                             // leaving
-                                                                                                             // the
-                                                                                                             // review
-                                                                                                             // on
+                                                                                                             // should         // on
 
         // User tempUser = new User("FASTCARArthur", "hello", "arthur@csun.edu"); //
         // constructs a temporary user to test this with
@@ -132,11 +85,7 @@ public class ReviewService {
         Review currentReview = reviewRepository.findByCustomReviewID(customReviewID);
 
         vehicleService.addReviewToVehicle(reviewDTO.getCustomVehicleID(), currentReview); // this call to a method in
-                                                                                          // vehicle service should add
-                                                                                          // the recently created review
-                                                                                          // as a refrence in the
-                                                                                          // vehicle on which the review
-                                                                                          // is for
+                                                                                          // vehicle service should add         // is for
 
         userService.leaveNewReview(currentUser.getUsername(), currentReview); // adds the review to the user
 

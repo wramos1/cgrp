@@ -36,27 +36,6 @@ public class ReviewController {
     @Autowired // this will cause the auto injection dependcy
     private UserService userService;
 
-
-/*    @PostMapping("/newreview")
-    public Review createNewReview(@RequestBody Review newReview)
-    {
-        reviewService.createReview(newReview);
-
-        return newReview;
-    }
-
-    //
-    @PostMapping("/writereview")
-    public Review writeReview(@RequestBody ReviewDTO reviewDTO)
-    {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName(); // this gets the current logged in user, username
-
-        User currentUser = userService.getUserByUsername(username);
-
-
-        return reviewService.writeReview(reviewDTO, currentUser);
-    }*/
-
     // this is to write a review to a specific vehicle which is specified by its customVehicleID attribute
     @PostMapping("/leavereview")
     public Review leaveReview(@RequestBody ReviewDTO reviewDTO) // this is going to get the review DTO object and go from there
@@ -64,15 +43,13 @@ public class ReviewController {
         return reviewService.leaveReview(reviewDTO);
     }
 
+    // returns an array of reviews that a user has left
+    //takes no parameters, just requires that a user is
+    //logged in
     @GetMapping("/getMyReviews")
     public List<Review> getReviews( @AuthenticationPrincipal UserDetails userDetails)
     {
         return reviewService.userSpecificReviews(userDetails.getUsername());
-    }
-
-    @GetMapping("/hello")
-    private String hello(){
-        return "Hello";
     }
 
 }

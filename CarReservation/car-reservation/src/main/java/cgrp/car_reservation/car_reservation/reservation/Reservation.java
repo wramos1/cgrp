@@ -37,8 +37,7 @@ public class Reservation {
 
     private String customReservationID; // custom string ID for reservation
 
-    @DocumentReference
-    private User user;
+    private String username;
     @DocumentReference
     private Vehicle vehicle;
     @Setter
@@ -59,14 +58,13 @@ public class Reservation {
      *
      * Constructs the Reservation object<br>
      *
-     * @param user User making reservation<br>
      * @param vehicle Vehicle reservation is on<br>
      * @param endDate End date of reservation<br>
      * @param startDate Start date of reservation<br>
      * @param reservationDate Timestamp of when the reservation was made<br>
      */
-    public Reservation(User user, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate){
-        this.user = user;
+    public Reservation(String username, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate){
+        this.username = username;
         this.vehicle = vehicle;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -79,15 +77,14 @@ public class Reservation {
      *
      * Constructs the Reservation object<br>
      *
-     * @param user User making reservation<br>
      * @param vehicle Vehicle reservation is on<br>
      * @param endDate End date of reservation<br>
      * @param startDate Start date of reservation<br>
      * @param reservationDate Timestamp of when the reservation was made<br>
      */
-    public Reservation(String customReservationID, User user, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate) {
+    public Reservation(String customReservationID, String username, Vehicle vehicle, LocalDate endDate, LocalDate startDate, LocalDate reservationDate) {
         this.customReservationID = customReservationID;
-        this.user = user;
+        this.username = username;
         this.vehicle = vehicle;
         this.endDate = endDate;
         this.startDate = startDate;

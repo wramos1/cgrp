@@ -80,11 +80,9 @@ public class User {
     /**
      * Adds a reservation to a user object, using a one-to-many relationship.<br>
      * @param reservation Reservation that the user is making<br>
-     * @return true if reservation was successfully added<br>
      */
-    public boolean addReservation(Reservation reservation){
-
-        return this.reservations.add(reservation);
+    public void addReservation(Reservation reservation){
+        reservations.add(reservation);
     }
 
     /**
@@ -92,7 +90,7 @@ public class User {
      * @param reservation Reservation that the user is removing<br>
      */
     public void removeReservation(Reservation reservation){
-        this.reservations.remove(reservation);
+        reservations.remove(reservation);
     }
 
     /**
