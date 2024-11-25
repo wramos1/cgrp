@@ -47,7 +47,7 @@ public class paymentCardService {
     // will use Luhns Algorithm to verify if the card is a valid card through its card number
     public boolean verifyCard(paymentCard currentCard)
     {
-        String cardNumber = Integer.toString(currentCard.getCardNumber()); // converts the card number into a string so that it can be traversed and algorithm can be done
+        String cardNumber = currentCard.getCardNumber(); // converts the card number into a string so that it can be traversed and algorithm can be done
 
         int sum = 0; // sum is used in Luhn Algorithm which is a modulo algorithm to check if a card is valid
 

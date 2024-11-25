@@ -37,7 +37,7 @@ public class paymentCard {
     @Id
     private ObjectId cardID;
 
-    private int cardNumber;
+    private String cardNumber; //refactor to a string so that it can allow for neccesary number of digits
 
     private int cvv;
 
@@ -45,7 +45,7 @@ public class paymentCard {
 
     private String nameOnCard;
 
-    public paymentCard(String nameOnCard, int cvv, LocalDate expirationDate, int cardNumber, ObjectId cardID) {
+    public paymentCard(String nameOnCard, int cvv, LocalDate expirationDate, String cardNumber, ObjectId cardID) {
         this.nameOnCard = nameOnCard;
         this.cvv = cvv;
         this.expirationDate = expirationDate;
@@ -53,7 +53,7 @@ public class paymentCard {
         this.cardID = cardID;
     }
 
-    public paymentCard(String nameOnCard, int cvv, LocalDate expirationDate, int cardNumber) {
+    public paymentCard(String nameOnCard, int cvv, LocalDate expirationDate, String cardNumber) {
         this.nameOnCard = nameOnCard;
         this.cvv = cvv;
         this.expirationDate = expirationDate;
@@ -73,11 +73,11 @@ public class paymentCard {
         this.cardID = cardID;
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 

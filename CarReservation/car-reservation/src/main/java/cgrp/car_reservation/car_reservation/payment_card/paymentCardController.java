@@ -44,7 +44,7 @@ public class paymentCardController {
         paymentCardDTO tempcard = new paymentCardDTO();
 
         tempcard.setNameOnCard("Arthur");
-        tempcard.setCardNumber(15422485);
+        tempcard.setCardNumber("15422485");
         tempcard.setCvv(454);
         tempcard.setMonth(12);
         tempcard.setDay(11);
