@@ -71,7 +71,7 @@ public class ReviewService {
         String customReviewID = UUID.randomUUID().toString().replace("-", ""); // will replace the dashes in the UUID
                                                                                // with nothing
 
-        Review newReview = new Review(customReviewID, reviewDTO.getReviewRating(), reviewDTO.getReviewBody(),
+        Review newReview = new Review(customReviewID, (int)reviewDTO.getReviewRating(), reviewDTO.getReviewBody(),
                 currentUser.getUsername(), vehicleReviewIsOn); // constructs a review object with that in it
 
         reviewRepository.save(newReview); // saves the review to the repository

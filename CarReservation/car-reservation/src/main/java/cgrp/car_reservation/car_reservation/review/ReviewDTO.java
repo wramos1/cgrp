@@ -18,7 +18,7 @@ public class ReviewDTO {
 
     // String customReviewID; // this will be a custom ID that we can use to lookup this exact particular review witout using the object id that is mongodb specific
 
-    private double reviewRating;
+    private int reviewRating;
 
     private String reviewBody;
 
@@ -29,14 +29,14 @@ public class ReviewDTO {
 
     }
 
-    public ReviewDTO(double reviewRating, String reviewBody, String customVehicleID) {
+    public ReviewDTO(int reviewRating, String reviewBody, String customVehicleID) {
 
         this.reviewRating = reviewRating;
         this.reviewBody = reviewBody;
         this.customVehicleID = customVehicleID;
     }
 
-    public ReviewDTO(double reviewRating, String reviewBody) {
+    public ReviewDTO(int reviewRating, String reviewBody) {
         this.reviewRating = reviewRating;
         this.reviewBody = reviewBody;
     }
@@ -45,7 +45,7 @@ public class ReviewDTO {
         return reviewRating;
     }
 
-    public void setReviewRating(double reviewRating) {
+    public void setReviewRating(int reviewRating) {
         this.reviewRating = reviewRating;
     }
 

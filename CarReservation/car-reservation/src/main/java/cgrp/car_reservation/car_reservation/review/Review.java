@@ -32,7 +32,7 @@ public class Review {
 
     private String customReviewID; // this will be the custom review ID which is a string so we can access it from the code and from frontend unlike the mongodb id which is treated like a function
 
-    private double reviewRating;
+    private int reviewRating;
 
     private String reviewBody;
 
@@ -43,7 +43,7 @@ public class Review {
     @DocumentReference // allows the database schema of the review to refrence this particular vehicle and this annotation allows the compilier and the mongodb driver to do that automatically
     private Vehicle vehicleReviewIsOn;
 
-    public Review(String customReviewID, double reviewRating, String reviewBody, String reviewLeaverUsername, Vehicle vehicleReviewIsOn) {
+    public Review(String customReviewID, int reviewRating, String reviewBody, String reviewLeaverUsername, Vehicle vehicleReviewIsOn) {
         this.customReviewID = customReviewID;
         this.reviewRating = reviewRating;
         this.reviewBody = reviewBody;
@@ -95,7 +95,7 @@ public class Review {
         return reviewRating;
     }
 
-    public void setReviewRating(double reviewRating) {
+    public void setReviewRating(int reviewRating) {
         this.reviewRating = reviewRating;
     }
 
