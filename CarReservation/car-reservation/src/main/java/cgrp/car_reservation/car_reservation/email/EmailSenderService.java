@@ -136,7 +136,7 @@ public class EmailSenderService {
 
         reservationEmail.setSubject("Confirming your reservation from " + reservation.getStartDate().toString() + " to " + reservation.getEndDate().toString());
 
-        reservationEmail.setText("Hi " + reservation.getUser().getUsername() +
+        reservationEmail.setText("Hi " + reservation.getUsername() +
                  ", \n\nThank you for your business, we truly appreciate it. Below is a confirmation of your reservation: \n\n" + "Year: " +
                reservation.getVehicle().getYear() + "\nMake: " + reservation.getVehicle().getMake() + "\nModel: " + reservation.getVehicle().getModel() +
                 "\nReservation Duration: " + reservation.getStartDate().toString() + " - " + reservation.getEndDate().toString() + "\n\nFrom CGRP, we wish you the very best in your travels!");
@@ -158,7 +158,7 @@ public class EmailSenderService {
         cancelReservationEmail.setSubject("Confirming your reservation cancellation for " + reservation.getStartDate().toString() + " to " + reservation.getEndDate().toString());
 
 
-        cancelReservationEmail.setText("Hi " + reservation.getUser().getUsername() + ", \n\nNo worries in your cancellation. At CGRP we take our customer's priorities seriously and look forward to earning your business in the future! Below is a confirmation of the reservation you cancelled: \n\n"
+        cancelReservationEmail.setText("Hi " + reservation.getUsername() + ", \n\nNo worries in your cancellation. At CGRP we take our customer's priorities seriously and look forward to earning your business in the future! Below is a confirmation of the reservation you cancelled: \n\n"
         + "Year: " + reservation.getVehicle().getYear() + "\nMake: " + reservation.getVehicle().getMake() + "\nModel: " + reservation.getVehicle().getModel() +
                  "\nReservation Duration: " + reservation.getStartDate().toString() + " - " + reservation.getEndDate().toString());
 
@@ -176,7 +176,7 @@ public class EmailSenderService {
 
         modifiedReservationEmail.setSubject("Confirming your reservation modification for the " + modifiedReservation.getVehicle().getYear() + " " + modifiedReservation.getVehicle().getMake() + " " + modifiedReservation.getVehicle().getModel());
 
-        modifiedReservationEmail.setText("Hi " + modifiedReservation.getUser().getUsername() + ", \n\nBelow is a confirmation of your modified reservation: \n\n"
+        modifiedReservationEmail.setText("Hi " + modifiedReservation.getUsername() + ", \n\nBelow is a confirmation of your modified reservation: \n\n"
                                 + "Previous Reservation Duration: " + oldStartDate.toString() + " - " + oldEndDate.toString() +
                                 "\nNewly Modified Reservation Duration: " + modifiedReservation.getStartDate().toString() + " - " + modifiedReservation.getEndDate().toString());
 

@@ -82,8 +82,7 @@ public class ReservationController {
 
     @GetMapping("/myReservations")
     public List<Reservation> getUserReservations( @AuthenticationPrincipal UserDetails userDetails){
-        User user = userService.getUserbyUsername(userDetails.getUsername());
-        return reservationService.getUserReservations(user);
+        return reservationService.getUserReservations(userDetails.getUsername());
     }
 
     /*

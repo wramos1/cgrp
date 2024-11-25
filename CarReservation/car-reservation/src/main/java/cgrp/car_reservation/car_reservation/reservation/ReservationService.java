@@ -147,8 +147,8 @@ public class ReservationService {
         return "Something Went Wrong";
     }
 
-    public List<Reservation> getUserReservations(User user) {
+    public List<Reservation> getUserReservations(String username) {
 
-        return reservationRepository.findByUser(user);
+        return reservationRepository.findByUsername(username);
     }
 }

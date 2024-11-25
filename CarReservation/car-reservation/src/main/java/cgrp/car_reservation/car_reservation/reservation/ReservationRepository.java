@@ -23,7 +23,7 @@ import java.util.List;
  *
  */
 public interface ReservationRepository extends MongoRepository<Reservation, ObjectId> {
-    List<Reservation> findByUser(User user);
+    List<Reservation> findByUsername(String username);
 
     public Reservation findByCustomReservationID(String customReservationID);
 
