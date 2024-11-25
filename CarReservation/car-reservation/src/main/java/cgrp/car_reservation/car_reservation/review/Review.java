@@ -9,6 +9,21 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
+/**
+ * Class Name: Review<br>
+ * Date of Code: October 19, 2024<br>
+ * Programmer's Name: Arthur<br>
+ *
+ * Description: Represents a review left by the user on the vehicle<br>
+ *
+ * Important Functions: Getters and Setters<br>
+ *
+ * Data Structures: N/A<br>
+ *
+ * Algorithms: N/A<br>
+ *
+ */
+
 @Document(collection = "reviews") // specifies which colleciton the document will be stored in, in the db
 public class Review {
 

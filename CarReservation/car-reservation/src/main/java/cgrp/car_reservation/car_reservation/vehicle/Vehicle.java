@@ -12,6 +12,21 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class Name: Vehicle <br>
+ * Date of Code: 10/7/2024<br>
+ * Programmer's Name: Alberto S and Arthur<br>
+ *
+ * Description: Represents vehicle in the system which the user can rent.<br>
+ *
+ * Important Functions:<br>
+ *  -addReview: adds review to vehicle, input is a review<br>
+ *  -calculateNewVehicleRating: calculates new vehicle rating whenever a new review is added; input and output are void<br>
+ *
+ *  Data Structures: ArrayList of Reviews, ArrayList of Features<br>
+ *
+ *
+ */
 @Setter
 @Getter
 @Document(collection = "vehicles")
@@ -74,12 +89,21 @@ public class Vehicle {
 
 
     // will add a review to the list of reviews left on the vehicle
+
+    /**
+     * Adds review left on vehicle to vehicle
+     * @param newReview review that is left on vehicle
+     */
     public void addReview(Review newReview)
     {
         reviewsOfVehicle.add(newReview); // inserts the new review to the reviews that are left on that vehicle
     }
 
     // will calculate the average rating of the vehicle based on the cumulative ratings left from the review
+
+    /**
+     * Updates the average vehicle rating whenever a new review is added to a vehicle
+     */
     public void calculateNewVehicleRating()
     {
         double newRating = 0.0; // start the accumulator at zero

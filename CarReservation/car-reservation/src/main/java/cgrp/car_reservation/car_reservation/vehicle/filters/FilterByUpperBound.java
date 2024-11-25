@@ -11,6 +11,21 @@ import java.util.List;
 * the upper bound
 * */
 
+/**
+ * Class Name: FilterByUpperBound<br>
+ * Date of Code: November 6, 2024<br>
+ * Programmer's Name: Alberto S<br>
+ *
+ * Description: Provides filter method implementation for filtering vehicles with respect to an upper bound<br>
+ *
+ * Important Functions:<br>
+ *  -filter: returns list of vehicles who are less than or equal to the upper bound price value<br>
+ *
+ *  Data Structures: List of all system vehicles, ArrayList of vehicles who are in the filtering from the upper bound<br>
+ *
+ *  Algorithms: Simple Linear Search and Comparison of vehicle Price<br>
+ *
+ */
 public class FilterByUpperBound implements VehicleFilter {
     private List<Vehicle> vehicles;
     private double upperBound;

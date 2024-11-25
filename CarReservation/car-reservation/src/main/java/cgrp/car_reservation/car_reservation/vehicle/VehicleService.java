@@ -10,6 +10,20 @@ import java.util.UUID;
 
 import java.util.List;
 
+/**
+ * Class Name: VehicleService<br>
+ * Date of Code:10/7/2024<br>
+ * Programmer's Name: Alberto S and Arthur <br>
+ *
+ * Description: Provides necessary logic for all functionality pertaining to vehicle class.<br>
+ *
+ * Important Functions:<br>
+ *  -filterByPrice: is inputted an upper and lower bound for price of vehicle, returns list of vehicles within those bounds<br>
+ *  -filterByKeyword: is inputted a search keyword, returns list of vehicles who match that search keyword<br>
+ *  -addReviewToVehicle: is inputted a review and adds the review to the vehicle<br>
+ *  -setAllVehiclesToAvailable: sets all vehicles in the system to be available to be rented<br>
+ *
+ */
 @Service
 public class VehicleService {
 
@@ -75,6 +89,14 @@ public class VehicleService {
 
         vehicleRepository.save(currentVehicle); // save should instead of creating a new entry in the db, should update this vehicle's document in mongodb
 
+    }
+
+    public void setAllVehiclesToAvailable(){
+        List<Vehicle> vehicles = vehicleRepository.findAll();
+        for(Vehicle vehicle : vehicles) {
+            vehicle.setCurrentlyRented(false);
+            vehicleRepository.save(vehicle);
+        }
     }
 
 

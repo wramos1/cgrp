@@ -1,6 +1,19 @@
 package cgrp.car_reservation.car_reservation.review;
 
-// this will be a temporary data object that is used to transfer the data from front end to back end
+/**
+ * Class Name: ReviewDTO<br>
+ * Date of Code: October 19, 2024<br>
+ * Programmer's Name: Arthur<br>
+ *
+ * Description: Provides a data transfer object to transfer necessary review data from front end to back end to create a review<br>
+ *
+ * Important Functions: Getters and Setters<br>
+ *
+ * Data Structures: N/A<br>
+ *
+ * Algorithms: N/A<br>
+ *
+ */
 public class ReviewDTO {
 
     // String customReviewID; // this will be a custom ID that we can use to lookup this exact particular review witout using the object id that is mongodb specific

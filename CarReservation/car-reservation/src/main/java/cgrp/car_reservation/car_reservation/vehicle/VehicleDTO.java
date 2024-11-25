@@ -9,6 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 // this will be used temporarily whenever we are creating the objects in our intial phase
+
+/**
+ * ClassName: VehicleDTO<br>
+ * Date of Code: 10/23/2024<br>
+ * Programmer's Name: Arthur<br>
+ *
+ * Description: Temporary Data Transfer Object that was used to create the vehicles in our system<br>
+ *
+ * Important Functions: Getters and Setters<br>
+ *
+ * Data Structures: ArrayList for vehicle Features, ArrayList for reviews on the vehicle<br>
+ *
+ * Algorithms: N/A<br>
+ *
+ */
 public class VehicleDTO {
     private String make;
     private String model;

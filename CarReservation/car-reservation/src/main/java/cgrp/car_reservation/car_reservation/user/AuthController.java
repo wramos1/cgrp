@@ -8,6 +8,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Class Name: AuthController <br>
+ * Date of Code: October 7, 2024 <br>
+ * Programmer's Name: Alberto S<br>
+ *
+ * Description: Provides authentication for user and manger role in user class<br>
+ *
+ * Important Functions:<br>
+ * -registerUser: authenticates new user during registration<br>
+ * -registerManager: authenticates new manager during registration process<br>
+ *
+ * Data Structures: N/A<br>
+ *
+ * Algorithms: N/A<br>
+ */
 @Controller
 @RequestMapping("/")
 public class AuthController {

@@ -9,6 +9,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+/**
+ * Class Name: UserRegistration
+ * Date of Code: November 9, 2024
+ * Programmer's Name: Alberto S
+ *
+ * Description: Provides regisrtation for the user
+ *
+ * Important Functions:
+ * -register: returns user object and takes in user data transfer object
+ *
+ * Data Structures: N/A
+ *
+ * Algorithms: N/A
+ *
+ *
+ */
 @Component
 public class UserRegistration {
     private final UserRepository userRepository;

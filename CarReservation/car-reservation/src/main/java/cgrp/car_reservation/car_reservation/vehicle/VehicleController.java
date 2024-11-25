@@ -2,12 +2,27 @@ package cgrp.car_reservation.car_reservation.vehicle;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
+/**
+ * Class Name: VehicleController <br>
+ * Date of Code:10/7/2024<br>
+ * Programmer's Name: Alberto S<br>
+ *
+ * Description: Provides access to endpoints from the front end to the back end for logic pertaining to vehicles<br>
+ *
+ * Important Functions:<br>
+ *  -getAllVehicles: returns all vehicles in a list<br>
+ *  -getVehicleByPriceRange: returns list of vehicles between specified price range<br>
+ *  -getVehiclesCheaperThan: returns list of vehicles cheaper than specified price<br>
+ *  -getVehiclePricierThan: returns list of vehicles pricier than specified price<br>
+ *  -getVehiclesByKeyword: returns list of vehicles who match that search keyword<br>
+ *  -setAllVehiclesToAvailable: makes all vehicles in system available to be rented<br>
+ *
+ */
 @RestController
 @RequestMapping("/home")
 public class VehicleController {
@@ -65,6 +80,12 @@ public class VehicleController {
     public Vehicle getVehicleByCustomVehicleID(@PathVariable String customVehicleID)
     {
         return vehicleService.getVehicleByCustomVehicleID(customVehicleID);
+    }
+
+
+    @GetMapping("/reset")
+    public void setAllVehiclesToAvailable(){
+        vehicleService.setAllVehiclesToAvailable();
     }
 
 

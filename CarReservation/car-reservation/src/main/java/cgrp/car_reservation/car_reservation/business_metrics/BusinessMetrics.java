@@ -6,9 +6,29 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
-
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+* Module Name: Business Metrics.java<br>
+*
+* Date of code: 11/8/2024<br>
+*
+* Programmers Name: Arthur<br>
+*
+* Description: Entity class with fields containing useful
+* business information and statistics<br>
+*
+* Functions: Constructors for other services classes ease
+* of use<br>
+*
+* Datastructures: Array lists to store all vehicles<br>
+* currently rented and all low reviews on vehicles<br>
+*
+*  */
+
+
+
 
 @Document(collection = "businessMetrics")
 public class BusinessMetrics {
@@ -96,6 +116,16 @@ public class BusinessMetrics {
 
     public void addLowRatedReview(Review review) {
         this.getLowRatedReviewsToAddress().add(0, review); // Adds the review at the beginning of the list
+    }
+
+    public void addReservedVehicles(Vehicle vehicle)
+    {
+        this.getCurrentlyRentedVehicles().add(0, vehicle);
+    }
+
+    public void removeReservedVehicle(Vehicle vehicle)
+    {
+        this.getCurrentlyRentedVehicles().remove(vehicle); // should remove this vehicle from the currently rented
     }
 
 }

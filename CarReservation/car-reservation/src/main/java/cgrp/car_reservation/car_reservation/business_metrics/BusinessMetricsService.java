@@ -1,11 +1,39 @@
 package cgrp.car_reservation.car_reservation.business_metrics;
 
+import cgrp.car_reservation.car_reservation.reservation.Reservation;
 import cgrp.car_reservation.car_reservation.review.Review;
 import cgrp.car_reservation.car_reservation.review.ReviewRepository;
+import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+/**
+ *
+ * Module Name: BusinessMetricsService.java<br>
+ *
+ * Date of code: 11/13/2024<br>
+ *
+ * Programmers Name: Arthur<br>
+ *
+ * Description: Service class with logic for calculating
+ * business stats and info<br>
+ *
+ * Functions:<br>
+ *  -isLowReview(): tests if review is low<br>
+ *  -addPotentialLowReview(): adds review to array if low<br>
+ *  -getCurrentMetrics(): returns all business metric entities<br>
+ *  -addNewVehicleReservation(): adds reservation data
+ *      to business metric object<br>
+ *  -cancelledVehicleReservation(): updates business metric
+ *      object if reservation is cancelled<br>
+ *  -modifiedVehicleReservation(): updates business metric
+ *      object if reservation is modified<br>
+ *
+ * Datastructures: N/A<br>
+ *
+ */
 
 @Service
 public class BusinessMetricsService {
@@ -53,4 +81,72 @@ public class BusinessMetricsService {
         List<BusinessMetrics> businessMetrics = businessMetricsRepository.findAll();
         return businessMetrics.isEmpty() ? null : businessMetrics.get(0);
     }
+
+    // will add the vehicle that is being currently reserved to the list of vehicles that are currently being reserved in order for a manager to see it
+    public void addNewVehicleReservation(Reservation reservation)
+    {
+        List<BusinessMetrics> businessMetrics = businessMetricsRepository.findAll();
+
+        if(businessMetrics.isEmpty() == false) // this means that it has the business metric we want
+        {
+            int currentLifetimRentals = businessMetrics.get(0).getLifetimeNumRentals();
+            double totalRentalRevenue = businessMetrics.get(0).getTotalRentalRevenue();
+
+            currentLifetimRentals++;
+
+
+            businessMetrics.get(0).setLifetimeNumRentals(currentLifetimRentals); // increments the lifetime number of rentals
+
+            totalRentalRevenue += reservation.getChargeAmount(); // will add to the total rental revenue
+
+            businessMetrics.get(0).setTotalRentalRevenue(totalRentalRevenue);
+
+            businessMetrics.get(0).addReservedVehicles(reservation.getVehicle());
+
+            businessMetricsRepository.save(businessMetrics.get(0));
+        }
+
+    }
+
+
+    // will properly update the business metrics to indicate that the reservation has been cancelled
+    public void cancelledVehicleReservation(Reservation cancelledReservation)
+    {
+        List<BusinessMetrics> businessMetrics = businessMetricsRepository.findAll();
+
+        if(businessMetrics.isEmpty() == false)
+        {
+            businessMetrics.get(0).removeReservedVehicle(cancelledReservation.getVehicle());
+
+            double preCancelTotalRevenue = businessMetrics.get(0).getTotalRentalRevenue();
+            int preCancelLifetimeRentals = businessMetrics.get(0).getLifetimeNumRentals();
+
+            preCancelTotalRevenue -= cancelledReservation.getChargeAmount(); // subtracts the charge amount from the total revenue since it was cancelled it would not be "charged"
+            preCancelLifetimeRentals--;
+
+            businessMetrics.get(0).setTotalRentalRevenue(preCancelTotalRevenue); // updates the revenue from the cancellation
+            businessMetrics.get(0).setLifetimeNumRentals(preCancelLifetimeRentals);
+
+            businessMetricsRepository.save(businessMetrics.get(0));
+
+
+        }
+    }
+
+    // will modify the total lifetime revenue in the business metrics in order for it
+    public void modifiedVehicleReservation(double oldReservationCharge, double modifiedReservationCharge)
+    {
+        List<BusinessMetrics> businessMetrics = businessMetricsRepository.findAll();
+
+        if(businessMetrics.isEmpty() == false)
+        {
+            businessMetrics.get(0).setTotalRentalRevenue(businessMetrics.get(0).getTotalRentalRevenue() - oldReservationCharge); // subtracts the older reservation amount from the total lifetime revenue
+
+            businessMetrics.get(0).setTotalRentalRevenue(businessMetrics.get(0).getTotalRentalRevenue()+modifiedReservationCharge); // adds the new modified charge
+
+            businessMetricsRepository.save(businessMetrics.get(0));
+        }
+    }
+
+
 }

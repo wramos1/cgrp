@@ -1,5 +1,22 @@
 package cgrp.car_reservation.car_reservation.email;
 
+/**
+ * Module Name: Email.java<br>
+ *
+ * Date of code: 11/5/2024<br>
+ *
+ * Programmers Name: Arthur<br>
+ *
+ * Description: Entity class with email info<br>
+ *
+ * Functions: Constructors for other services classes ease
+ * of use<br>
+ *
+ * Datastructures: N/A<br>
+ *
+ *  */
+
+
 public class Email {
 
     private String emailReceiver;

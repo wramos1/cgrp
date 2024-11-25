@@ -14,6 +14,25 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * Class Name: ReservationController<br>
+ * Date of Code: October 7, 2024<br>
+ * Programmer's Name: Alberto S<br>
+ *
+ * Description: Receives the endpoints from front end in regard to reservations .<br>
+ *
+ * Important Functions:<br>
+ *  -createReservation: creates a vehicle rental reservation for the logged in user<br>
+ *  -modifyReservation: modifies reservation based on a new start date and end date for the vehicle rental reservation<br>
+ *  -cancelReservation: cancels specific reservation<br>
+ *
+ *
+ * Important Data Structures: ReservationService, handles reservation logic by delegation from RestController class<br>
+ *                            UserService, handles user logic<br>
+ *
+ *
+ */
+
 @RestController
 @RequestMapping("/reservations")
 public class ReservationController {
@@ -64,4 +83,13 @@ public class ReservationController {
         User user = userService.getUserbyUsername(userDetails.getUsername());
         return reservationService.getUserReservations(user);
     }
+
+    @PostMapping("/modify")
+   public String modifyReservation(@RequestBody ModifyReservationDTO modifyReservationDTO, @AuthenticationPrincipal UserDetails userDetails)
+    {
+
+        return reservationService.modifyReservation(modifyReservationDTO);
+    }
+
+
 }
