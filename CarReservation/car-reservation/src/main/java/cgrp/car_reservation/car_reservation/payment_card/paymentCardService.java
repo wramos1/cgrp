@@ -45,13 +45,14 @@ public class paymentCardService {
     }
 
     // will use Luhns Algorithm to verify if the card is a valid card through its card number
-    public Boolean verifyCard(paymentCard currentCard)
+    public boolean verifyCard(paymentCard currentCard)
     {
         String cardNumber = Integer.toString(currentCard.getCardNumber()); // converts the card number into a string so that it can be traversed and algorithm can be done
 
         int sum = 0; // sum is used in Luhn Algorithm which is a modulo algorithm to check if a card is valid
 
         int currentDigit = 0;
+
 
         // traverse through the card number to perform the algorithm
        for(int i = cardNumber.length()-2; i >= 0; i -= 2) // the update is two go every other digit starting from the right side
@@ -91,5 +92,13 @@ public class paymentCardService {
         return (sum % 10 == 0) ? true : false; // ternary operator to decide if the mod 10 of the sum is true or false will allow for it to be validated or invalidated card
     }
 
+    // will make sure that the card has a valid card number and that it is not expired
+    public boolean validCard(paymentCard currentUserCard)
+    {
+        if(currentUserCard.isCardExpired() == true || verifyCard(currentUserCard) == false)
+            return false;
+
+        return true;
+    }
 
 }

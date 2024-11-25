@@ -1,5 +1,6 @@
 package cgrp.car_reservation.car_reservation.reservation;
 
+import cgrp.car_reservation.car_reservation.payment_card.InvalidCardException;
 import cgrp.car_reservation.car_reservation.transaction.Transaction;
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserService;
@@ -61,7 +62,12 @@ public class ReservationController {
         } catch (VehicleNotAvailableException e) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        } catch (RuntimeException e) {
+        }
+        catch (InvalidCardException invalidCardException)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(invalidCardException.getMessage()); // returns an exception as an HTTP response to the front end to show that there is an error
+        }
+        catch (RuntimeException e) {
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
         }

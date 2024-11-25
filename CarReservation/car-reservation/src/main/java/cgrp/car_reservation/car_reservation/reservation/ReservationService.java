@@ -4,8 +4,10 @@ import cgrp.car_reservation.car_reservation.business_metrics.BusinessMetrics;
 import cgrp.car_reservation.car_reservation.business_metrics.BusinessMetricsService;
 import cgrp.car_reservation.car_reservation.email.EmailSenderService;
 
+import cgrp.car_reservation.car_reservation.payment_card.InvalidCardException;
 import cgrp.car_reservation.car_reservation.transaction.Transaction;
 import cgrp.car_reservation.car_reservation.transaction.TransactionService;
+import cgrp.car_reservation.car_reservation.payment_card.paymentCardService;
 
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserRepository;
@@ -68,6 +70,9 @@ public class ReservationService {
     @Autowired
     private TransactionService transactionService;
 
+    @Autowired
+    private paymentCardService  paymentCardService;
+
 
     private static final Logger logger = LoggerFactory.getLogger(ReservationService.class);
 
@@ -121,6 +126,13 @@ public class ReservationService {
             throw new RuntimeException("Vehicle not found");
         }//checks if vehicle is available this sets reservation fields
         if(!vehicle.isCurrentlyRented()){
+
+            // checks if the card is valid to proceed with the reservation; if not a valid card, it will throw the exception and the calling method of this method will catch it
+
+            if(paymentCardService.validCard(reservationDto.getUserCard()) == false) // if the card is not valid to make a payment
+            {
+                throw new InvalidCardException("Payment card is not valid to proceed with reservation. Please try again!"); // creates and throws a new invalid exception
+            }
 
 
             String customReservationID = UUID.randomUUID().toString().substring(0,12);// the UUID will be this long
