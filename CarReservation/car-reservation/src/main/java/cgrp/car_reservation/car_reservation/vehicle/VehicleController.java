@@ -2,10 +2,12 @@ package cgrp.car_reservation.car_reservation.vehicle;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/home")
 public class VehicleController {
@@ -43,6 +45,7 @@ public class VehicleController {
         return vehicleService.filterByPrice(lowerRange, null);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/keyword/{keyword}")
     public List<Vehicle> getVehiclesByKeyword(@PathVariable String keyword) // will return the vehicles to endpoint GET request the vehicles within that certain price range
     {

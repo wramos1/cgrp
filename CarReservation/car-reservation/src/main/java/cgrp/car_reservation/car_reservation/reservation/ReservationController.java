@@ -58,4 +58,10 @@ public class ReservationController {
         User user = userService.getUserbyUsername(userDetails.getUsername());
         return reservationService.cancelReservation(reservation, user);
     }
+
+    @GetMapping("/myReservations")
+    public List<Reservation> getUserReservations( @AuthenticationPrincipal UserDetails userDetails){
+        User user = userService.getUserbyUsername(userDetails.getUsername());
+        return reservationService.getUserReservations(user);
+    }
 }

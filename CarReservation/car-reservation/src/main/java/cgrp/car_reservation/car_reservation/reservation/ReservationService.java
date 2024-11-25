@@ -76,4 +76,9 @@ public class ReservationService {
             throw new RuntimeException("Reservation does not belong to this user.");
         throw new RuntimeException("Reservation does not exist.");
     }
+
+    public List<Reservation> getUserReservations(User user) {
+
+        return reservationRepository.findByUser(user);
+    }
 }
