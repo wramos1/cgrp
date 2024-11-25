@@ -15,7 +15,10 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.text.Normalizer;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 /**
  *
@@ -134,7 +137,7 @@ public class EmailSenderService {
         reservationEmail.setFrom("cgrpventures@gmail.com");
         reservationEmail.setTo("buffband2020@gmail.com");
 
-        reservationEmail.setSubject("Confirming your reservation from " + reservation.getStartDate().toString() + " to " + reservation.getEndDate().toString());
+        reservationEmail.setSubject("Confirming your reservation from " + reservation.getStartDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) + " to " + reservation.getEndDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
 
         reservationEmail.setText("Hi " + reservation.getUser().getUsername() +
                  ", \n\nThank you for your business, we truly appreciate it. Below is a confirmation of your reservation: \n\n" + "Year: " +
@@ -177,8 +180,8 @@ public class EmailSenderService {
         modifiedReservationEmail.setSubject("Confirming your reservation modification for the " + modifiedReservation.getVehicle().getYear() + " " + modifiedReservation.getVehicle().getMake() + " " + modifiedReservation.getVehicle().getModel());
 
         modifiedReservationEmail.setText("Hi " + modifiedReservation.getUser().getUsername() + ", \n\nBelow is a confirmation of your modified reservation: \n\n"
-                                + "Previous Reservation Duration: " + oldStartDate.toString() + " - " + oldEndDate.toString() +
-                                "\nNewly Modified Reservation Duration: " + modifiedReservation.getStartDate().toString() + " - " + modifiedReservation.getEndDate().toString());
+                                + "Previous Reservation Duration: " + oldStartDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) + " - " + oldEndDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) +
+                                "\nNewly Modified Reservation Duration: " + modifiedReservation.getStartDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) + " - " + modifiedReservation.getEndDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
 
         mailSender.send(modifiedReservationEmail);
 
