@@ -158,7 +158,7 @@ public class ReservationService {
             reservation = reservationRepository.save(reservation);
 
 
-            transactionService.createNewRentalTransaction(reservation, null); // will call transaction service to create transaction based on this reservation
+            transactionService.createNewRentalTransaction(reservation, reservationDto.getUserCard()); // will call transaction service to create transaction based on this reservation
 
             return reservation;
         } else {

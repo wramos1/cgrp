@@ -1,5 +1,6 @@
 package cgrp.car_reservation.car_reservation.reservation;
 
+import cgrp.car_reservation.car_reservation.payment_card.paymentCard;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
@@ -28,9 +29,12 @@ import java.util.Date;
 public class ReservationDto {
     @Setter
     private ObjectId userId;
-    private final String customVehicleId;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    private String customVehicleId;
+    private  LocalDate startDate;
+    private  LocalDate endDate;
+    private paymentCard userCard; // card used to make the payment for the reservation of the user
+
+
     public ReservationDto(ObjectId userId, String customVehicleId, LocalDate rentDate, LocalDate returnDate){
         this.userId = userId;
         this.customVehicleId = customVehicleId;
@@ -38,5 +42,15 @@ public class ReservationDto {
         this.endDate = returnDate;
     }
 
+    public ReservationDto(String customVehicleId, LocalDate startDate, LocalDate endDate, paymentCard userCard) {
+        this.customVehicleId = customVehicleId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.userCard = userCard;
+    }
 
+    public ReservationDto()
+    {
+
+    }
 }

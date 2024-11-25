@@ -30,9 +30,7 @@ public class paymentCardService {
 
     public paymentCard createNewPaymentCard(paymentCard card)
     {
-        cardRepository.save(card);
-
-        return card;
+        return cardRepository.save(card);
     }
 
     // creates a card object in the way the model is stored in db from the minimal information that was needed from the user in the front end

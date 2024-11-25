@@ -1,6 +1,7 @@
 package cgrp.car_reservation.car_reservation.transaction;
 
 
+import cgrp.car_reservation.car_reservation.payment_card.paymentCardService;
 import cgrp.car_reservation.car_reservation.reservation.Reservation;
 import cgrp.car_reservation.car_reservation.payment_card.paymentCard;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    @Autowired
+    private paymentCardService paymentCardService;
 
     /**
      * Creates a new rental transaction and properly saves the transaction in the database.<br>
@@ -39,7 +42,9 @@ public class TransactionService {
      */
     public void createNewRentalTransaction(Reservation transactionReservation,paymentCard cardOnTransaction)
     {
-        NewReservationTransaction newRentalTransaction = new NewReservationTransaction("New Vehicle Rental", LocalDateTime.now(), transactionReservation, cardOnTransaction); // creates a new rental transaction
+        paymentCard paymentCard = paymentCardService.createNewPaymentCard(cardOnTransaction); // this will now be the payment card with the object id so that @DocumentReference documentation can be used with it
+
+        NewReservationTransaction newRentalTransaction = new NewReservationTransaction("New Vehicle Rental", LocalDateTime.now(), transactionReservation, paymentCard); // creates a new rental transaction
 
         transactionRepository.save(newRentalTransaction);
 

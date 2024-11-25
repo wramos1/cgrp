@@ -60,6 +60,11 @@ public class paymentCard {
         this.cardNumber = cardNumber;
     }
 
+    public paymentCard()
+    {
+
+    }
+
     public ObjectId getCardID() {
         return cardID;
     }
