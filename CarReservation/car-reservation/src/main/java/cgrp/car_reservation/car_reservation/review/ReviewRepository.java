@@ -25,4 +25,5 @@ public interface ReviewRepository extends MongoRepository<Review, ObjectId> {
 
     public Review findByCustomReviewID(String customReviewID); // will query the db for the review with this custom reviewID
 
+    List<Review> findByReviewLeaverUsername(String username);
 }

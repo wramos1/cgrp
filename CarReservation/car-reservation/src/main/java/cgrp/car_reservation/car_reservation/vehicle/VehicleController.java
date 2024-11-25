@@ -60,7 +60,6 @@ public class VehicleController {
         return vehicleService.filterByPrice(lowerRange, null);
     }
 
-    @PreAuthorize("isAuthenticated()")
     @GetMapping("/keyword/{keyword}")
     public List<Vehicle> getVehiclesByKeyword(@PathVariable String keyword) // will return the vehicles to endpoint GET request the vehicles within that certain price range
     {

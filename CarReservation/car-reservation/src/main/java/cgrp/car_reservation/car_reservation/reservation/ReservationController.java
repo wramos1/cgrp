@@ -73,10 +73,12 @@ public class ReservationController {
 
     //cancels a users reservation, only needs the reservation object which can be accessed
     //from the users reservation array
+    /*
     public Reservation cancelReservation(Reservation reservation, @AuthenticationPrincipal UserDetails userDetails){
         User user = userService.getUserbyUsername(userDetails.getUsername());
         return reservationService.cancelReservation(reservation, user);
     }
+    */
 
     @GetMapping("/myReservations")
     public List<Reservation> getUserReservations( @AuthenticationPrincipal UserDetails userDetails){
@@ -84,12 +86,13 @@ public class ReservationController {
         return reservationService.getUserReservations(user);
     }
 
+    /*
     @PostMapping("/modify")
    public String modifyReservation(@RequestBody ModifyReservationDTO modifyReservationDTO, @AuthenticationPrincipal UserDetails userDetails)
     {
 
         return reservationService.modifyReservation(modifyReservationDTO);
     }
-
+    */
 
 }

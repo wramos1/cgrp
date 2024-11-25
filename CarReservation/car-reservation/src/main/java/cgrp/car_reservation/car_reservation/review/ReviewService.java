@@ -151,4 +151,7 @@ public class ReviewService {
         return currentReview;
     }
 
+    public List<Review> userSpecificReviews(String username) {
+        return reviewRepository.findByReviewLeaverUsername(username);
+    }
 }

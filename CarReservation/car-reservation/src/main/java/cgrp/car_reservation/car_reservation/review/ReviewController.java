@@ -3,6 +3,8 @@ package cgrp.car_reservation.car_reservation.review;
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -62,11 +64,11 @@ public class ReviewController {
         return reviewService.leaveReview(reviewDTO);
     }
 
-   /* @GetMapping("/getMyReviews/{lastName}")
-    public List<Review> getReviews(@PathVariable String lastName)
+    @GetMapping("/getMyReviews")
+    public List<Review> getReviews( @AuthenticationPrincipal UserDetails userDetails)
     {
-        return reviewService.userSpecificReviews(lastName);
-    }*/
+        return reviewService.userSpecificReviews(userDetails.getUsername());
+    }
 
     @GetMapping("/hello")
     private String hello(){

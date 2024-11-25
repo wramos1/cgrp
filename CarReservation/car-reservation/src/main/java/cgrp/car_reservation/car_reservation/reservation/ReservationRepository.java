@@ -24,7 +24,6 @@ import java.util.List;
  */
 public interface ReservationRepository extends MongoRepository<Reservation, ObjectId> {
     List<Reservation> findByUser(User user);
-    Reservation findByUser(User user);
 
     public Reservation findByCustomReservationID(String customReservationID);
 
