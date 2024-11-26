@@ -1,6 +1,5 @@
 package cgrp.car_reservation.car_reservation.vehicle;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,29 +40,10 @@ public class VehicleController {
         return vehicleService.getAllVehicles();
     }
 
-
-    @GetMapping("/priceRange/{lowerRange}/{upperRange}")
-    public List<Vehicle> getVehicleByPriceRange(@PathVariable double lowerRange, @PathVariable double upperRange) // will return the vehicles to endpoint GET request the vehicles within that certain price range
+    @PostMapping("/keyword")
+    public List<Vehicle> getVehiclesByKeyword(@RequestBody SearchDto searchDto) // will return the vehicles to endpoint GET request the vehicles within that certain price range
     {
-        return vehicleService.filterByPrice(lowerRange, upperRange);
-    }
-
-    @GetMapping("/mostExpensive/{upperRange}")
-    public List<Vehicle> getVehicleCheaperThan(@PathVariable double upperRange) // will return the vehicles to endpoint GET request the vehicles within that certain price range
-    {
-        return vehicleService.filterByPrice(null, upperRange);
-    }
-
-    @GetMapping("/cheapest/{lowerRange}")
-    public List<Vehicle> getVehiclePricierThan(@PathVariable double lowerRange) // will return the vehicles to endpoint GET request the vehicles within that certain price range
-    {
-        return vehicleService.filterByPrice(lowerRange, null);
-    }
-
-    @GetMapping("/keyword/{keyword}")
-    public List<Vehicle> getVehiclesByKeyword(@PathVariable String keyword) // will return the vehicles to endpoint GET request the vehicles within that certain price range
-    {
-        return vehicleService.filterByKeyword(keyword);
+        return vehicleService.filterByKeyword(searchDto);
     }
 
     // create a new car to utilize the UUID

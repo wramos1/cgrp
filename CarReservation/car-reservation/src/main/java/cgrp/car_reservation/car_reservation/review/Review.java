@@ -43,6 +43,8 @@ public class Review {
     @DocumentReference // allows the database schema of the review to refrence this particular vehicle and this annotation allows the compilier and the mongodb driver to do that automatically
     private Vehicle vehicleReviewIsOn;
 
+
+
     public Review(String customReviewID, double reviewRating, String reviewBody, String reviewLeaverUsername, Vehicle vehicleReviewIsOn) {
         this.customReviewID = customReviewID;
         this.reviewRating = reviewRating;

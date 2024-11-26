@@ -2,7 +2,6 @@ package cgrp.car_reservation.car_reservation.vehicle;
 
 import cgrp.car_reservation.car_reservation.review.Review;
 import cgrp.car_reservation.car_reservation.review.ReviewRepository;
-import cgrp.car_reservation.car_reservation.vehicle.filters.*;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,24 +41,9 @@ public class VehicleService {
         return vehicleRepository.findById(id).orElse(null);
     }
 
-    // query based on a price range and has the logic inside of the function/method
-    public List<Vehicle> filterByPrice(Double lowerBound, Double upperBound)
-    {
-        List<Vehicle> vehicles = vehicleRepository.findAll();
-        if (lowerBound == null && upperBound == null) {
-            return vehicles;
-        } else if (lowerBound == null) {
-            return new FilterByUpperBound(vehicles, upperBound).filter();
-        } else if (upperBound == null) {
-            return new FilterByLowerBound(vehicles, lowerBound).filter();
-        } else {
-            return new FilterByUpperAndLowerBounds(vehicles, lowerBound, upperBound).filter();
-        }
-    }
 
-    public List<Vehicle> filterByKeyword(String keyword){
-        List<Vehicle> vehicles = vehicleRepository.findAll();
-        return new FilterByKeyword(vehicles, keyword).filter();
+    public List<Vehicle> filterByKeyword(SearchDto searchDto){
+        return new FilterByKeyword(vehicleRepository.findAll(), searchDto).filterResult();
     }
 
     // this will be used by us to create the new vehicle and generate the uniqueID for it
