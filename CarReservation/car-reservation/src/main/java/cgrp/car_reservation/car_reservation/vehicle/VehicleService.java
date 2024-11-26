@@ -42,7 +42,7 @@ public class VehicleService {
     }
 
 
-    public List<Vehicle> filterByKeyword(searchDto searchDto){
+    public List<Vehicle> filterByKeyword(SearchDto searchDto){
         return new FilterByKeyword(vehicleRepository.findAll(), searchDto).filterResult();
     }
 

@@ -1,6 +1,5 @@
 package cgrp.car_reservation.car_reservation.vehicle;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +40,7 @@ public class VehicleController {
     }
 
     @PostMapping("/keyword")
-    public List<Vehicle> getVehiclesByKeyword(@RequestBody searchDto searchDto) // will return the vehicles to endpoint GET request the vehicles within that certain price range
+    public List<Vehicle> getVehiclesByKeyword(@RequestBody SearchDto searchDto) // will return the vehicles to endpoint GET request the vehicles within that certain price range
     {
         return vehicleService.filterByKeyword(searchDto);
     }

@@ -1,8 +1,5 @@
 package cgrp.car_reservation.car_reservation.vehicle;
 
-import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
-import cgrp.car_reservation.car_reservation.vehicle.searchDto;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,12 +25,12 @@ import java.util.List;
  *
  */
 public class FilterByKeyword {
-    private List<Vehicle> vehicles;
-    private String[] makeSearchParams;
-    private String[] typeSearchParams;
-    private String[] keywordSearchParams;
+    private final List<Vehicle> vehicles;
+    private final String[] makeSearchParams;
+    private final String[] typeSearchParams;
+    private final String[] keywordSearchParams;
 
-    public FilterByKeyword (List<Vehicle> vehicles, searchDto searchDto){
+    public FilterByKeyword (List<Vehicle> vehicles, SearchDto searchDto){
         this.vehicles = vehicles;
         this.makeSearchParams = searchDto.getMakes();
         this.typeSearchParams = searchDto.getTypes();
@@ -41,58 +38,35 @@ public class FilterByKeyword {
 
     }
 
-    // come up with algorithm that adds all of the keywords, and singles it down
-    // make something with true
-
-
+    /**
+     * Returns specific user based on query by username.<br>
+     * @param vehicleSubset an array of vehicle objects<br>
+     * @param searchParams an array of strings that you want the vehicles to include<br>
+     * @return an array of vehicles that matched at least one of the search params<br>
+     */
     public List<Vehicle> filter(List<Vehicle> vehicleSubset, String[] searchParams){
+
+        if(searchParams.length==0)
+            return vehicleSubset;
+
         List<Vehicle> approvedVehicles = new ArrayList<>();
 
         for(Vehicle vehicle : vehicleSubset){
-            if(Arrays.stream(makeSearchParams).anyMatch(vehicle.getVehicleSearchTerm()::contains)){
+            if(Arrays.stream(searchParams).anyMatch(vehicle.getVehicleSearchTerm()::contains)){
                 approvedVehicles.add(vehicle);
             }
         }
-        System.out.println(approvedVehicles);
+
         return  approvedVehicles;
     }
 
+    /**
+     * uses filter to filter vehicles for CGRP<br>
+     * @return List of vehicles that matched the searchParams
+     * of make, type, and keyword specified in searchDto<br>
+     */
     public List<Vehicle> filterResult(){
 
         return filter(filter(filter(vehicles,makeSearchParams),typeSearchParams),keywordSearchParams);
     }
-
-
-
-//    @Override
-//    public List<Vehicle> filter() {
-//        List<Vehicle> approvedVehicles = new ArrayList<>();
-//        boolean currentValidSearchedVehicle = true;
-//
-//        for(Vehicle vehicle : vehicles){
-//
-//            currentValidSearchedVehicle = true;
-//
-//            for(String keywordToken : tokenizedKeyword)
-//            {
-//                if(vehicle.getVehicleSearchTerm().contains(keywordToken))
-//                {
-//                    // does nothing
-//                }
-//                else
-//                {
-//                    currentValidSearchedVehicle = false; // this will set the boolean value to false, so it will make it know that this car
-//                    break;
-//                }
-//            }
-//
-//            // if it is true, this means that it has all of the keywords, not just one of them
-//            if(currentValidSearchedVehicle == true)
-//            {
-//                approvedVehicles.add(vehicle);
-//            }
-//
-//        }
-//        return approvedVehicles;
-//    }
 }
