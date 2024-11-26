@@ -37,7 +37,7 @@ public class paymentCard {
     @Id
     private ObjectId cardID;
 
-    private int cardNumber;
+    private String cardNumber; //refactor to a string so that it can allow for neccesary number of digits
 
     private int cvv;
 
@@ -45,7 +45,7 @@ public class paymentCard {
 
     private String nameOnCard;
 
-    public paymentCard(String nameOnCard, int cvv, LocalDate expirationDate, int cardNumber, ObjectId cardID) {
+    public paymentCard(String nameOnCard, int cvv, LocalDate expirationDate, String cardNumber, ObjectId cardID) {
         this.nameOnCard = nameOnCard;
         this.cvv = cvv;
         this.expirationDate = expirationDate;
@@ -53,11 +53,16 @@ public class paymentCard {
         this.cardID = cardID;
     }
 
-    public paymentCard(String nameOnCard, int cvv, LocalDate expirationDate, int cardNumber) {
+    public paymentCard(String nameOnCard, int cvv, LocalDate expirationDate, String cardNumber) {
         this.nameOnCard = nameOnCard;
         this.cvv = cvv;
         this.expirationDate = expirationDate;
         this.cardNumber = cardNumber;
+    }
+
+    public paymentCard()
+    {
+
     }
 
     public ObjectId getCardID() {
@@ -68,11 +73,11 @@ public class paymentCard {
         this.cardID = cardID;
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
@@ -100,7 +105,7 @@ public class paymentCard {
         this.cvv = cvv;
     }
 
-    // will comapre the expiration date of the card with the current date to see if the card is expired
+    // will compare the expiration date of the card with the current date to see if the card is expired
     public Boolean isCardExpired()
     {
         LocalDate currentDate = LocalDate.now(); // creates a local date object with the current date in it
