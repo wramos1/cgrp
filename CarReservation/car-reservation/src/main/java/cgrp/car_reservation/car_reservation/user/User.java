@@ -90,7 +90,7 @@ public class User {
      * @param reservation Reservation that the user is removing<br>
      */
     public void removeReservation(Reservation reservation){
-        reservations.remove(reservation);
+        this.reservations.remove(reservation);
     }
 
     /**

@@ -45,6 +45,9 @@ public class ReservationController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ReservationRepository reservationRepository;
+
     private static final Logger logger = LoggerFactory.getLogger(ReservationController.class);
     //creating a new reservation
     @PostMapping("/reserve")
@@ -98,4 +101,18 @@ public class ReservationController {
     public List<Reservation> getUserReservations( @AuthenticationPrincipal UserDetails userDetails){
         return reservationService.getUserReservations(userDetails.getUsername());
     }
+
+    // will be used by the manager to check back in vehicles
+    @PostMapping("/{checkin}")
+    public void checkVehicleBackIn(@PathVariable String checkin)
+    {
+        reservationService.checkVehicleBackIn(checkin);
+    }
+
+    @GetMapping("/{id}")
+    public Reservation getReservationCustomID(@PathVariable String id)
+    {
+        return reservationRepository.findByCustomReservationID(id);
+    }
+
 }

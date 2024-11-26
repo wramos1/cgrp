@@ -245,4 +245,32 @@ public class ReservationService {
         return reservationRepository.findByUsername(username);
     }
 
+    public void checkVehicleBackIn(String checkin)
+    {
+        Reservation checkInReservation = reservationRepository.findByCustomReservationID(checkin);
+
+        Vehicle checkInVehicle = vehicleRepository.findByCustomVehicleID(checkInReservation.getVehicle().getCustomVehicleID());
+
+        User userToReservationBelongs = userRepository.findByUsername(checkInReservation.getUsername()); // gets the user that the reservation belongs to
+
+        checkInVehicle.setCurrentlyRented(false); // sets it to false so that it is no longer currently being rented and that it can be reserved again
+
+        
+
+        userToReservationBelongs.removeReservation(checkInReservation); // removes the reservation from the user
+
+        for(Reservation reservation : userToReservationBelongs.getReservations())
+        {
+            System.out.println(reservation.getCustomReservationID());
+        }
+
+        vehicleRepository.save(checkInVehicle); // updates that vehicle in the db
+
+        userRepository.save(userToReservationBelongs); // updates the user in the db
+
+        reservationRepository.delete(checkInReservation); // deletes the reservation from the user, which essentially gets rid of it and checks the user back in
+
+
+    }
+
 }
