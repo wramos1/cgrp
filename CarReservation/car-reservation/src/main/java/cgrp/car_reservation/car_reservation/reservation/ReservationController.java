@@ -94,5 +94,8 @@ public class ReservationController {
         return reservationService.modifyReservation(modifyReservationDTO);
     }
 
-
+    @GetMapping("/myReservations")
+    public List<Reservation> getUserReservations( @AuthenticationPrincipal UserDetails userDetails){
+        return reservationService.getUserReservations(userDetails.getUsername());
+    }
 }
