@@ -145,6 +145,7 @@ public class ReservationService {
             vehicle.setCurrentlyRented(true);
             vehicleRepository.save(vehicle);
 
+            reservation = reservationRepository.save(reservation); // to get the obejct id, to save to user
             //user method for adding reservation to its array
             user.addReservation(reservation); // this is not adding the reservation to the user, which is causing error in the canceling of the reservation
 
@@ -168,7 +169,6 @@ public class ReservationService {
             userRepository.save(user);
 
 
-            reservation = reservationRepository.save(reservation);
 
 
             transactionService.createNewRentalTransaction(reservation, reservationDto.getUserCard()); // will call transaction service to create transaction based on this reservation
