@@ -250,13 +250,21 @@ public class ReservationService {
     {
         Reservation checkInReservation = reservationRepository.findByCustomReservationID(checkin);
 
+        // throws an exception if the reservation id is entered in improperly
+        if(checkInReservation == null)
+            throw new InvalidReservationException("Reservation ID is invalid. Try again.");
+
         Vehicle checkInVehicle = vehicleRepository.findByCustomVehicleID(checkInReservation.getVehicle().getCustomVehicleID());
 
         User userToReservationBelongs = userRepository.findByUsername(checkInReservation.getUsername()); // gets the user that the reservation belongs to
 
+        emailSenderService.checkBackInVerificationEmail(checkInReservation);
+
         businessMetricsService.checkedBackInVehicleReservation(checkInVehicle); // should remove it from the list of currently renetd vehicles
 
         checkInVehicle.setCurrentlyRented(false); // sets it to false so that it is no longer currently being rented and that it can be reserved again
+
+
 
         PrintStream cout = System.out;
 

@@ -189,4 +189,19 @@ public class EmailSenderService {
 
     }
 
+    public void checkBackInVerificationEmail(Reservation checkBackReservation)
+    {
+        SimpleMailMessage checkBackInEmail = new SimpleMailMessage();
+
+        checkBackInEmail.setFrom("cgrpventures@gmail.com");
+        checkBackInEmail.setTo("buffband2020@gmail.com");
+        checkBackInEmail.setSubject("Confirming your check back in for the " + checkBackReservation.getVehicle().getYear() + " " + checkBackReservation.getVehicle().getMake() + " " +  checkBackReservation.getVehicle().getModel());
+        checkBackInEmail.setText("Hi " + checkBackReservation.getUsername() + ", \n\nThank you for your business, we truly appreciate it! This is a confirmation that the "
+         + checkBackReservation.getVehicle().getYear() + " " + checkBackReservation.getVehicle().getMake() + " " + checkBackReservation.getVehicle().getModel() + " from " + checkBackReservation.getStartDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) + " to " + checkBackReservation.getEndDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) +
+         " has been checked back in on our end! We hope to serve your needs again soon!");
+
+        mailSender.send(checkBackInEmail);
+
+    }
+
 }

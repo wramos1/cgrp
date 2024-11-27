@@ -5,6 +5,7 @@ import cgrp.car_reservation.car_reservation.transaction.Transaction;
 import cgrp.car_reservation.car_reservation.user.User;
 import cgrp.car_reservation.car_reservation.user.UserService;
 import cgrp.car_reservation.car_reservation.vehicle.VehicleNotAvailableException;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -104,9 +105,19 @@ public class ReservationController {
 
     // will be used by the manager to check back in vehicles
     @PostMapping("/{checkin}")
-    public void checkVehicleBackIn(@PathVariable String checkin)
+    public ResponseEntity<String> checkVehicleBackIn(@PathVariable String checkin)
     {
-        reservationService.checkVehicleBackIn(checkin);
+        // will catch the exception if thrown by the service object
+        try
+        {
+            reservationService.checkVehicleBackIn(checkin);
+            return ResponseEntity.status(HttpStatus.OK).body("Vehicle checked in properly!");
+        }
+        catch (InvalidReservationException reservationException)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(reservationException.getMessage());
+        }
+
     }
 
     @GetMapping("/{id}")
