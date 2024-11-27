@@ -4,6 +4,7 @@ import cgrp.car_reservation.car_reservation.email.Email;
 import cgrp.car_reservation.car_reservation.reservation.Reservation;
 import cgrp.car_reservation.car_reservation.review.Review;
 import cgrp.car_reservation.car_reservation.user.User;
+import cgrp.car_reservation.car_reservation.user.UserService;
 import jakarta.activation.DataSource;
 import jakarta.activation.FileDataSource;
 import jakarta.mail.internet.MimeMessage;
@@ -44,6 +45,9 @@ public class EmailSenderService {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    @Autowired
+    private UserService userService;
 
     public void sendVerificationEmail(Email email) {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -105,7 +109,7 @@ public class EmailSenderService {
             MimeMessageHelper reviewEmailHelper = new MimeMessageHelper(reviewEmail, true);
 
             reviewEmailHelper.setFrom("cgrpventures@gmail.com");
-            reviewEmailHelper.setTo("buffband2020@gmail.com");
+            reviewEmailHelper.setTo(reviewLeaver.getEmail());
             reviewEmail.setSubject("Confirming the review you left on the " + review.getVehicleReviewIsOn().getYear()
                     + " " + review.getVehicleReviewIsOn().getMake() + " " + review.getVehicleReviewIsOn().getModel());
 
@@ -119,7 +123,7 @@ public class EmailSenderService {
                         + "Rating: " + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
             }
 
-            reviewEmailHelper.addAttachment("2025.png", new File("C:\\Users\\artla\\Downloads\\2025.png"));
+           // reviewEmailHelper.addAttachment("2025.png", new File("C:\\Users\\artla\\Downloads\\2025.png"));
 
             mailSender.send(reviewEmail);
 
@@ -133,9 +137,10 @@ public class EmailSenderService {
     public void reservationVerificationEmail(Reservation reservation)
     {
         SimpleMailMessage reservationEmail = new SimpleMailMessage();
+        User user = userService.getUserByUsername(reservation.getUsername());
 
         reservationEmail.setFrom("cgrpventures@gmail.com");
-        reservationEmail.setTo("buffband2020@gmail.com");
+        reservationEmail.setTo(user.getEmail());
 
         reservationEmail.setSubject("Confirming your reservation from " + reservation.getStartDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) + " to " + reservation.getEndDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
 
@@ -156,16 +161,17 @@ public class EmailSenderService {
     public void cancelReservationVerificationEmail(Reservation reservation)
     {
         SimpleMailMessage cancelReservationEmail = new SimpleMailMessage();
+        User user = userService.getUserByUsername(reservation.getUsername());
 
         cancelReservationEmail.setFrom("cgrpventures@gmail.com");
-        cancelReservationEmail.setTo("buffband2020@gmail.com");
+        cancelReservationEmail.setTo(user.getEmail());
 
-        cancelReservationEmail.setSubject("Confirming your reservation cancellation for " + reservation.getStartDate().toString() + " to " + reservation.getEndDate().toString());
+        cancelReservationEmail.setSubject("Confirming your reservation cancellation for " + reservation.getStartDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) + " to " + reservation.getEndDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
 
 
         cancelReservationEmail.setText("Hi " + reservation.getUsername() + ", \n\nNo worries in your cancellation. At CGRP we take our customer's priorities seriously and look forward to earning your business in the future! Below is a confirmation of the reservation you cancelled: \n\n"
         + "Year: " + reservation.getVehicle().getYear() + "\nMake: " + reservation.getVehicle().getMake() + "\nModel: " + reservation.getVehicle().getModel() +
-                 "\nReservation Duration: " + reservation.getStartDate().toString() + " - " + reservation.getEndDate().toString());
+                 "\nReservation Duration: " + reservation.getStartDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) + " - " + reservation.getEndDate().format(DateTimeFormatter.ofLocalizedDate((FormatStyle.FULL))));
 
         mailSender.send(cancelReservationEmail);
 
@@ -175,9 +181,10 @@ public class EmailSenderService {
     public void modifiedReservationVerificationEmail(LocalDate oldStartDate, LocalDate oldEndDate, Reservation modifiedReservation)
     {
         SimpleMailMessage modifiedReservationEmail = new SimpleMailMessage();
+        User user = userService.getUserByUsername(modifiedReservation.getUsername());
 
         modifiedReservationEmail.setFrom("cgrpventures@gmail.com");
-        modifiedReservationEmail.setTo("buffband2020@gmail.com");
+        modifiedReservationEmail.setTo(user.getEmail());
 
         modifiedReservationEmail.setSubject("Confirming your reservation modification for the " + modifiedReservation.getVehicle().getYear() + " " + modifiedReservation.getVehicle().getMake() + " " + modifiedReservation.getVehicle().getModel());
 
@@ -192,9 +199,10 @@ public class EmailSenderService {
     public void checkBackInVerificationEmail(Reservation checkBackReservation)
     {
         SimpleMailMessage checkBackInEmail = new SimpleMailMessage();
+        User user = userService.getUserByUsername(checkBackReservation.getUsername());
 
         checkBackInEmail.setFrom("cgrpventures@gmail.com");
-        checkBackInEmail.setTo("buffband2020@gmail.com");
+        checkBackInEmail.setTo(user.getEmail());
         checkBackInEmail.setSubject("Confirming your check back in for the " + checkBackReservation.getVehicle().getYear() + " " + checkBackReservation.getVehicle().getMake() + " " +  checkBackReservation.getVehicle().getModel());
         checkBackInEmail.setText("Hi " + checkBackReservation.getUsername() + ", \n\nThank you for your business, we truly appreciate it! This is a confirmation that the "
          + checkBackReservation.getVehicle().getYear() + " " + checkBackReservation.getVehicle().getMake() + " " + checkBackReservation.getVehicle().getModel() + " from " + checkBackReservation.getStartDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) + " to " + checkBackReservation.getEndDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) +

@@ -204,6 +204,8 @@ public class ReservationService {
 
             transactionService.createNewTransaction(reservation, "cancel");
 
+            emailSenderService.cancelReservationVerificationEmail(reservation);
+
             return ResponseEntity.status(HttpStatus.OK).body("Vehicle Reservation Successfully Cancelled");
         }
 
