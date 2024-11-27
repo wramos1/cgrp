@@ -117,4 +117,13 @@ public class Vehicle {
 
     }
 
+    // will compare the unique vehicle ids to make sure that they are the same vehicle
+    public boolean equals(Vehicle vehicle)
+    {
+        if(this.getCustomVehicleID().equals(vehicle.customVehicleID))
+            return true;
+        else
+            return false;
+    }
+
 }

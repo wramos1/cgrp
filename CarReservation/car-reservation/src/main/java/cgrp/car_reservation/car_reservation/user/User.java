@@ -89,8 +89,17 @@ public class User {
      *  Removes a reservation from a user object.<br>
      * @param reservation Reservation that the user is removing<br>
      */
-    public void removeReservation(Reservation reservation){
-        this.reservations.remove(reservation);
+    public boolean removeReservation(Reservation reservation){
+
+        for(int i = 0; i < reservations.size(); i++)
+        {
+            if(reservation.equals(reservations.get(i))) // if the unique reservation id matches, then it will be considered to be the same reservation, this is to bypass the fact that java compares like pointers instead of by the member values of its attributes
+            {
+                reservations.remove(i); // removes the object at that index
+                return true; // returns true to indicate that the reservation has been removed
+            }
+        }
+        return false; // returns false to indicate that the reservation has not been removed
     }
 
     /**

@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -253,11 +254,17 @@ public class ReservationService {
 
         User userToReservationBelongs = userRepository.findByUsername(checkInReservation.getUsername()); // gets the user that the reservation belongs to
 
+        businessMetricsService.checkedBackInVehicleReservation(checkInVehicle); // should remove it from the list of currently renetd vehicles
+
         checkInVehicle.setCurrentlyRented(false); // sets it to false so that it is no longer currently being rented and that it can be reserved again
 
-        
+        PrintStream cout = System.out;
 
-        userToReservationBelongs.removeReservation(checkInReservation); // removes the reservation from the user
+        boolean reservationRemovalCheck = userToReservationBelongs.removeReservation(checkInReservation); // removes the reservation from the user
+
+        if(reservationRemovalCheck == true)
+            cout.println("It finds that there is a matching reservation in the user");
+
 
         for(Reservation reservation : userToReservationBelongs.getReservations())
         {

@@ -7,6 +7,7 @@ import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -146,6 +147,29 @@ public class BusinessMetricsService {
 
             businessMetricsRepository.save(businessMetrics.get(0));
         }
+    }
+
+    public void checkedBackInVehicleReservation(Vehicle currentReservedVehicle)
+    {
+        List<BusinessMetrics> businessMetrics = businessMetricsRepository.findAll();
+
+        if(businessMetrics.isEmpty() == false)
+        {
+            int size = businessMetrics.get(0).getCurrentlyRentedVehicles().size();
+
+            for(int i = 0; i < size; i++)
+            {
+                if(currentReservedVehicle.equals(businessMetrics.get(0).getCurrentlyRentedVehicles().get(i))) // if the reservation ids are the same, then it will be considered an equal vehicle, so it should be removed
+                {
+                    businessMetrics.get(0).getCurrentlyRentedVehicles().remove(i); // will remove that reservation at that index
+                    break;
+                }
+            }
+
+            businessMetricsRepository.save(businessMetrics.get(0));
+
+        }
+
     }
 
 

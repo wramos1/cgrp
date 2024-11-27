@@ -142,7 +142,9 @@ public class EmailSenderService {
         reservationEmail.setText("Hi " + reservation.getUsername() +
                  ", \n\nThank you for your business, we truly appreciate it. Below is a confirmation of your reservation: \n\n" + "Year: " +
                reservation.getVehicle().getYear() + "\nMake: " + reservation.getVehicle().getMake() + "\nModel: " + reservation.getVehicle().getModel() +
-                "\nReservation Duration: " + reservation.getStartDate().toString() + " - " + reservation.getEndDate().toString() + "\n\nFrom CGRP, we wish you the very best in your travels!");
+                "\nReservation Duration: " + reservation.getStartDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) + " - " + reservation.getEndDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)) +
+                "\n\nHere is your reservation id, please keep this for when you return in order to check the vehicle back in: " + reservation.getCustomReservationID().toUpperCase() + "\n\nFrom CGRP, we wish you the very best in your travels!");
+
 
         mailSender.send(reservationEmail);
 
