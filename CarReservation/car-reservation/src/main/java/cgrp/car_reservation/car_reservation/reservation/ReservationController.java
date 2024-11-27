@@ -80,8 +80,8 @@ public class ReservationController {
 
     //cancels a users reservation, only needs the reservation object which can be accessed
     //from the users reservation array
-    @PostMapping("/cancel")
-    public String cancelReservation(@RequestBody String customReservationID, @AuthenticationPrincipal UserDetails userDetails){
+    @PostMapping("/cancel/{customReservationID}")
+    public ResponseEntity<String> cancelReservation(@PathVariable String customReservationID, @AuthenticationPrincipal UserDetails userDetails){
         User user = userService.getUserbyUsername(userDetails.getUsername());
 
         System.out.println(user.getUsername());

@@ -103,7 +103,7 @@ public class Reservation {
     }
 
 
-    // like member wise comparsion in C++, whenever object is on the stack
+    // like member wise comparison in C++, whenever object is on the stack
     public boolean equals(Reservation reservation) {
         if(this.getCustomReservationID().equals(reservation.customReservationID)) // if the reservation id's are the same, then it will be considered to be the same reservation
             return true;

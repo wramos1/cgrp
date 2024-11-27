@@ -68,6 +68,11 @@ public class TransactionService {
             newTransaction.setTransactionNote("Modified Existing Vehicle Rental");
         else if (transactionType.equals("cancel"))
             newTransaction.setTransactionNote("Canceled Vehicle Rental");
+        else if (transactionType.equals("checkin"))
+        {
+            newTransaction.setTransactionNote("Checked Vehicle Back In");
+            newTransaction.setReservationInvolvedInTransaction(null);
+        }
         else {
             newTransaction.setTransactionNote("Miscellaneous Transaction");
         }

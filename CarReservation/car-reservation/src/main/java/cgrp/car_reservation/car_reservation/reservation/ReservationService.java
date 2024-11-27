@@ -19,6 +19,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -182,12 +184,12 @@ public class ReservationService {
     }
 
 
-    public String cancelVehicleReservation(String customReservationID, User user)
+    public ResponseEntity<String> cancelVehicleReservation(String customReservationID, User user)
     {
         Reservation reservation = reservationRepository.findByCustomReservationID(customReservationID);
 
         // this conditional is the issue
-        if(userService.checkIfHasReservation(customReservationID, user))
+        if(userService.checkIfHasReservation(customReservationID, user) == true)
         {
             Vehicle vehicle = reservation.getVehicle();
             vehicle.setCurrentlyRented(false);
@@ -198,13 +200,15 @@ public class ReservationService {
 
             userRepository.save(user); // updates that user in the database
 
+            businessMetricsService.checkedBackInVehicleReservation(vehicle); // removes the vehicle from the business metrics
+
             transactionService.createNewTransaction(reservation, "cancel");
 
-            return "Worked";
+            return ResponseEntity.status(HttpStatus.OK).body("Vehicle Reservation Successfully Cancelled");
         }
 
 
-        return "Something Went Wrong";
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to Cancel Vehicle Reservation. Try Again!");
     }
 
 
@@ -285,6 +289,7 @@ public class ReservationService {
 
         reservationRepository.delete(checkInReservation); // deletes the reservation from the user, which essentially gets rid of it and checks the user back in
 
+        transactionService.createNewTransaction(null, "checkin");
 
     }
 
