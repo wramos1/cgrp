@@ -60,6 +60,22 @@ public class FilterByKeyword {
         return  approvedVehicles;
     }
 
+    public List<Vehicle> filterKeyword(List<Vehicle> vehicleSubset, String[] searchParams){
+
+        if(searchParams.length==0)
+            return vehicleSubset;
+
+        List<Vehicle> approvedVehicles = new ArrayList<>();
+
+        for(Vehicle vehicle : vehicleSubset){
+            if(Arrays.stream(searchParams).allMatch(vehicle.getVehicleSearchTerm()::contains)){
+                approvedVehicles.add(vehicle);
+            }
+        }
+
+        return  approvedVehicles;
+    }
+
     /**
      * uses filter to filter vehicles for CGRP<br>
      * @return List of vehicles that matched the searchParams
@@ -67,6 +83,6 @@ public class FilterByKeyword {
      */
     public List<Vehicle> filterResult(){
 
-        return filter(filter(filter(vehicles,makeSearchParams),typeSearchParams),keywordSearchParams);
+        return filterKeyword(filter(filter(vehicles,makeSearchParams),typeSearchParams),keywordSearchParams);
     }
 }
