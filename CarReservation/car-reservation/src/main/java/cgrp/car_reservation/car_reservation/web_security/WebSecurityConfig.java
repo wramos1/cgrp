@@ -84,7 +84,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
  */
 
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true)  // Enables @PreAuthorize annotation
+@EnableMethodSecurity(prePostEnabled = true) // Enables @PreAuthorize annotation
 @Configuration
 public class WebSecurityConfig {
 
@@ -127,7 +127,7 @@ public class WebSecurityConfig {
                                                                 "/login.html",
                                                                 "/login",
                                                                 "/register.html",
-                                                                "/register",
+                                                                "/register-user",
                                                                 "/homepage",
                                                                 "/home/vehicles",
                                                                 "/home/keyword/*",
