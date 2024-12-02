@@ -133,6 +133,8 @@ public class WebSecurityConfig {
                                                                 "/home/keyword/*",
                                                                 "/login?error=true",
                                                                 "/reservations/reservation",
+                                                                "/reservations/{checkin}",
+                                                                "/reservations/cancel/{customReservationID}",
                                                                 "/register-user.html",
                                                                 "/login.html",
                                                                 "/reservations" // Ensure this matches your endpoint
