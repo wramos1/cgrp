@@ -249,7 +249,9 @@ public class ReservationService {
 
     public List<Reservation> getUserReservations(String username) {
 
-        return reservationRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
+
+        return user.getReservations();
     }
 
     public void checkVehicleBackIn(String checkin)
