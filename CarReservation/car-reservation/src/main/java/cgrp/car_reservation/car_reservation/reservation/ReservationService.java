@@ -190,6 +190,8 @@ public class ReservationService {
 
         reservation.setChargeAmount(0);
 
+        reservationRepository.save(reservation);
+
         // this conditional is the issue
         if(userService.checkIfHasReservation(customReservationID, user) == true)
         {
