@@ -1,7 +1,11 @@
 package cgrp.car_reservation.car_reservation.business_metrics;
 
+import cgrp.car_reservation.car_reservation.reservation.Reservation;
+import cgrp.car_reservation.car_reservation.vehicle.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Module Name: BusinessMetricsController.java<br>
@@ -33,6 +37,14 @@ public class BusinessMetricsController {
     public BusinessMetrics getCurrentMetrics()
     {
         return businessMetricsService.getCurrentMetrics();
+    }
+
+    @GetMapping("/getcurrentvehicles")
+    public List<Vehicle> getCurrentVehicles()
+    {
+        BusinessMetrics metrics = businessMetricsService.getCurrentMetrics();
+
+        return metrics.getCurrentlyRentedVehicles();
     }
 
 
