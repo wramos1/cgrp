@@ -123,6 +123,7 @@ public class EmailSenderService {
                         + "Rating: " + review.getReviewRating() + "\nReview Body: " + review.getReviewBody());
             }
 
+
            // reviewEmailHelper.addAttachment("2025.png", new File("C:\\Users\\artla\\Downloads\\2025.png"));
 
             mailSender.send(reviewEmail);

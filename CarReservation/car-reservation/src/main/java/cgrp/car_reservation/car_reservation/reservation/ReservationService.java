@@ -188,6 +188,8 @@ public class ReservationService {
     {
         Reservation reservation = reservationRepository.findByCustomReservationID(customReservationID);
 
+        reservation.setChargeAmount(0);
+
         // this conditional is the issue
         if(userService.checkIfHasReservation(customReservationID, user) == true)
         {
@@ -205,6 +207,7 @@ public class ReservationService {
             transactionService.createNewTransaction(reservation, "cancel");
 
             emailSenderService.cancelReservationVerificationEmail(reservation);
+
 
             return ResponseEntity.status(HttpStatus.OK).body("Vehicle Reservation Successfully Cancelled");
         }

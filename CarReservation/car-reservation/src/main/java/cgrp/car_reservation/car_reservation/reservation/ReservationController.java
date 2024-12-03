@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,7 +76,20 @@ public class ReservationController {
 
     @GetMapping("/reserve")
     public List<Reservation> getAllReservations(){
-        return reservationService.getAllReservations();
+
+
+        List<Reservation> reservations = reservationService.getAllReservations();
+
+        List<Reservation> newRes = new ArrayList<>();
+
+        for(Reservation reservation: reservations){
+            if(reservation.getChargeAmount()==0){
+            } else{
+                newRes.add(reservation);
+            }
+        }
+
+        return newRes;
     }
 
     //cancels a users reservation, only needs the reservation object which can be accessed
